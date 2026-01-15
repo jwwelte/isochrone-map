@@ -23,6 +23,7 @@ let markerCounter = 0;
 let clickedCoordinates = null;
 let markers = [];
 let isolineLayers = [];
+let visibleLayers = [];
 const splitByCommaNotInParentheses = (input) => {
     const regex = /,(?![^()]*\))/g;
     return input.split(regex);
@@ -77,6 +78,8 @@ function initializeMap(borders, busStops, routes, yoloPOIs, sacPOIs, artsEnterta
         keepBuffer: 2
     }).addTo(map);
 
+    // L.control.scale({position:'bottomleft'}).addTo(map);
+
     // json object for layer switcher control basemaps
     var baseMaps = {
         "Geoapify": geoapify
@@ -100,13 +103,21 @@ function initializeMap(borders, busStops, routes, yoloPOIs, sacPOIs, artsEnterta
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
     console.log(layerControl);
     
+    // Get list of active layers
+    var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
+    console.log("active layers from layer control 1: ", active);
+    
     // Add click event listener to the map
     map.on('click', onMapClick);
+
+    // Get list of active layers
+    var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
+    console.log("active layers from layer control 2: ", active);
 }
 
 // Create GeoJSON layers
 async function createGeoJson(file) {
-    console.log("adding geojson: ", file);
+    // console.log("adding geojson: ", file);
     try {
         const response = await fetch(file);
         if (!response.ok) {
@@ -117,7 +128,7 @@ async function createGeoJson(file) {
         
         // If data is in EPSG:3857, project it to EPSG:4326 for Leaflet
         if (data.crs && data.crs.properties && (data.crs.properties.name === "EPSG:3857" || data.crs.properties.name === "urn:ogc:def:crs:EPSG::3857")) {
-            console.log("Projecting data from EPSG:3857 to EPSG:4326");
+            // console.log("Projecting data from EPSG:3857 to EPSG:4326");
             const source = "EPSG:3857";
             const dest = "EPSG:4326";
             
@@ -740,6 +751,21 @@ function addIsolineToMap(isolineData, markerId) {
 
     // Move to next color
     currentColorIndex = (currentColorIndex + 1) % COLORS.length;
+
+    // detectLayerOverlap(busStops, isolineLayer);
+    console.log("current active layers: ", active);
+    detectLayerOverlap(L.layerGroup(active), isolineLayer);
+}
+
+function detectLayerOverlap(layerGroup, isochrone) {
+    layerGroup.eachLayer(function (layer) {
+        const polygon = layer.toGeoJSON();
+        var intersection = turf.intersect(polygon, isochrone);
+        if (intersection) {
+            console.log("Isochrone overlaps with a layer");
+            // Display text in sidebar
+        }
+    })
 }
 
 function showLoadingIndicator() {

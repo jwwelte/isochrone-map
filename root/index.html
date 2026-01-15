@@ -3,7 +3,7 @@
 
 <head lang="en">
     <meta charset="UTF-8">
-        <title>Isolines Explorer & Leaflet - Powered by Geoapify</title>
+        <title>Isochrone Explorer - Powered by Leaflet & Geoapify</title>
         
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
         <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
@@ -13,10 +13,11 @@
         
         <!-- Leaflet map -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        <!-- Show/hide geoJSON layers without adding/removing them from the map -->
-        <script src="https://unpkg.com/leaflet-layervisibility/dist/leaflet-layervisibility.js"></script>
         <!-- Load proj4js for coordinate transformation -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
+        <!-- Get active layers from layer control -->
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.active-layers@0.3.2/dist/leaflet.active-layers.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
         <!-- Load external geoJSON file into Leaflet map -->
         <script src="./src/leaflet.ajax.js"></script>
         <script src="./src/demo.js"></script>
@@ -31,7 +32,7 @@
       <h2>Isochrone Explorer</h2>
       <p>Select the map filters to display key features</p>
       <p>Click on the map to create isochrone polygons</p>
-      <p>Would like to show which points of interest and stops are within reach when an isochrone is created</p>
+      <p>*Would like to show which points of interest and stops are within reach when an isochrone is created*</p>
 
       <!-- <div class="filter-options">
         <input type="checkbox" id="yolo-county" name="yolo-county" value="option2" style="display: none" onclick="toggleCounty(this, 'Yolo')">

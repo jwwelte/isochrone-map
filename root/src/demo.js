@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addBoundaries();
     addBusStops();
     addRoutes();
-    addPointsOfInterest();
     setupEventListeners();
 });
 
@@ -117,7 +116,7 @@ async function addGeoJson(file) {
     }
 
     // Style and add GeoJSON to map
-    L.geoJson(data, {
+    return L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
             // Check if this is a POI based on file path or properties
             const isPOI = file.includes('Points of Interest');
@@ -145,9 +144,10 @@ async function addGeoJson(file) {
             return L.marker(latlng);
         },
         style: function (feature) {
-            const name = feature.properties.name || feature.properties.Route || "Unknown route";
-            var color = "lightblue";
-            
+            const name = feature.properties.name || feature.properties.Route || null;
+            var color = "pink";
+
+            if (file.includes("Yolobus Service Area")) color = "lightblue";
             // POI category based on file path
             if (file.includes("Arts_Entertainment")) color = "#9B5DE5";
             else if (file.includes("Education")) color = "#1982C4";
@@ -159,27 +159,12 @@ async function addGeoJson(file) {
             else if (file.includes("Tourism")) color = "#FF595E";
             else if (file.includes("Travel")) color = "#8AC926";
             // Transit routes
-            else if (name == "37" || name == "40" || name == "41" || name == "240") {
-                color = "purple";
-            } else if (name == "211" || name == "212") {
-                color = "orange";
-            } else if (name == "42A" || name == "42B") {
-                color = "green";
-            } else if (name == "138EB" || name == "138WB" || name == "215EB" || name == "215WB") {
-                color = "black";
-            } else if (name == "43AM" || name == "43PM" || name == "43RAM" || name == "43RPM" || name == "44AM" || name == "44PM" || name == "230AM" || name == "230PM") {
-                color = "red";
-            } else if (name == "45AM" || name == "45PM") {
-                color = "orange";
-            }
-
-            if (feature.properties.type == "MultiPolygon") {
-                color = "lightgreen";
-            } else if (feature.properties.type == "Point") {
-                // Point color handled in pointToLayer but kept for safety
-            } else if (feature.properties.type == "Polygon") {
-                // Polygon color handled by categories above
-            }
+            else if (name == "37" || name == "40" || name == "41" || name == "240") color = "purple";
+            else if (name == "211" || name == "212") color = "orange";
+            else if (name == "42A" || name == "42B") color = "green";
+            else if (name == "138EB" || name == "138WB" || name == "215EB" || name == "215WB") color = "black";
+            else if (name == "43AM" || name == "43PM" || name == "43RAM" || name == "43RPM" || name == "44AM" || name == "44PM" || name == "230AM" ||                         name == "230PM") color = "red";
+            else if (name == "45AM" || name == "45PM") color = "orange";
 
             return {
                 color: color,
@@ -190,9 +175,23 @@ async function addGeoJson(file) {
             };
         },
         onEachFeature: function (feature, layer) {
-            const name = feature.properties.name || feature.properties.Route || feature.properties.NAME || "Unknown";
+            const name = feature.properties.name || feature.properties.Route || feature.properties.NAME || null;
             const type = feature.properties.fclass || feature.properties.type || "";
-            layer.bindPopup(`<strong>${name}</strong><br>${type}`);
+            if (name) {
+                layer.bindPopup(`<strong>${name}</strong><br>${type}`);
+            }
+            // Show popup on hover
+            layer.on('click', function(event){
+                onMapClick(event);
+            });
+            // Show popup on hover
+            layer.on('mouseover', function(){
+                layer.openPopup();
+            });
+            // Hide popup on hover out
+            layer.on('mouseout', function(){
+                layer.closePopup();
+            });
         },
     }).addTo(map);
 }
@@ -309,17 +308,149 @@ function setupEventListeners() {
     });
 }
 
-async function addPointsOfInterest() {
-    // Points of Interest
-    await addGeoJson("../layers/Yolo County/Points of Interest/Arts_Entertainment_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Education_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Employment_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Healthcare_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Public_Social_Services_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Residential_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Retail_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Tourism_New.geojson");
-    await addGeoJson("../layers/Yolo County/Points of Interest/Travel_New.geojson");
+var yoloArtsEntertainment;
+var yoloEducation;
+var yoloEmployment;
+var yoloHealthcare;
+var yoloPublicSocialServices;
+var yoloResidential;
+var yoloRetail;
+var yoloTourism;
+var yoloTravel;
+
+var sacArtsEntertainment;
+var sacEducation;
+var sacEmployment;
+var sacHealthcare;
+var sacPublicSocialServices;
+var sacResidential;
+var sacRetail;
+var sacTourism;
+var sacTravel;
+
+async function addPOIsByCounty(county) {
+    if (county == 'Yolo') {
+        yoloArtsEntertainment = await addGeoJson("../layers/Yolo County/Points of Interest/Arts_Entertainment_New.geojson");
+        yoloEducation = await addGeoJson("../layers/Yolo County/Points of Interest/Education_New.geojson");
+        yoloEmployment = await addGeoJson("../layers/Yolo County/Points of Interest/Employment_New.geojson");
+        yoloHealthcare = await addGeoJson("../layers/Yolo County/Points of Interest/Healthcare_New.geojson");
+        yoloPublicSocialServices = await addGeoJson("../layers/Yolo County/Points of Interest/Public_Social_Services_New.geojson");
+        yoloResidential = await addGeoJson("../layers/Yolo County/Points of Interest/Residential_New.geojson");
+        yoloRetail = await addGeoJson("../layers/Yolo County/Points of Interest/Retail_New.geojson");
+        yoloTourism = await addGeoJson("../layers/Yolo County/Points of Interest/Tourism_New.geojson");
+        yoloTravel = await addGeoJson("../layers/Yolo County/Points of Interest/Travel_New.geojson");
+    } else {
+        sacArtsEntertainment = await addGeoJson("../layers/Sacramento County/Arts_Entertainment_New.geojson");
+        sacEducation = await addGeoJson("../layers/Sacramento County/Education_New.geojson");
+        sacEmployment = await addGeoJson("../layers/Sacramento County/Employment_New.geojson");
+        sacHealthcare = await addGeoJson("../layers/Sacramento County/Healthcare_New.geojson");
+        sacPublicSocialServices = await addGeoJson("../layers/Sacramento County/Public_Social_Services_New.geojson");
+        sacResidential = await addGeoJson("../layers/Sacramento County/Residential_New.geojson");
+        sacRetail = await addGeoJson("../layers/Sacramento County/Retail_New.geojson");
+        sacTourism = await addGeoJson("../layers/Sacramento County/Tourism_New.geojson");
+        sacTravel = await addGeoJson("../layers/Sacramento County/Travel_New.geojson");
+    }
+}
+
+async function addPOIsByCategory(category) {
+    if (category == 'ArtsEntertainment') {
+        yoloArtsEntertainment = await addGeoJson("../layers/Yolo County/Points of Interest/Arts_Entertainment_New.geojson");
+        sacArtsEntertainment = await addGeoJson("../layers/Sacramento County/Arts_Entertainment_New.geojson");
+    } else if (category == 'Education') {
+        yoloEducation = await addGeoJson("../layers/Yolo County/Points of Interest/Education_New.geojson");
+        sacEducation = await addGeoJson("../layers/Sacramento County/Education_New.geojson");
+    } else if (category == 'Employment') {
+        yoloEmployment = await addGeoJson("../layers/Yolo County/Points of Interest/Employment_New.geojson");
+        sacEmployment = await addGeoJson("../layers/Sacramento County/Employment_New.geojson");
+    } else if (category == 'Healthcare') {
+        yoloHealthcare = await addGeoJson("../layers/Yolo County/Points of Interest/Healthcare_New.geojson");
+        sacHealthcare = await addGeoJson("../layers/Sacramento County/Healthcare_New.geojson");
+    } else if (category == 'PublicSocialServices') {
+        yoloPublicSocialServices = await addGeoJson("../layers/Yolo County/Points of Interest/Public_Social_Services_New.geojson");
+        sacPublicSocialServices = await addGeoJson("../layers/Sacramento County/Public_Social_Services_New.geojson");
+    } else if (category == 'Residential') {
+        yoloResidential = await addGeoJson("../layers/Yolo County/Points of Interest/Residential_New.geojson");
+        sacResidential = await addGeoJson("../layers/Sacramento County/Residential_New.geojson");
+    } else if (category == 'Retail') {
+        yoloRetail = await addGeoJson("../layers/Yolo County/Points of Interest/Retail_New.geojson");
+        sacRetail = await addGeoJson("../layers/Sacramento County/Retail_New.geojson");
+    } else if (category == 'Tourism') {
+        yoloTourism = await addGeoJson("../layers/Yolo County/Points of Interest/Tourism_New.geojson");
+        sacTourism = await addGeoJson("../layers/Sacramento County/Tourism_New.geojson");
+    } else {
+        yoloTravel = await addGeoJson("../layers/Yolo County/Points of Interest/Travel_New.geojson");
+        sacTravel = await addGeoJson("../layers/Sacramento County/Travel_New.geojson");
+    }
+}
+
+function toggleCounty(checkbox, county) {
+    const label = document.querySelector(`label[for="${checkbox.id}"]`);
+    var layers = {
+        Yolo: [yoloArtsEntertainment, yoloEducation, yoloEmployment, yoloHealthcare, yoloPublicSocialServices, yoloRetail, yoloTourism, yoloTravel],
+        Sacramento: [sacArtsEntertainment, sacEducation, sacEmployment, sacHealthcare, sacPublicSocialServices, sacRetail, sacTourism, sacTravel]
+    };
+    console.log("showing POIs for county: ", county);
+    console.log("label: ", label);
+    if (checkbox.checked) {
+        console.log("checked: ", county);
+        addPOIsByCounty(county);
+        label.classList.add("selected");
+    } else {
+        console.log("unchecked: ", county);
+        console.log(layers, layers[county]);
+        for (const layer of layers[county]) {
+            map.removeLayer(layer);
+        }
+        label.classList.remove("selected");
+    }
+}
+
+function togglePOIs(checkbox, category) {
+    console.log("showing POIs for category: ", category);
+    const label = document.querySelector(`label[for="${checkbox.id}"]`);
+    const yoloLabel = document.querySelector(`label[for="yolo-county"]`);
+    const sacLabel = document.querySelector(`label[for="sacramento-county"]`);
+    var layers = {
+        ArtsEntertainment: [yoloArtsEntertainment, sacArtsEntertainment],
+        Education: [yoloEducation, sacEducation],
+        Employment: [yoloEmployment, sacEmployment],
+        Healthcare: [yoloHealthcare, sacHealthcare],
+        PublicSocialServices: [yoloPublicSocialServices, sacPublicSocialServices],
+        Residential: [yoloResidential, sacResidential],
+        Retail: [yoloRetail, sacRetail],
+        Tourism: [yoloTourism, sacTourism],
+        Travel: [yoloTravel, sacTravel]
+    };
+
+    if (yoloLabel.classList.contains("selected") || sacLabel.classList.contains("selected")) {
+        // doesn't work because unlike the county if statement which calls addPOIsByCounty(), this doesn't call addPOIsByCategory()
+        if (yoloLabel.classList.contains("selected")) var index = 0;
+        else if (sacLabel.classList.contains("selected")) var index = 1;
+
+        console.log(Object.values(layers[category]));
+        console.log(Object.values(layers[category])[index]);
+        if (checkbox.checked) {
+            console.log("checked: ", category);
+            map.addLayer(Object.values(layers[category])[index]);
+            label.classList.add("selected");
+        } else {
+            console.log("unchecked: ", category);
+            map.removeLayer(Object.values(layers[category])[index]);
+            label.classList.remove("selected");
+        }
+    } else {
+        if (checkbox.checked) {
+            console.log("checked: ", category);
+            addPOIsByCategory(category);
+            label.classList.add("selected");
+        } else {
+            console.log("unchecked: ", category);
+            for (const layer of layers[category]) {
+                map.removeLayer(layer);
+            }
+            label.classList.remove("selected");
+        }
+    }
 }
 
 function onMapClick(event) {

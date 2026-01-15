@@ -23,12 +23,37 @@
 <body>
   <div class="demo-container">
     <div id="map"></div>
-    <div id="map1">
-        <div id="map2"></div>
-    </div>
     <div class="sidebar">
       <h2>Isolines Explorer (Leaflet)</h2>
       <p>Click on the map to create isochrone polygons</p>
+
+      <div class="filter-options">
+        <input type="checkbox" id="yolo-county" name="yolo-county" value="option2" style="display: none" onclick="toggleCounty(this, 'Yolo')">
+        <label for="yolo-county">Yolo County</label>
+        <input type="checkbox" id="sacramento-county" name="sacramento-county" value="option2" style="display: none" onclick="toggleCounty(this, 'Sacramento')">
+        <label for="sacramento-county">Sacramento County</label>
+      </div>
+      <div class="filter-options">
+        <input type="checkbox" id="arts-entertainment" name="arts-entertainment" value="option1" style="display: none" onclick="togglePOIs(this, 'ArtsEntertainment')">
+        <label for="arts-entertainment">Arts & Entertainment</label>
+        <input type="checkbox" id="education" name="education" value="option2" style="display: none" onclick="togglePOIs(this, 'Education')">
+        <label for="education">Education</label>
+        <input type="checkbox" id="employment" name="employment" value="option2" style="display: none" onclick="togglePOIs(this, 'Employment')">
+        <label for="employment">Employment</label>
+        <input type="checkbox" id="healthcare" name="healthcare" value="option1" style="display: none" onclick="togglePOIs(this, 'Healthcare')">
+        <label for="healthcare">Healthcare</label>
+        <input type="checkbox" id="public-social-services" name="public-social-services" value="option2" style="display: none" onclick="togglePOIs(this, 'PublicSocialServices')">
+        <label for="education">Public Social Services</label>
+        <input type="checkbox" id="residential" name="residential" value="option2" style="display: none" onclick="togglePOIs(this, 'Residential')">
+        <label for="residential">Residential</label>
+        <input type="checkbox" id="retail" name="retail" value="option1" style="display: none" onclick="togglePOIs(this, 'Retail')">
+        <label for="retail">Retail</label>
+        <input type="checkbox" id="tourism" name="tourism" value="option2" style="display: none" onclick="togglePOIs(this, 'Tourism')">
+        <label for="tourism">Tourism</label>
+        <input type="checkbox" id="travel" name="travel" value="option2" style="display: none" onclick="togglePOIs(this, 'Travel')">
+        <label for="travel">Travel</label>
+      </div>
+      
       <button class="button clear-button" id="clear-all-button">Clear All</button>
     </div>
   </div>

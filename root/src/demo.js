@@ -28,6 +28,26 @@ const splitByCommaNotInParentheses = (input) => {
     return input.split(regex);
 };
 
+function load(url) {
+    // Display loading image
+    const loader = document.getElementById('loader').visible = true;
+    // Request data
+    var req = new XMLHttpRequest();
+    req.open("POST", url, true);
+
+    req.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+            // content is loaded...hide the gif and display the content...
+            if (req.responseText) {
+                document.getElementById('map').innerHTML = req.responseText;
+                loader.visible = false;
+            }
+        }
+    };
+    request.send(vars);
+}
+load();
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async function() {
     // Wait for all async layers to load before initializing map

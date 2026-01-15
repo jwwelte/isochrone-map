@@ -66,7 +66,8 @@ body {
 
 .sidebar p {
     margin: 0 0 30px 0;
-    color: #383838;
+    color: #1072ba;
+    /* color: #383838; */
     line-height: 1.5;
 }
 
@@ -125,20 +126,21 @@ body {
     letter-spacing: 0.5px;
 }
 
-.selected {
+/* .selected {
     background-color: red !important;
     color: white !important;
-}
+} */
 
 .clear-button {
-    background: #5a85d7;
+    /* background: #5a85d7; */
+    background: #1072ba;
     color: white;
 }
 
 .clear-button:hover {
-    background: #3d66b8;
+    background: #065e9d;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgb(88, 133, 238, 0.3);
+    box-shadow: 0 4px 8px rgb(46, 90, 194, 0.3);
 }
 
 .clear-button:active {

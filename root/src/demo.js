@@ -84,13 +84,11 @@ function initializeMap(borders, busStops, routes, yoloPOIs, sacPOIs, artsEnterta
         "Borders": borders,
         "Stops": busStops,
         "Routes": routes,
-        "Yolo County POIs": yoloPOIs,
-        "Sacramento County POIs": sacPOIs,
-        "ArtsEntertainment": artsEntertainment,
+        "Arts & Entertainment": artsEntertainment,
         "Education": education,
         "Employment": employment,
         "Healthcare": healthcare,
-        "PublicSocialServices": publicSocialServices,
+        "Public & Social Services": publicSocialServices,
         "Residential": residential,
         "Retail": retail,
         "Tourism": tourism,
@@ -114,17 +112,130 @@ async function createGeoJson(file) {
             return L.layerGroup(); // Return empty group instead of undefined
         }
         let data = await response.json();
-        // ... (rest of projection logic)
         
+        // If data is in EPSG:3857, project it to EPSG:4326 for Leaflet
+        if (data.crs && data.crs.properties && (data.crs.properties.name === "EPSG:3857" || data.crs.properties.name === "urn:ogc:def:crs:EPSG::3857")) {
+            console.log("Projecting data from EPSG:3857 to EPSG:4326");
+            const source = "EPSG:3857";
+            const dest = "EPSG:4326";
+            
+            // Helper to transform coordinates recursively
+            const transformCoords = (coords) => {
+                if (typeof coords[0] === 'number') {
+                    return proj4(source, dest, coords);
+                }
+                return coords.map(transformCoords);
+            };
+
+            data.features.forEach(feature => {
+                if (feature.geometry && feature.geometry.coordinates) {
+                    feature.geometry.coordinates = transformCoords(feature.geometry.coordinates);
+                }
+            });
+        } else if (data.features && data.features.length > 0 && data.features[0].geometry && data.features[0].geometry.coordinates) {
+            // Fallback detection: if coordinates look like EPSG:3857 (very large numbers)
+            const firstCoord = data.features[0].geometry.type === 'Point' 
+                ? data.features[0].geometry.coordinates 
+                : (data.features[0].geometry.type === 'LineString' 
+                    ? data.features[0].geometry.coordinates[0] 
+                    : (data.features[0].geometry.type === 'Polygon' ? data.features[0].geometry.coordinates[0][0] : null));
+            
+            if (firstCoord && (Math.abs(firstCoord[0]) > 180 || Math.abs(firstCoord[1]) > 90)) {
+                console.log("Detected large coordinates, projecting from EPSG:3857 to EPSG:4326");
+                const source = "EPSG:3857";
+                const dest = "EPSG:4326";
+                const transformCoords = (coords) => {
+                    if (typeof coords[0] === 'number') {
+                        return proj4(source, dest, coords);
+                    }
+                    return coords.map(transformCoords);
+                };
+                data.features.forEach(feature => {
+                    if (feature.geometry && feature.geometry.coordinates) {
+                        feature.geometry.coordinates = transformCoords(feature.geometry.coordinates);
+                    }
+                });
+            }
+        }
+
         return L.geoJson(data, {
-            // ... (rest of styling logic)
+            pointToLayer: function (feature, latlng) {
+                const isPOI = file.includes('Points of Interest');
+                if (isPOI) {
+                    let color = "blue";
+                    if (file.includes("Arts_Entertainment")) color = "#9B5DE5";
+                    else if (file.includes("Education")) color = "#1982C4";
+                    else if (file.includes("Employment")) color = "#1A535C";
+                    else if (file.includes("Healthcare")) color = "#FF6B6B";
+                    else if (file.includes("Public_Social_Services")) color = "#4ECDC4";
+                    else if (file.includes("Residential")) color = "#FF9F1C";
+                    else if (file.includes("Retail")) color = "#FFD93D";
+                    else if (file.includes("Tourism")) color = "#FF595E";
+                    else if (file.includes("Travel")) color = "#8AC926";
+
+                    return L.circleMarker(latlng, {
+                        radius: 6,
+                        fillColor: color,
+                        color: "#fff",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    });
+                }
+                return L.marker(latlng);
+            },
+            style: function (feature) {
+                const name = feature.properties.name || feature.properties.Route || null;
+                var color = "pink";
+
+                if (file.includes("Yolobus Service Area")) color = "lightblue";
+                if (file.includes("Arts_Entertainment")) color = "#9B5DE5";
+                else if (file.includes("Education")) color = "#1982C4";
+                else if (file.includes("Employment")) color = "#1A535C";
+                else if (file.includes("Healthcare")) color = "#FF6B6B";
+                else if (file.includes("Public_Social_Services")) color = "#4ECDC4";
+                else if (file.includes("Residential")) color = "#FF9F1C";
+                else if (file.includes("Retail")) color = "#FFD93D";
+                else if (file.includes("Tourism")) color = "#FF595E";
+                else if (file.includes("Travel")) color = "#8AC926";
+                else if (name == "37" || name == "40" || name == "41" || name == "240") color = "purple";
+                else if (name == "211" || name == "212") color = "orange";
+                else if (name == "42A" || name == "42B") color = "green";
+                else if (name == "138EB" || name == "138WB" || name == "215EB" || name == "215WB") color = "black";
+                else if (name == "43AM" || name == "43PM" || name == "43RAM" || name == "43RPM" || name == "44AM" || name == "44PM" || name == "230AM" || name == "230PM") color = "red";
+                else if (name == "45AM" || name == "45PM") color = "orange";
+
+                return {
+                    color: color,
+                    fillColor: color,
+                    opacity: 0.8,
+                    fillOpacity: 0.3,
+                    weight: 3
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                const name = feature.properties.name || feature.properties.Route || feature.properties.NAME || null;
+                const type = feature.properties.fclass || feature.properties.type || "";
+                if (name) {
+                    layer.bindPopup(`<strong>${name}</strong><br>${type}`, {
+                        autoPan: false
+                    });
+                }
+                layer.on('click', function(event){
+                    onMapClick(event);
+                });
+                layer.on('mouseover', function(){
+                    layer.openPopup();
+                });
+                layer.on('mouseout', function(){
+                    layer.closePopup();
+                });
+            }
         });
     } catch (e) {
         console.error("Error creating GeoJSON layer:", e);
         return L.layerGroup();
     }
-}
-    // }).addTo(map);
 }
 
 function addBoundaries() {

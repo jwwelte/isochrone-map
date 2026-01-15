@@ -103,17 +103,23 @@ function initializeMap(borders, busStops, routes, yoloPOIs, sacPOIs, artsEnterta
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
     console.log(layerControl);
     
-    // Get list of active layers
-    var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
-    console.log("active layers from layer control 1: ", active);
+    // // Get list of active layers
+    // var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
+    // console.log("active layers from layer control 1: ", active);
     
     // Add click event listener to the map
     map.on('click', onMapClick);
 
-    // Get list of active layers
-    var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
-    console.log("active layers from layer control 2: ", active);
+    // // Get list of active layers
+    // var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
+    // console.log("active layers from layer control 2: ", active);
 }
+
+// map.on('overlayadd', function () {
+//     setTimeout(function () {
+//         console.log(control.getActiveOverlayLayers());
+//     }, 1);
+// });
 
 // Create GeoJSON layers
 async function createGeoJson(file) {
@@ -753,8 +759,8 @@ function addIsolineToMap(isolineData, markerId) {
     currentColorIndex = (currentColorIndex + 1) % COLORS.length;
 
     // detectLayerOverlap(busStops, isolineLayer);
-    console.log("current active layers: ", active);
-    detectLayerOverlap(L.layerGroup(active), isolineLayer);
+    // console.log("current active layers: ", active);
+    // detectLayerOverlap(L.layerGroup(active), isolineLayer);
 }
 
 function detectLayerOverlap(layerGroup, isochrone) {

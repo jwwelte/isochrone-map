@@ -352,33 +352,46 @@ async function addPOIsByCounty(county) {
     }
 }
 
-async function addPOIsByCategory(category) {
+async function addYoloPOIsByCategory(category) {
     if (category == 'ArtsEntertainment') {
         yoloArtsEntertainment = await addGeoJson("../layers/Yolo County/Points of Interest/Arts_Entertainment_New.geojson");
-        sacArtsEntertainment = await addGeoJson("../layers/Sacramento County/Arts_Entertainment_New.geojson");
     } else if (category == 'Education') {
         yoloEducation = await addGeoJson("../layers/Yolo County/Points of Interest/Education_New.geojson");
-        sacEducation = await addGeoJson("../layers/Sacramento County/Education_New.geojson");
     } else if (category == 'Employment') {
         yoloEmployment = await addGeoJson("../layers/Yolo County/Points of Interest/Employment_New.geojson");
-        sacEmployment = await addGeoJson("../layers/Sacramento County/Employment_New.geojson");
     } else if (category == 'Healthcare') {
         yoloHealthcare = await addGeoJson("../layers/Yolo County/Points of Interest/Healthcare_New.geojson");
-        sacHealthcare = await addGeoJson("../layers/Sacramento County/Healthcare_New.geojson");
     } else if (category == 'PublicSocialServices') {
         yoloPublicSocialServices = await addGeoJson("../layers/Yolo County/Points of Interest/Public_Social_Services_New.geojson");
-        sacPublicSocialServices = await addGeoJson("../layers/Sacramento County/Public_Social_Services_New.geojson");
     } else if (category == 'Residential') {
         yoloResidential = await addGeoJson("../layers/Yolo County/Points of Interest/Residential_New.geojson");
-        sacResidential = await addGeoJson("../layers/Sacramento County/Residential_New.geojson");
     } else if (category == 'Retail') {
         yoloRetail = await addGeoJson("../layers/Yolo County/Points of Interest/Retail_New.geojson");
-        sacRetail = await addGeoJson("../layers/Sacramento County/Retail_New.geojson");
     } else if (category == 'Tourism') {
         yoloTourism = await addGeoJson("../layers/Yolo County/Points of Interest/Tourism_New.geojson");
-        sacTourism = await addGeoJson("../layers/Sacramento County/Tourism_New.geojson");
     } else {
         yoloTravel = await addGeoJson("../layers/Yolo County/Points of Interest/Travel_New.geojson");
+    }
+}
+
+async function addSacPOIsByCategory(category) {
+    if (category == 'ArtsEntertainment') {
+        sacArtsEntertainment = await addGeoJson("../layers/Sacramento County/Arts_Entertainment_New.geojson");
+    } else if (category == 'Education') {
+        sacEducation = await addGeoJson("../layers/Sacramento County/Education_New.geojson");
+    } else if (category == 'Employment') {
+        sacEmployment = await addGeoJson("../layers/Sacramento County/Employment_New.geojson");
+    } else if (category == 'Healthcare') {
+        sacHealthcare = await addGeoJson("../layers/Sacramento County/Healthcare_New.geojson");
+    } else if (category == 'PublicSocialServices') {
+        sacPublicSocialServices = await addGeoJson("../layers/Sacramento County/Public_Social_Services_New.geojson");
+    } else if (category == 'Residential') {
+        sacResidential = await addGeoJson("../layers/Sacramento County/Residential_New.geojson");
+    } else if (category == 'Retail') {
+        sacRetail = await addGeoJson("../layers/Sacramento County/Retail_New.geojson");
+    } else if (category == 'Tourism') {
+        sacTourism = await addGeoJson("../layers/Sacramento County/Tourism_New.geojson");
+    } else {
         sacTravel = await addGeoJson("../layers/Sacramento County/Travel_New.geojson");
     }
 }
@@ -423,32 +436,29 @@ function togglePOIs(checkbox, category) {
     };
 
     if (yoloLabel.classList.contains("selected") || sacLabel.classList.contains("selected")) {
-        // doesn't work because unlike the county if statement which calls addPOIsByCounty(), this doesn't call addPOIsByCategory()
-        if (yoloLabel.classList.contains("selected")) var index = 0;
-        else if (sacLabel.classList.contains("selected")) var index = 1;
-
-        console.log(Object.values(layers[category]));
-        console.log(Object.values(layers[category])[index]);
+        // !!! doesn't work because unlike the county if statement which calls addPOIsByCounty(), this doesn't call addPOIsByCategory()
         if (checkbox.checked) {
             console.log("checked: ", category);
-            map.addLayer(Object.values(layers[category])[index]);
             label.classList.add("selected");
+            if (yoloLabel.classList.contains("selected")) addYoloPOIsByCategory(category);
+            else addSacPOIsByCategory(category);
         } else {
             console.log("unchecked: ", category);
-            map.removeLayer(Object.values(layers[category])[index]);
+            // map.removeLayer(Object.values(layers[category])[index]);
             label.classList.remove("selected");
         }
     } else {
         if (checkbox.checked) {
             console.log("checked: ", category);
-            addPOIsByCategory(category);
             label.classList.add("selected");
+            addYoloPOIsByCategory(category);
+            addSacPOIsByCategory(category);
         } else {
             console.log("unchecked: ", category);
+            label.classList.remove("selected");
             for (const layer of layers[category]) {
                 map.removeLayer(layer);
             }
-            label.classList.remove("selected");
         }
     }
 }

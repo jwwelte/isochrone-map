@@ -1,0 +1,691 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-12-17T00:14:30Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/32476139",
+        "addr:city": "Davis",
+        "addr:housenumber": "1955",
+        "addr:postcode": "95618",
+        "addr:street": "Cowell Boulevard",
+        "amenity": "hospital",
+        "building": "hospital",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "name": "Kaiser Permanente",
+        "operator": "Kaiser Permanente",
+        "operator:short": "KP",
+        "operator:website": "https://healthy.kaiserpermanente.org/",
+        "operator:wikidata": "Q1721601",
+        "operator:wikipedia": "en:Kaiser Permanente"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.7287445,
+              38.5408891
+            ],
+            [
+              -121.728609,
+              38.5407891
+            ],
+            [
+              -121.7287518,
+              38.5406707
+            ],
+            [
+              -121.7286903,
+              38.5406253
+            ],
+            [
+              -121.7287621,
+              38.5405657
+            ],
+            [
+              -121.7286767,
+              38.5405028
+            ],
+            [
+              -121.7285569,
+              38.5406023
+            ],
+            [
+              -121.7284176,
+              38.540611
+            ],
+            [
+              -121.728311,
+              38.5405349
+            ],
+            [
+              -121.7282926,
+              38.5405506
+            ],
+            [
+              -121.7282608,
+              38.5405446
+            ],
+            [
+              -121.7281524,
+              38.5406206
+            ],
+            [
+              -121.7280589,
+              38.5405665
+            ],
+            [
+              -121.7279761,
+              38.5406325
+            ],
+            [
+              -121.7280496,
+              38.5406888
+            ],
+            [
+              -121.7279297,
+              38.5407844
+            ],
+            [
+              -121.7279514,
+              38.540801
+            ],
+            [
+              -121.7279255,
+              38.5408217
+            ],
+            [
+              -121.7280377,
+              38.5409078
+            ],
+            [
+              -121.7280629,
+              38.5408877
+            ],
+            [
+              -121.7280843,
+              38.5408996
+            ],
+            [
+              -121.7281077,
+              38.5408811
+            ],
+            [
+              -121.7281699,
+              38.5409291
+            ],
+            [
+              -121.7281488,
+              38.5409458
+            ],
+            [
+              -121.7281663,
+              38.5409592
+            ],
+            [
+              -121.7281404,
+              38.5409799
+            ],
+            [
+              -121.7282418,
+              38.5410578
+            ],
+            [
+              -121.7282661,
+              38.5410384
+            ],
+            [
+              -121.7282779,
+              38.5410474
+            ],
+            [
+              -121.7282977,
+              38.5410315
+            ],
+            [
+              -121.7283709,
+              38.5410871
+            ],
+            [
+              -121.7283564,
+              38.5410989
+            ],
+            [
+              -121.7283691,
+              38.5411085
+            ],
+            [
+              -121.728343,
+              38.5411299
+            ],
+            [
+              -121.7284407,
+              38.541203
+            ],
+            [
+              -121.7284651,
+              38.541183
+            ],
+            [
+              -121.7284804,
+              38.5411944
+            ],
+            [
+              -121.7286961,
+              38.541016
+            ],
+            [
+              -121.7286407,
+              38.5409751
+            ],
+            [
+              -121.7287445,
+              38.5408891
+            ]
+          ]
+        ]
+      },
+      "id": "way/32476139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/166080748",
+        "amenity": "pharmacy",
+        "building": "yes",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Eagle Drug"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.9707175,
+              38.5213085
+            ],
+            [
+              -121.9705177,
+              38.5213804
+            ],
+            [
+              -121.9706659,
+              38.5216323
+            ],
+            [
+              -121.9708656,
+              38.5215604
+            ],
+            [
+              -121.9707175,
+              38.5213085
+            ]
+          ]
+        ]
+      },
+      "id": "way/166080748"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/246354609",
+        "addr:city": "Woodland",
+        "addr:housenumber": "137",
+        "addr:postcode": "95695",
+        "addr:state": "CA",
+        "addr:street": "North Cottonwood Street",
+        "amenity": "hospital",
+        "building": "yes",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "name": "Herbert Bauer M.D. Health and Alcohol, Drug & Mental Health Building",
+        "phone": "+1-530-666-8516",
+        "source": "http://www.yolocounty.org/Index.aspx?page=56",
+        "website": "https://www.yolocounty.org/Index.aspx?page=59"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.7944494,
+              38.6873625
+            ],
+            [
+              -121.7944508,
+              38.6877023
+            ],
+            [
+              -121.7946538,
+              38.6877002
+            ],
+            [
+              -121.7946557,
+              38.6877307
+            ],
+            [
+              -121.7950737,
+              38.6877243
+            ],
+            [
+              -121.7950746,
+              38.6877604
+            ],
+            [
+              -121.7955172,
+              38.6877604
+            ],
+            [
+              -121.7955172,
+              38.6873961
+            ],
+            [
+              -121.7951159,
+              38.6873889
+            ],
+            [
+              -121.7951149,
+              38.6873626
+            ],
+            [
+              -121.7944494,
+              38.6873625
+            ]
+          ]
+        ]
+      },
+      "id": "way/246354609"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/384867357",
+        "addr:city": "Davis",
+        "addr:country": "US",
+        "addr:housenumber": "2000",
+        "addr:postcode": "95616",
+        "addr:state": "CA",
+        "addr:street": "Sutter Place",
+        "amenity": "hospital",
+        "beds": "48",
+        "contact:website": "http://www.sutterdavis.org/",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "name": "Sutter Davis Hospital",
+        "phone": "+1-530-756-6440",
+        "website": "http://www.sutterdavis.org/",
+        "wheelchair": "yes",
+        "wikidata": "Q50037038"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.7705276,
+              38.5615859
+            ],
+            [
+              -121.7704778,
+              38.5617753
+            ],
+            [
+              -121.7704947,
+              38.5618385
+            ],
+            [
+              -121.7704498,
+              38.5619563
+            ],
+            [
+              -121.77038,
+              38.5619957
+            ],
+            [
+              -121.7702571,
+              38.5622232
+            ],
+            [
+              -121.769504,
+              38.5634052
+            ],
+            [
+              -121.7700294,
+              38.5636069
+            ],
+            [
+              -121.7701586,
+              38.5636467
+            ],
+            [
+              -121.7702784,
+              38.5636645
+            ],
+            [
+              -121.7706554,
+              38.5636663
+            ],
+            [
+              -121.7702236,
+              38.5643544
+            ],
+            [
+              -121.7725701,
+              38.5643731
+            ],
+            [
+              -121.7725865,
+              38.5631423
+            ],
+            [
+              -121.7724073,
+              38.5630157
+            ],
+            [
+              -121.7724413,
+              38.5612924
+            ],
+            [
+              -121.7708676,
+              38.5612969
+            ],
+            [
+              -121.7705563,
+              38.5613464
+            ],
+            [
+              -121.7705276,
+              38.5615859
+            ]
+          ]
+        ]
+      },
+      "id": "way/384867357"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/389317015",
+        "addr:city": "Woodland",
+        "addr:housenumber": "1325",
+        "addr:postcode": "95695",
+        "addr:state": "CA",
+        "addr:street": "Cottonwood Street",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "name": "Woodland Healthcare",
+        "opening_hours": "24/7",
+        "operator": "Diginity Health",
+        "phone": "+1 530 662 3961",
+        "website": "https://www.dignityhealth.org/sacramento/locations/woodland-memorial-hospital"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.7933214,
+              38.6667285
+            ],
+            [
+              -121.7933394,
+              38.6632763
+            ],
+            [
+              -121.7933368,
+              38.6632469
+            ],
+            [
+              -121.7933236,
+              38.6632243
+            ],
+            [
+              -121.7933039,
+              38.663208
+            ],
+            [
+              -121.7932858,
+              38.6632028
+            ],
+            [
+              -121.7932682,
+              38.6631992
+            ],
+            [
+              -121.7911002,
+              38.66313
+            ],
+            [
+              -121.7910869,
+              38.6648688
+            ],
+            [
+              -121.7910861,
+              38.6649731
+            ],
+            [
+              -121.7910733,
+              38.666706
+            ],
+            [
+              -121.7933214,
+              38.6667285
+            ]
+          ]
+        ]
+      },
+      "id": "way/389317015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/710828531",
+        "addr:city": "Davis",
+        "addr:housenumber": "655",
+        "addr:postcode": "95616",
+        "addr:street": "Russell Boulevard",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/davis/655-russell-boulevard.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7582631,
+          38.5467233
+        ]
+      },
+      "id": "node/710828531"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/721788886",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/davis-ca-pharmacies/1550-e-covell-blvd-davis-ca-95616/storeid=9142",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.732032,
+          38.5610687
+        ]
+      },
+      "id": "node/721788886"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2120427065",
+        "addr:city": "West Sacramento",
+        "addr:housenumber": "1260",
+        "addr:postcode": "95691",
+        "addr:state": "CA",
+        "addr:street": "West Capitol Avenue",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/west-sacramento/1260-west-capitol-avenue.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5247794,
+          38.5818049
+        ]
+      },
+      "id": "node/2120427065"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2551989402",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/woodland/295-west-main-street.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7974789,
+          38.6772832
+        ]
+      },
+      "id": "node/2551989402"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8069422187",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7254827,
+          38.5418188
+        ]
+      },
+      "id": "node/8069422187"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8208043729",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/davis-ca-pharmacies/1471-w-covell-blvd-davis-ca-95616/storeid=9282"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7665003,
+          38.5614865
+        ]
+      },
+      "id": "node/8208043729"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9815493043",
+        "addr:city": "West Sacramento",
+        "addr:housenumber": "1351",
+        "addr:postcode": "95691",
+        "addr:state": "CA",
+        "addr:street": "West Capitol Avenue",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "healthcare": "pharmacy",
+        "name": "Walgreens",
+        "source": "City of West Sacramento GIS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5253026,
+          38.5803316
+        ]
+      },
+      "id": "node/9815493043"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9815494204",
+        "amenity": "pharmacy",
+        "brand": "Walmart",
+        "brand:wikidata": "Q483551",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walmart Pharmacy",
+        "website": "https://www.walmart.com/store/3652-west-sacramento-ca/pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5492941,
+          38.5877976
+        ]
+      },
+      "id": "node/9815494204"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11737524619",
+        "amenity": "pharmacy",
+        "brand": "Costco Pharmacy",
+        "brand:wikidata": "Q715583",
+        "healthcare": "pharmacy",
+        "name": "Costco Pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7217114,
+          38.672246
+        ]
+      },
+      "id": "node/11737524619"
+    }
+  ]
+}

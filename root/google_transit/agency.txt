@@ -1,2 +1,0 @@
-agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url,agency_email
-d139e461-175c-4156-beb0-e6a23b64d978,Yolo County Transportation District,http://avl.yctd.org/,America/Los_Angeles,en,530-666-2877,https://yolobus.com/yolobus-fares/,custserv@yctd.org

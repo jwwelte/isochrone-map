@@ -1,0 +1,4195 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-12-17T16:44:15Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/191371068",
+        "amenity": "hospital",
+        "emergency": "no",
+        "name": "Mercy Medical Plaza"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4107496,
+              38.4075401
+            ],
+            [
+              -121.4107549,
+              38.4062537
+            ],
+            [
+              -121.4095633,
+              38.406251
+            ],
+            [
+              -121.4092736,
+              38.4062503
+            ],
+            [
+              -121.4090811,
+              38.4062499
+            ],
+            [
+              -121.4091036,
+              38.406506
+            ],
+            [
+              -121.4091108,
+              38.4067861
+            ],
+            [
+              -121.4091173,
+              38.4071111
+            ],
+            [
+              -121.4091189,
+              38.4075325
+            ],
+            [
+              -121.4092763,
+              38.407534
+            ],
+            [
+              -121.4095445,
+              38.4075366
+            ],
+            [
+              -121.4101952,
+              38.4075406
+            ],
+            [
+              -121.4107496,
+              38.4075401
+            ]
+          ]
+        ]
+      },
+      "id": "way/191371068"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/242448523",
+        "addr:city": "Folsom",
+        "addr:housenumber": "330",
+        "addr:postcode": "95630",
+        "addr:state": "CA",
+        "addr:street": "Montrose Drive",
+        "amenity": "hospital",
+        "beds": "58",
+        "building": "yes",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "name": "Vibra Hospital"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.1583326,
+              38.6818413
+            ],
+            [
+              -121.158327,
+              38.6813268
+            ],
+            [
+              -121.1583546,
+              38.6813268
+            ],
+            [
+              -121.1583905,
+              38.6813161
+            ],
+            [
+              -121.1584346,
+              38.6812924
+            ],
+            [
+              -121.1584539,
+              38.6812622
+            ],
+            [
+              -121.158476,
+              38.6812149
+            ],
+            [
+              -121.1587738,
+              38.6812149
+            ],
+            [
+              -121.1587683,
+              38.6809759
+            ],
+            [
+              -121.158498,
+              38.6809716
+            ],
+            [
+              -121.1584925,
+              38.6809307
+            ],
+            [
+              -121.1582912,
+              38.6808812
+            ],
+            [
+              -121.1580265,
+              38.6808877
+            ],
+            [
+              -121.1580182,
+              38.6818413
+            ],
+            [
+              -121.1581092,
+              38.6818435
+            ],
+            [
+              -121.1581147,
+              38.681865
+            ],
+            [
+              -121.1582278,
+              38.681865
+            ],
+            [
+              -121.1582333,
+              38.6818392
+            ],
+            [
+              -121.1583326,
+              38.6818413
+            ]
+          ]
+        ]
+      },
+      "id": "way/242448523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/251274942",
+        "amenity": "pharmacy",
+        "building": "retail",
+        "building:levels": "1",
+        "healthcare": "pharmacy"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.1643257,
+              38.6733778
+            ],
+            [
+              -121.1639198,
+              38.6732227
+            ],
+            [
+              -121.1637092,
+              38.6735587
+            ],
+            [
+              -121.1641151,
+              38.6737138
+            ],
+            [
+              -121.1643257,
+              38.6733778
+            ]
+          ]
+        ]
+      },
+      "id": "way/251274942"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/403734782",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "building": "yes",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "shop": "chemist"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.365548,
+              38.6183775
+            ],
+            [
+              -121.3655533,
+              38.6179316
+            ],
+            [
+              -121.3652206,
+              38.6179159
+            ],
+            [
+              -121.3651972,
+              38.6179251
+            ],
+            [
+              -121.3651788,
+              38.6179394
+            ],
+            [
+              -121.3651705,
+              38.617963
+            ],
+            [
+              -121.3651705,
+              38.6179747
+            ],
+            [
+              -121.3651722,
+              38.6183679
+            ],
+            [
+              -121.365548,
+              38.6183775
+            ]
+          ]
+        ]
+      },
+      "id": "way/403734782"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/405350101",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2315",
+        "addr:postcode": "95817",
+        "addr:street": "Stockton Boulevard",
+        "amenity": "hospital",
+        "beds": "627",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "name": "University of California, Davis Medical Center",
+        "opening_hours": "24/7",
+        "phone": "+1 916 734 2011",
+        "website": "http://www.ucdmc.ucdavis.edu/medicalcenter/",
+        "wikidata": "Q7864160",
+        "wikipedia": "en:UC Davis Medical Center"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4524058,
+              38.5508418
+            ],
+            [
+              -121.4523998,
+              38.5510855
+            ],
+            [
+              -121.4517824,
+              38.551034
+            ],
+            [
+              -121.4513269,
+              38.5510199
+            ],
+            [
+              -121.4504399,
+              38.5510199
+            ],
+            [
+              -121.4500203,
+              38.5510199
+            ],
+            [
+              -121.4495288,
+              38.5510246
+            ],
+            [
+              -121.4492531,
+              38.5510152
+            ],
+            [
+              -121.4490554,
+              38.5509684
+            ],
+            [
+              -121.4488755,
+              38.550898
+            ],
+            [
+              -121.4485579,
+              38.5507105
+            ],
+            [
+              -121.447527,
+              38.5500778
+            ],
+            [
+              -121.4468437,
+              38.5495668
+            ],
+            [
+              -121.4466579,
+              38.5490606
+            ],
+            [
+              -121.4466879,
+              38.5482637
+            ],
+            [
+              -121.4445302,
+              38.5482778
+            ],
+            [
+              -121.4445865,
+              38.549552
+            ],
+            [
+              -121.4446201,
+              38.5503121
+            ],
+            [
+              -121.4463826,
+              38.5502831
+            ],
+            [
+              -121.4463822,
+              38.5511605
+            ],
+            [
+              -121.4463693,
+              38.5520575
+            ],
+            [
+              -121.4475437,
+              38.5520822
+            ],
+            [
+              -121.4475689,
+              38.5538744
+            ],
+            [
+              -121.4594482,
+              38.5571319
+            ],
+            [
+              -121.459658,
+              38.5566866
+            ],
+            [
+              -121.4562956,
+              38.5533026
+            ],
+            [
+              -121.4553966,
+              38.5512543
+            ],
+            [
+              -121.4539505,
+              38.5473822
+            ],
+            [
+              -121.4525184,
+              38.5474002
+            ],
+            [
+              -121.452416,
+              38.5474015
+            ],
+            [
+              -121.4523998,
+              38.5485215
+            ],
+            [
+              -121.4524058,
+              38.5508418
+            ]
+          ]
+        ]
+      },
+      "id": "way/405350101"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/406512027",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "1401",
+        "addr:postcode": "95818",
+        "addr:state": "CA",
+        "addr:street": "Broadway",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "building": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4947351,
+              38.5626959
+            ],
+            [
+              -121.4948391,
+              38.5624459
+            ],
+            [
+              -121.4948311,
+              38.5624271
+            ],
+            [
+              -121.4948189,
+              38.5624123
+            ],
+            [
+              -121.4948034,
+              38.562401
+            ],
+            [
+              -121.4944379,
+              38.5623058
+            ],
+            [
+              -121.4944045,
+              38.5623107
+            ],
+            [
+              -121.4943787,
+              38.5623292
+            ],
+            [
+              -121.4942747,
+              38.5625796
+            ],
+            [
+              -121.4944826,
+              38.5626324
+            ],
+            [
+              -121.4944668,
+              38.5626705
+            ],
+            [
+              -121.494562,
+              38.5626947
+            ],
+            [
+              -121.4945781,
+              38.562656
+            ],
+            [
+              -121.4947351,
+              38.5626959
+            ]
+          ]
+        ]
+      },
+      "id": "way/406512027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/437112423",
+        "addr:city": "Elk Grove",
+        "addr:housenumber": "9180",
+        "addr:postcode": "95758",
+        "addr:state": "CA",
+        "addr:street": "Franklin Boulevard",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "building": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4487949,
+              38.4243783
+            ],
+            [
+              -121.4487956,
+              38.4240036
+            ],
+            [
+              -121.4484628,
+              38.4240033
+            ],
+            [
+              -121.4484006,
+              38.4240485
+            ],
+            [
+              -121.4484,
+              38.4243779
+            ],
+            [
+              -121.4487949,
+              38.4243783
+            ]
+          ]
+        ]
+      },
+      "id": "way/437112423"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/468566752",
+        "addr:city": "Rancho Cordova",
+        "addr:housenumber": "4050",
+        "addr:postcode": "95742",
+        "addr:state": "CA",
+        "addr:street": "Sunrise Boulevard",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "building": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens",
+        "opening_hours": "07:00-23:00",
+        "operator": "Walgrens"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.2438463,
+              38.55605
+            ],
+            [
+              -121.2438427,
+              38.5556875
+            ],
+            [
+              -121.2434251,
+              38.5556889
+            ],
+            [
+              -121.2434304,
+              38.5560487
+            ],
+            [
+              -121.2438463,
+              38.55605
+            ]
+          ]
+        ]
+      },
+      "id": "way/468566752"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/476389846",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2825",
+        "addr:postcode": "95816",
+        "addr:state": "CA",
+        "addr:street": "Capitol Avenue",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "gnis:feature_id": "1659930",
+        "healthcare": "hospital",
+        "name": "Sutter Medical Center, Sacramento",
+        "opening_hours": "24/7",
+        "operator": "Sutter Health",
+        "operator:type": "private",
+        "operator:website": "https://www.sutterhealth.org/",
+        "operator:wikidata": "Q7650154",
+        "operator:wikipedia": "en:Sutter Health",
+        "phone": "+1 916 887 0000",
+        "website": "http://www.suttermedicalcenter.org/",
+        "wikidata": "Q7650153",
+        "wikipedia": "en:Sutter General Hospital"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4704086,
+              38.5709569
+            ],
+            [
+              -121.469938,
+              38.5708403
+            ],
+            [
+              -121.4700977,
+              38.570478
+            ],
+            [
+              -121.4681137,
+              38.569947
+            ],
+            [
+              -121.4673943,
+              38.5713748
+            ],
+            [
+              -121.4672706,
+              38.5716742
+            ],
+            [
+              -121.4671164,
+              38.5720107
+            ],
+            [
+              -121.4685265,
+              38.5723409
+            ],
+            [
+              -121.4682636,
+              38.5729415
+            ],
+            [
+              -121.4693815,
+              38.5732404
+            ],
+            [
+              -121.4704086,
+              38.5709569
+            ]
+          ]
+        ]
+      },
+      "id": "way/476389846"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/494760178",
+        "addr:city": "Carmichael",
+        "addr:housenumber": "6501",
+        "addr:postcode": "95608",
+        "addr:state": "CA",
+        "addr:street": "Coyle Avenue",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "name": "Mercy San Juan Medical Center",
+        "opening_hours": "24/7",
+        "operator": "Dignity Health",
+        "operator:wikidata": "Q5276334",
+        "operator:wikipedia": "en:Dignity Health",
+        "phone": "+1 916 537 5000",
+        "website": "https://www.dignityhealth.org/sacramento/locations/mercy-san-juan-medical-center",
+        "wikidata": "Q6818797",
+        "wikipedia": "en:Mercy San Juan Medical Center"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.3153191,
+              38.6681056
+            ],
+            [
+              -121.3109088,
+              38.6681393
+            ],
+            [
+              -121.310976,
+              38.6693833
+            ],
+            [
+              -121.3110624,
+              38.6696568
+            ],
+            [
+              -121.3114032,
+              38.6698479
+            ],
+            [
+              -121.3117967,
+              38.6699041
+            ],
+            [
+              -121.3121518,
+              38.6701889
+            ],
+            [
+              -121.3124109,
+              38.6704324
+            ],
+            [
+              -121.3127853,
+              38.6706235
+            ],
+            [
+              -121.3131548,
+              38.6707621
+            ],
+            [
+              -121.3132507,
+              38.6708212
+            ],
+            [
+              -121.3153473,
+              38.670808
+            ],
+            [
+              -121.3153191,
+              38.6681056
+            ]
+          ]
+        ]
+      },
+      "id": "way/494760178"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/558138962",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "building": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/2085-fair-oaks-blvd-sacramento-ca-95825/storeid=9322"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4157435,
+              38.5748864
+            ],
+            [
+              -121.415706,
+              38.5751884
+            ],
+            [
+              -121.4162585,
+              38.5752282
+            ],
+            [
+              -121.4162853,
+              38.5749242
+            ],
+            [
+              -121.4157435,
+              38.5748864
+            ]
+          ]
+        ]
+      },
+      "id": "way/558138962"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/558313025",
+        "addr:city": "Folsom",
+        "addr:housenumber": "1650",
+        "addr:postcode": "95630",
+        "addr:state": "CA",
+        "addr:street": "Creekside Drive",
+        "amenity": "hospital",
+        "beds": "106",
+        "building": "hospital",
+        "ele": "95",
+        "emergency": "yes",
+        "gnis:feature_id": "1819955",
+        "healthcare": "hospital",
+        "name": "Mercy Hospital of Folsom",
+        "opening_hours": "24/7",
+        "operator": "Dignity Health",
+        "operator:wikidata": "Q5276334",
+        "phone": "+1-855-479-6006",
+        "website": "https://www.dignityhealth.org/sacramento/locations/mercy-hospital-of-folsom"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.1468811,
+              38.6700701
+            ],
+            [
+              -121.1468653,
+              38.6700173
+            ],
+            [
+              -121.1458989,
+              38.6701942
+            ],
+            [
+              -121.1458634,
+              38.6700763
+            ],
+            [
+              -121.1460669,
+              38.6698436
+            ],
+            [
+              -121.1457201,
+              38.6696587
+            ],
+            [
+              -121.145669,
+              38.6697171
+            ],
+            [
+              -121.1456193,
+              38.6696906
+            ],
+            [
+              -121.1454222,
+              38.6699158
+            ],
+            [
+              -121.1454651,
+              38.6699387
+            ],
+            [
+              -121.1454418,
+              38.6699654
+            ],
+            [
+              -121.145724,
+              38.670116
+            ],
+            [
+              -121.1457556,
+              38.6702296
+            ],
+            [
+              -121.1451144,
+              38.6703383
+            ],
+            [
+              -121.1451855,
+              38.6705935
+            ],
+            [
+              -121.1458949,
+              38.6704732
+            ],
+            [
+              -121.1459144,
+              38.6705433
+            ],
+            [
+              -121.1459347,
+              38.6705398
+            ],
+            [
+              -121.1459135,
+              38.6704644
+            ],
+            [
+              -121.146311,
+              38.6703964
+            ],
+            [
+              -121.146317,
+              38.6704179
+            ],
+            [
+              -121.1463677,
+              38.6704092
+            ],
+            [
+              -121.1463949,
+              38.670345
+            ],
+            [
+              -121.146475,
+              38.6703653
+            ],
+            [
+              -121.1465286,
+              38.6703673
+            ],
+            [
+              -121.1466574,
+              38.670338
+            ],
+            [
+              -121.146711,
+              38.6703087
+            ],
+            [
+              -121.1467808,
+              38.6702354
+            ],
+            [
+              -121.1468075,
+              38.6702417
+            ],
+            [
+              -121.146825,
+              38.6701961
+            ],
+            [
+              -121.1468363,
+              38.6701646
+            ],
+            [
+              -121.1468477,
+              38.6701302
+            ],
+            [
+              -121.1468585,
+              38.6700951
+            ],
+            [
+              -121.1468526,
+              38.6700753
+            ],
+            [
+              -121.1468811,
+              38.6700701
+            ]
+          ]
+        ]
+      },
+      "id": "way/558313025"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/559544000",
+        "addr:city": "Elk Grove",
+        "addr:housenumber": "8400",
+        "addr:postcode": "95624",
+        "addr:state": "CA",
+        "addr:street": "Elk Grove Florin Road",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "building": "yes",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens",
+        "opening_hours": "Mo-Fr 08:00-21:00, Sa 09:00-18:00, Su 10:00-18:00",
+        "phone": "+1-916-525-3563"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.3732534,
+              38.4523666
+            ],
+            [
+              -121.3732776,
+              38.4521285
+            ],
+            [
+              -121.3732468,
+              38.4520959
+            ],
+            [
+              -121.3732189,
+              38.4520943
+            ],
+            [
+              -121.3732208,
+              38.4520745
+            ],
+            [
+              -121.3732236,
+              38.452046
+            ],
+            [
+              -121.3732246,
+              38.4520352
+            ],
+            [
+              -121.3731201,
+              38.45203
+            ],
+            [
+              -121.3731192,
+              38.4520416
+            ],
+            [
+              -121.3731168,
+              38.4520723
+            ],
+            [
+              -121.3731155,
+              38.4520883
+            ],
+            [
+              -121.3727365,
+              38.4520663
+            ],
+            [
+              -121.3727143,
+              38.4523007
+            ],
+            [
+              -121.3727532,
+              38.4523354
+            ],
+            [
+              -121.3732534,
+              38.4523666
+            ]
+          ]
+        ]
+      },
+      "id": "way/559544000"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/577879059",
+        "addr:city": "Mather",
+        "addr:housenumber": "10535",
+        "addr:postcode": "95655",
+        "addr:state": "CA",
+        "addr:street": "Hospital Way",
+        "amenity": "hospital",
+        "beds": "60",
+        "emergency": "yes",
+        "healthcare": "hospital",
+        "healthcare:for": "veterans",
+        "name": "Sacramento VA Medical Center",
+        "opening_hours": "24/7",
+        "operator": "Veterans Health Administration",
+        "operator:short": "VA",
+        "operator:wikidata": "Q6580225",
+        "operator:wikipedia": "en:Veterans Health Administration",
+        "phone": "+1 916 843 7000",
+        "short_name": "VA",
+        "website": "https://www.northerncalifornia.va.gov/"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.2978172,
+              38.5710332
+            ],
+            [
+              -121.2941104,
+              38.5726877
+            ],
+            [
+              -121.2932146,
+              38.5730652
+            ],
+            [
+              -121.293118,
+              38.5730861
+            ],
+            [
+              -121.2924978,
+              38.5731422
+            ],
+            [
+              -121.2914709,
+              38.5732094
+            ],
+            [
+              -121.291489,
+              38.5738531
+            ],
+            [
+              -121.2933346,
+              38.5738497
+            ],
+            [
+              -121.2933238,
+              38.5742806
+            ],
+            [
+              -121.2939541,
+              38.5742837
+            ],
+            [
+              -121.2946689,
+              38.5740844
+            ],
+            [
+              -121.2950216,
+              38.5740047
+            ],
+            [
+              -121.2953798,
+              38.5739438
+            ],
+            [
+              -121.2961081,
+              38.5738558
+            ],
+            [
+              -121.2983615,
+              38.5738348
+            ],
+            [
+              -121.2983644,
+              38.5738348
+            ],
+            [
+              -121.2983577,
+              38.5728909
+            ],
+            [
+              -121.2983483,
+              38.5715532
+            ],
+            [
+              -121.2981015,
+              38.5713939
+            ],
+            [
+              -121.2979648,
+              38.5712575
+            ],
+            [
+              -121.2978172,
+              38.5710332
+            ]
+          ]
+        ]
+      },
+      "id": "way/577879059"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/577887505",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "4250",
+        "addr:postcode": "95841",
+        "addr:state": "CA",
+        "addr:street": "Auburn Boulevard",
+        "amenity": "hospital",
+        "beds": "125",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "healthcare:speciality": "psychiatry",
+        "name": "Heritage Oaks Hospital",
+        "phone": "+1 916 489 3336",
+        "website": "https://heritageoakshospital.com/"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.365999,
+              38.6428882
+            ],
+            [
+              -121.365543,
+              38.6425383
+            ],
+            [
+              -121.3653848,
+              38.6425299
+            ],
+            [
+              -121.3648269,
+              38.6429049
+            ],
+            [
+              -121.3640705,
+              38.6435187
+            ],
+            [
+              -121.3646874,
+              38.6439377
+            ],
+            [
+              -121.3649127,
+              38.6437617
+            ],
+            [
+              -121.365999,
+              38.6428882
+            ]
+          ]
+        ]
+      },
+      "id": "way/577887505"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/577890444",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2025",
+        "addr:postcode": "95825",
+        "addr:state": "CA",
+        "addr:street": "Morse Avenue",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "gnis:feature_id": "1658880",
+        "healthcare": "hospital",
+        "name": "Kaiser Permanente Sacramento Medical Center",
+        "opening_hours": "24/7",
+        "operator": "Kaiser Permanente",
+        "operator:short": "KP",
+        "operator:website": "https://healthy.kaiserpermanente.org/",
+        "operator:wikidata": "Q1721601",
+        "operator:wikipedia": "en:Kaiser Permanente",
+        "phone": "+1 916 973 5000",
+        "website": "https://thrive.kaiserpermanente.org/care-near-you/northern-california/northvalley/locations/sacramento-medical-center/"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.3923785,
+              38.6032366
+            ],
+            [
+              -121.3945377,
+              38.6032827
+            ],
+            [
+              -121.3945432,
+              38.6025668
+            ],
+            [
+              -121.3945445,
+              38.6024158
+            ],
+            [
+              -121.3945538,
+              38.6014444
+            ],
+            [
+              -121.3954771,
+              38.601446
+            ],
+            [
+              -121.3957742,
+              38.6014465
+            ],
+            [
+              -121.3959786,
+              38.6014472
+            ],
+            [
+              -121.3968852,
+              38.6014505
+            ],
+            [
+              -121.3969383,
+              38.6014507
+            ],
+            [
+              -121.3968819,
+              38.6003921
+            ],
+            [
+              -121.3968819,
+              38.6001657
+            ],
+            [
+              -121.3968444,
+              38.6000379
+            ],
+            [
+              -121.396662,
+              38.5999896
+            ],
+            [
+              -121.3942802,
+              38.5999708
+            ],
+            [
+              -121.3924617,
+              38.5999414
+            ],
+            [
+              -121.3923866,
+              38.5999834
+            ],
+            [
+              -121.3923919,
+              38.6005766
+            ],
+            [
+              -121.3923624,
+              38.600803
+            ],
+            [
+              -121.392341,
+              38.6031779
+            ],
+            [
+              -121.3923785,
+              38.6032366
+            ]
+          ]
+        ]
+      },
+      "id": "way/577890444"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/577895513",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "4001",
+        "addr:postcode": "95819",
+        "addr:street": "J Street",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "gnis:feature_id": "1659111",
+        "healthcare": "hospital",
+        "name": "Mercy General Hospital",
+        "opening_hours": "24/7",
+        "operator": "Dignity Health",
+        "operator:wikidata": "Q5276334",
+        "operator:wikipedia": "en:Dignity Health",
+        "phone": "+1 916 453 4545",
+        "website": "https://www.dignityhealth.org/sacramento/locations/mercy-general-hospital",
+        "wikidata": "Q6818732",
+        "wikipedia": "en:Mercy General Hospital"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4521676,
+              38.5693933
+            ],
+            [
+              -121.4514032,
+              38.5708381
+            ],
+            [
+              -121.4511269,
+              38.571396
+            ],
+            [
+              -121.4528167,
+              38.5718405
+            ],
+            [
+              -121.4532405,
+              38.5708906
+            ],
+            [
+              -121.4538279,
+              38.5710583
+            ],
+            [
+              -121.4539272,
+              38.5712198
+            ],
+            [
+              -121.4540571,
+              38.571256
+            ],
+            [
+              -121.4541837,
+              38.5712913
+            ],
+            [
+              -121.4541981,
+              38.5712953
+            ],
+            [
+              -121.4546058,
+              38.5703034
+            ],
+            [
+              -121.4546111,
+              38.5701755
+            ],
+            [
+              -121.4545897,
+              38.5700559
+            ],
+            [
+              -121.4537314,
+              38.5698211
+            ],
+            [
+              -121.4521676,
+              38.5693933
+            ]
+          ]
+        ]
+      },
+      "id": "way/577895513"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/578100530",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "6600",
+        "addr:postcode": "95823",
+        "addr:state": "CA",
+        "addr:street": "Bruceville Road",
+        "amenity": "hospital",
+        "beds": "209",
+        "check_date": "2025-11-24",
+        "emergency": "yes",
+        "gnis:feature_id": "1827095",
+        "healthcare": "hospital",
+        "level": "2",
+        "name": "Kaiser Permanente South Sacramento Medical Center",
+        "opening_hours": "24/7",
+        "operator": "Kaiser Permanente",
+        "operator:short": "KP",
+        "operator:type": "private",
+        "operator:website": "https://healthy.kaiserpermanente.org/",
+        "operator:wikidata": "Q1721601",
+        "operator:wikipedia": "en:Kaiser Permanente",
+        "phone": "+1 916 688 2000",
+        "website": "https://thrive.kaiserpermanente.org/care-near-you/northern-california/southsacramento/locations/south-sacramento-medical-center/"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.421738,
+              38.471892
+            ],
+            [
+              -121.4221135,
+              38.4719298
+            ],
+            [
+              -121.4225534,
+              38.4719277
+            ],
+            [
+              -121.4229342,
+              38.4718626
+            ],
+            [
+              -121.4238006,
+              38.4715077
+            ],
+            [
+              -121.4248815,
+              38.4708294
+            ],
+            [
+              -121.4253107,
+              38.4706362
+            ],
+            [
+              -121.4256513,
+              38.4705564
+            ],
+            [
+              -121.4258686,
+              38.4705396
+            ],
+            [
+              -121.426912,
+              38.4705459
+            ],
+            [
+              -121.4269817,
+              38.4704913
+            ],
+            [
+              -121.4269817,
+              38.4686853
+            ],
+            [
+              -121.426928,
+              38.4686391
+            ],
+            [
+              -121.4239186,
+              38.4686307
+            ],
+            [
+              -121.4234868,
+              38.4686559
+            ],
+            [
+              -121.4229557,
+              38.4687294
+            ],
+            [
+              -121.4223281,
+              38.4688785
+            ],
+            [
+              -121.4217648,
+              38.4690087
+            ],
+            [
+              -121.4213276,
+              38.4690927
+            ],
+            [
+              -121.4210889,
+              38.4691116
+            ],
+            [
+              -121.4207429,
+              38.46912
+            ],
+            [
+              -121.4202252,
+              38.4691221
+            ],
+            [
+              -121.4202359,
+              38.4684375
+            ],
+            [
+              -121.4202037,
+              38.468385
+            ],
+            [
+              -121.4186829,
+              38.4670305
+            ],
+            [
+              -121.4185274,
+              38.4670116
+            ],
+            [
+              -121.4181921,
+              38.4670137
+            ],
+            [
+              -121.4181894,
+              38.4679272
+            ],
+            [
+              -121.418227,
+              38.4681897
+            ],
+            [
+              -121.4182967,
+              38.4684438
+            ],
+            [
+              -121.4185005,
+              38.4689226
+            ],
+            [
+              -121.4185891,
+              38.4692271
+            ],
+            [
+              -121.4187768,
+              38.469603
+            ],
+            [
+              -121.4190021,
+              38.4699453
+            ],
+            [
+              -121.4194554,
+              38.4703989
+            ],
+            [
+              -121.4201796,
+              38.4711297
+            ],
+            [
+              -121.4206731,
+              38.4715035
+            ],
+            [
+              -121.4209896,
+              38.4716757
+            ],
+            [
+              -121.4214027,
+              38.4718269
+            ],
+            [
+              -121.421738,
+              38.471892
+            ]
+          ]
+        ]
+      },
+      "id": "way/578100530"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/578107842",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "7500",
+        "addr:postcode": "95823",
+        "addr:state": "CA",
+        "addr:street": "Hospital Drive",
+        "amenity": "hospital",
+        "beds": "329",
+        "emergency": "yes",
+        "gnis:feature_id": "1827100",
+        "healthcare": "hospital",
+        "name": "Methodist Hospital of Sacramento",
+        "opening_hours": "24/7",
+        "operator": "Dignity Health",
+        "operator:type": "private",
+        "operator:wikidata": "Q5276334",
+        "operator:wikipedia": "en:Dignity Health",
+        "phone": "+1 916 423 3000",
+        "website": "https://www.dignityhealth.org/sacramento/locations/methodist-hospital-of-sacramento",
+        "wikidata": "Q6823834",
+        "wikipedia": "en:Methodist Hospital of Sacramento"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.415306,
+              38.4641407
+            ],
+            [
+              -121.4155287,
+              38.4641491
+            ],
+            [
+              -121.415931,
+              38.4641449
+            ],
+            [
+              -121.4173901,
+              38.4641533
+            ],
+            [
+              -121.4175242,
+              38.4637879
+            ],
+            [
+              -121.4176669,
+              38.4634514
+            ],
+            [
+              -121.4177302,
+              38.4632502
+            ],
+            [
+              -121.4177911,
+              38.4630012
+            ],
+            [
+              -121.4178193,
+              38.4627924
+            ],
+            [
+              -121.4177627,
+              38.462744
+            ],
+            [
+              -121.4177603,
+              38.4626362
+            ],
+            [
+              -121.4178304,
+              38.4625855
+            ],
+            [
+              -121.4178071,
+              38.4623392
+            ],
+            [
+              -121.4177484,
+              38.4621068
+            ],
+            [
+              -121.4176479,
+              38.4618728
+            ],
+            [
+              -121.4175218,
+              38.4616224
+            ],
+            [
+              -121.4159623,
+              38.4616571
+            ],
+            [
+              -121.4149378,
+              38.4617044
+            ],
+            [
+              -121.4149091,
+              38.4633741
+            ],
+            [
+              -121.415306,
+              38.4641407
+            ]
+          ]
+        ]
+      },
+      "id": "way/578107842"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/686494088",
+        "addr:city": "Elk Grove",
+        "addr:housenumber": "7299",
+        "addr:postcode": "95758",
+        "addr:state": "CA",
+        "addr:street": "Laguna Boulevard",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "building": "yes",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4189134,
+              38.4244623
+            ],
+            [
+              -121.4189132,
+              38.4244485
+            ],
+            [
+              -121.4189197,
+              38.4240858
+            ],
+            [
+              -121.4188264,
+              38.4240852
+            ],
+            [
+              -121.4188244,
+              38.42407
+            ],
+            [
+              -121.4185822,
+              38.4240692
+            ],
+            [
+              -121.4185552,
+              38.4240471
+            ],
+            [
+              -121.4184827,
+              38.4241035
+            ],
+            [
+              -121.4185052,
+              38.4241215
+            ],
+            [
+              -121.4185005,
+              38.4243216
+            ],
+            [
+              -121.4185227,
+              38.4243222
+            ],
+            [
+              -121.418522,
+              38.4244598
+            ],
+            [
+              -121.4187741,
+              38.4244609
+            ],
+            [
+              -121.4187713,
+              38.4245179
+            ],
+            [
+              -121.4188714,
+              38.424516
+            ],
+            [
+              -121.4188716,
+              38.4244606
+            ],
+            [
+              -121.4189134,
+              38.4244623
+            ]
+          ]
+        ]
+      },
+      "id": "way/686494088"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/687452058",
+        "addr:city": "Antelope",
+        "addr:housenumber": "4300",
+        "addr:postcode": "95843",
+        "addr:state": "CA",
+        "addr:street": "Elverta Road",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "building": "yes",
+        "check_date": "2025-05-20",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "phone": "+1-916-729-6763",
+        "website": "https://www.riteaid.com/locations/ca/antelope/4300-elverta-road.html",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.3636187,
+              38.7129319
+            ],
+            [
+              -121.3636204,
+              38.7126069
+            ],
+            [
+              -121.3631339,
+              38.7126074
+            ],
+            [
+              -121.3631345,
+              38.7128412
+            ],
+            [
+              -121.3630808,
+              38.7128412
+            ],
+            [
+              -121.363027,
+              38.7128412
+            ],
+            [
+              -121.3630311,
+              38.7128936
+            ],
+            [
+              -121.3630845,
+              38.7128931
+            ],
+            [
+              -121.3631339,
+              38.7128927
+            ],
+            [
+              -121.3631362,
+              38.7129419
+            ],
+            [
+              -121.3636023,
+              38.7129433
+            ],
+            [
+              -121.3636187,
+              38.7129319
+            ]
+          ]
+        ]
+      },
+      "id": "way/687452058"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/692728697",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Folsom Surgery Center"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.1507136,
+              38.667935
+            ],
+            [
+              -121.1507462,
+              38.6678045
+            ],
+            [
+              -121.1504752,
+              38.6674656
+            ],
+            [
+              -121.1501974,
+              38.6676565
+            ],
+            [
+              -121.1499452,
+              38.6679337
+            ],
+            [
+              -121.1499838,
+              38.6679558
+            ],
+            [
+              -121.1499889,
+              38.6679859
+            ],
+            [
+              -121.1499709,
+              38.6680341
+            ],
+            [
+              -121.1499375,
+              38.6680502
+            ],
+            [
+              -121.1498886,
+              38.6680542
+            ],
+            [
+              -121.1498654,
+              38.6680522
+            ],
+            [
+              -121.1498371,
+              38.6680442
+            ],
+            [
+              -121.1497008,
+              38.6682772
+            ],
+            [
+              -121.14976,
+              38.6683274
+            ],
+            [
+              -121.1503234,
+              38.6684078
+            ],
+            [
+              -121.1504727,
+              38.6682752
+            ],
+            [
+              -121.1505447,
+              38.6681707
+            ],
+            [
+              -121.1506116,
+              38.6680783
+            ],
+            [
+              -121.1506682,
+              38.668002
+            ],
+            [
+              -121.1507136,
+              38.667935
+            ]
+          ]
+        ]
+      },
+      "id": "way/692728697"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/692733305",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Endoscopy Center of South Sacramento"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.414907,
+              38.4624253
+            ],
+            [
+              -121.414919,
+              38.4617068
+            ],
+            [
+              -121.4133947,
+              38.4616905
+            ],
+            [
+              -121.4137631,
+              38.4624444
+            ],
+            [
+              -121.414907,
+              38.4624253
+            ]
+          ]
+        ]
+      },
+      "id": "way/692733305"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/826590701",
+        "addr:city": "Elk Grove",
+        "addr:housenumber": "10305",
+        "addr:postcode": "95757",
+        "addr:state": "CA",
+        "addr:street": "Promenade Parkway",
+        "amenity": "hospital",
+        "building": "yes",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "name": "Kaiser Permanente Medical Offices",
+        "operator": "Kaiser Permanente",
+        "operator:short": "KP",
+        "operator:type": "private",
+        "operator:website": "https://healthy.kaiserpermanente.org/",
+        "operator:wikidata": "Q1721601",
+        "operator:wikipedia": "en:Kaiser Permanente"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.3717188,
+              38.3846702
+            ],
+            [
+              -121.3717177,
+              38.384669
+            ],
+            [
+              -121.3717332,
+              38.3846596
+            ],
+            [
+              -121.3716335,
+              38.3845577
+            ],
+            [
+              -121.3716772,
+              38.3845316
+            ],
+            [
+              -121.3716433,
+              38.3844966
+            ],
+            [
+              -121.3716752,
+              38.3844775
+            ],
+            [
+              -121.3716306,
+              38.3844318
+            ],
+            [
+              -121.3716504,
+              38.3844202
+            ],
+            [
+              -121.3715713,
+              38.3843374
+            ],
+            [
+              -121.3715504,
+              38.3843496
+            ],
+            [
+              -121.3715069,
+              38.3843051
+            ],
+            [
+              -121.3714756,
+              38.3843238
+            ],
+            [
+              -121.371407,
+              38.384253
+            ],
+            [
+              -121.3713622,
+              38.3842797
+            ],
+            [
+              -121.3712823,
+              38.3841986
+            ],
+            [
+              -121.371199,
+              38.384249
+            ],
+            [
+              -121.3711881,
+              38.3842379
+            ],
+            [
+              -121.3711024,
+              38.38429
+            ],
+            [
+              -121.3711252,
+              38.384313
+            ],
+            [
+              -121.3708718,
+              38.384465
+            ],
+            [
+              -121.3710066,
+              38.3846031
+            ],
+            [
+              -121.3710079,
+              38.3846044
+            ],
+            [
+              -121.3712084,
+              38.3848111
+            ],
+            [
+              -121.3712091,
+              38.3848106
+            ],
+            [
+              -121.371299,
+              38.3849027
+            ],
+            [
+              -121.3715443,
+              38.3847556
+            ],
+            [
+              -121.3715746,
+              38.3847871
+            ],
+            [
+              -121.3716131,
+              38.3847643
+            ],
+            [
+              -121.3716468,
+              38.3847998
+            ],
+            [
+              -121.3716361,
+              38.3848063
+            ],
+            [
+              -121.3716749,
+              38.3848459
+            ],
+            [
+              -121.3717409,
+              38.3848062
+            ],
+            [
+              -121.3717311,
+              38.3847962
+            ],
+            [
+              -121.3718009,
+              38.3847555
+            ],
+            [
+              -121.3717196,
+              38.3846697
+            ],
+            [
+              -121.3717188,
+              38.3846702
+            ]
+          ]
+        ]
+      },
+      "id": "way/826590701"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/931241904",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "8001",
+        "addr:postcode": "95823",
+        "addr:state": "CA",
+        "addr:street": "BRUCEVILLE ROAD",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "healthcare:speciality": "psychiatry",
+        "name": "Sierra Vista Hospital",
+        "phone": "+1-916-288-0300",
+        "website": "https://sierravistahospital.com/about-us/licensing-and-accreditation/"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4177981,
+              38.4662335
+            ],
+            [
+              -121.4162576,
+              38.4662256
+            ],
+            [
+              -121.4162617,
+              38.4670409
+            ],
+            [
+              -121.4172619,
+              38.467794
+            ],
+            [
+              -121.4176002,
+              38.4680897
+            ],
+            [
+              -121.4178846,
+              38.468085
+            ],
+            [
+              -121.4178706,
+              38.4678954
+            ],
+            [
+              -121.4178471,
+              38.4667164
+            ],
+            [
+              -121.4178471,
+              38.4664201
+            ],
+            [
+              -121.4177981,
+              38.4662335
+            ]
+          ]
+        ]
+      },
+      "id": "way/931241904"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1256321575",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2279",
+        "addr:postcode": "95817",
+        "addr:state": "CA",
+        "addr:street": "45th Street",
+        "amenity": "hospital",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "healthcare:speciality": "oncology",
+        "name": "UC Davis Comprehensive Cancer Center",
+        "operator": "UC Davis Health",
+        "operator:type": "university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4533293,
+              38.553567
+            ],
+            [
+              -121.4520331,
+              38.5535511
+            ],
+            [
+              -121.4520382,
+              38.5537466
+            ],
+            [
+              -121.4520075,
+              38.5539442
+            ],
+            [
+              -121.45213,
+              38.5539861
+            ],
+            [
+              -121.4520024,
+              38.5543214
+            ],
+            [
+              -121.4528675,
+              38.5545608
+            ],
+            [
+              -121.4533293,
+              38.553567
+            ]
+          ]
+        ]
+      },
+      "id": "way/1256321575"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1269664192",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "building": "yes",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.4418155,
+              38.5243516
+            ],
+            [
+              -121.4416971,
+              38.5240942
+            ],
+            [
+              -121.4412781,
+              38.5242121
+            ],
+            [
+              -121.4412019,
+              38.5242717
+            ],
+            [
+              -121.4413049,
+              38.5244954
+            ],
+            [
+              -121.4418155,
+              38.5243516
+            ]
+          ]
+        ]
+      },
+      "id": "way/1269664192"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1442906168",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.1411273,
+              38.6717742
+            ],
+            [
+              -121.1414231,
+              38.6718723
+            ],
+            [
+              -121.1416671,
+              38.6719935
+            ],
+            [
+              -121.141916,
+              38.6721205
+            ],
+            [
+              -121.142303,
+              38.6722052
+            ],
+            [
+              -121.1425815,
+              38.6722302
+            ],
+            [
+              -121.1429463,
+              38.6722033
+            ],
+            [
+              -121.1432643,
+              38.6721167
+            ],
+            [
+              -121.1443708,
+              38.6716314
+            ],
+            [
+              -121.1443917,
+              38.6716009
+            ],
+            [
+              -121.1443772,
+              38.6715644
+            ],
+            [
+              -121.1444974,
+              38.6715121
+            ],
+            [
+              -121.1445344,
+              38.671533
+            ],
+            [
+              -121.1445875,
+              38.6715389
+            ],
+            [
+              -121.1456746,
+              38.6710608
+            ],
+            [
+              -121.1456908,
+              38.6710326
+            ],
+            [
+              -121.1456782,
+              38.6710011
+            ],
+            [
+              -121.1457973,
+              38.6709615
+            ],
+            [
+              -121.1458132,
+              38.6709738
+            ],
+            [
+              -121.1458388,
+              38.6709865
+            ],
+            [
+              -121.145862,
+              38.6709834
+            ],
+            [
+              -121.1461292,
+              38.6708598
+            ],
+            [
+              -121.1461356,
+              38.6708434
+            ],
+            [
+              -121.146126,
+              38.6708259
+            ],
+            [
+              -121.1462494,
+              38.670781
+            ],
+            [
+              -121.1462612,
+              38.6707886
+            ],
+            [
+              -121.1462858,
+              38.6707915
+            ],
+            [
+              -121.1463057,
+              38.6707877
+            ],
+            [
+              -121.1465366,
+              38.6706865
+            ],
+            [
+              -121.1465533,
+              38.6706719
+            ],
+            [
+              -121.1465566,
+              38.6706503
+            ],
+            [
+              -121.1466826,
+              38.6705992
+            ],
+            [
+              -121.1466968,
+              38.6706036
+            ],
+            [
+              -121.1467253,
+              38.670604
+            ],
+            [
+              -121.1472044,
+              38.670392
+            ],
+            [
+              -121.147221,
+              38.6703718
+            ],
+            [
+              -121.1472254,
+              38.670352
+            ],
+            [
+              -121.1473585,
+              38.6702953
+            ],
+            [
+              -121.1473757,
+              38.6703006
+            ],
+            [
+              -121.1474133,
+              38.6703015
+            ],
+            [
+              -121.1478699,
+              38.6700836
+            ],
+            [
+              -121.1478828,
+              38.6700691
+            ],
+            [
+              -121.1478896,
+              38.670048
+            ],
+            [
+              -121.1480159,
+              38.6699696
+            ],
+            [
+              -121.1480418,
+              38.669971
+            ],
+            [
+              -121.14808,
+              38.6699643
+            ],
+            [
+              -121.148268,
+              38.6698276
+            ],
+            [
+              -121.1485416,
+              38.6696034
+            ],
+            [
+              -121.148724,
+              38.6694067
+            ],
+            [
+              -121.1488602,
+              38.6692426
+            ],
+            [
+              -121.1489372,
+              38.6691295
+            ],
+            [
+              -121.1490845,
+              38.6688697
+            ],
+            [
+              -121.1491529,
+              38.6687211
+            ],
+            [
+              -121.1491516,
+              38.6686811
+            ],
+            [
+              -121.1491282,
+              38.6686551
+            ],
+            [
+              -121.1490949,
+              38.6686402
+            ],
+            [
+              -121.1489205,
+              38.6686061
+            ],
+            [
+              -121.1477159,
+              38.6683602
+            ],
+            [
+              -121.1476425,
+              38.6684213
+            ],
+            [
+              -121.1474515,
+              38.6687134
+            ],
+            [
+              -121.1468821,
+              38.6690776
+            ],
+            [
+              -121.147022,
+              38.6691916
+            ],
+            [
+              -121.1468988,
+              38.6692681
+            ],
+            [
+              -121.1469832,
+              38.6695024
+            ],
+            [
+              -121.1467872,
+              38.6694317
+            ],
+            [
+              -121.1463386,
+              38.6697531
+            ],
+            [
+              -121.1458715,
+              38.6695803
+            ],
+            [
+              -121.1456817,
+              38.6695423
+            ],
+            [
+              -121.1454876,
+              38.6695736
+            ],
+            [
+              -121.1452116,
+              38.6696549
+            ],
+            [
+              -121.1447023,
+              38.6695935
+            ],
+            [
+              -121.1445323,
+              38.6696127
+            ],
+            [
+              -121.1442094,
+              38.6698513
+            ],
+            [
+              -121.1437595,
+              38.6696666
+            ],
+            [
+              -121.1437216,
+              38.6696994
+            ],
+            [
+              -121.143693,
+              38.6697272
+            ],
+            [
+              -121.143518,
+              38.669859
+            ],
+            [
+              -121.1433048,
+              38.6700159
+            ],
+            [
+              -121.1431002,
+              38.6700813
+            ],
+            [
+              -121.1427526,
+              38.6701631
+            ],
+            [
+              -121.1425185,
+              38.670115
+            ],
+            [
+              -121.1417433,
+              38.6699004
+            ],
+            [
+              -121.1414722,
+              38.6699918
+            ],
+            [
+              -121.1415017,
+              38.6701718
+            ],
+            [
+              -121.1415091,
+              38.6704248
+            ],
+            [
+              -121.1414709,
+              38.6706894
+            ],
+            [
+              -121.1411456,
+              38.6716834
+            ],
+            [
+              -121.1411273,
+              38.6717742
+            ]
+          ]
+        ]
+      },
+      "id": "way/1442906168"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/358852460",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2425",
+        "addr:postcode": "95817",
+        "addr:street": "Stockton Boulevard",
+        "amenity": "hospital",
+        "emergency": "no",
+        "gnis:feature_id": "2061530",
+        "healthcare": "hospital",
+        "healthcare:speciality": "paediatrics",
+        "name": "Shriners Hospitals for Children — Northern California",
+        "operator": "Shriners Hospitals for Children",
+        "operator:type": "ngo",
+        "operator:wikidata": "Q7504109",
+        "operator:wikipedia": "en:Shriners Hospitals for Children",
+        "phone": "+1 916 453 2000",
+        "website": "https://www.shrinershospitalsforchildren.org/sacramento",
+        "wikidata": "Q50575530"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.455231,
+          38.5529616
+        ]
+      },
+      "id": "node/358852460"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/761843540",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "operator": "CVS",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/7465-rush-river-dr-ste-500-sacramento-ca-95831/storeid=9972"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.534204,
+          38.4863663
+        ]
+      },
+      "id": "node/761843540"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/761845565",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "shop": "chemist"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.522638,
+          38.4936932
+        ]
+      },
+      "id": "node/761845565"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1334645717",
+        "amenity": "hospital",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "name": "Kaiser Permanente"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.13514,
+          38.6442224
+        ]
+      },
+      "id": "node/1334645717"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1608029095",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.2739027,
+          38.6646451
+        ]
+      },
+      "id": "node/1608029095"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1691363138",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/fair-oaks-ca-pharmacies/8101-greenback-ln-fair-oaks-ca-95628/storeid=9814"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.2615637,
+          38.6793709
+        ]
+      },
+      "id": "node/1691363138"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1776778277",
+        "addr:housename": "Rite Aid",
+        "addr:housenumber": "7211",
+        "addr:postcode": "95757",
+        "addr:street": "Elk Grove Boulevard",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4185919,
+          38.409938
+        ]
+      },
+      "id": "node/1776778277"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1795171676",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.227488,
+          38.6798792
+        ]
+      },
+      "id": "node/1795171676"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2085487611",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4960177,
+          38.5253278
+        ]
+      },
+      "id": "node/2085487611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2293164499",
+        "addr:housenumber": "5420",
+        "addr:postcode": "95628",
+        "addr:street": "Dewey Drive",
+        "amenity": "pharmacy",
+        "branch": "9199",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "check_date": "2024-08-28",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "opening_hours": "24/7",
+        "opening_hours:drive_through": "24/7",
+        "phone": "+1 916-864-4803",
+        "short_name": "CVS",
+        "source": "local knowledge",
+        "website": "https://www.cvs.com/store-locator/fair-oaks-ca-pharmacies/5420-dewey-dr-fair-oaks-ca-95628/storeid=9199"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3071543,
+          38.6644337
+        ]
+      },
+      "id": "node/2293164499"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2588223975",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2201",
+        "addr:postcode": "95825",
+        "addr:street": "Arden Way",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4146569,
+          38.5966386
+        ]
+      },
+      "id": "node/2588223975"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2588232404",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2279",
+        "addr:postcode": "95817",
+        "addr:street": "45th Street",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "healthcare:speciality": "oncology",
+        "name": "UC Davis Comprehensive Cancer Center",
+        "phone": "+1 916 734 5959",
+        "website": "http://www.ucdmc.ucdavis.edu/cancer/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.452636,
+          38.5539253
+        ]
+      },
+      "id": "node/2588232404"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2616520211",
+        "addr:city": "Rancho Cordova",
+        "addr:housenumber": "3301",
+        "addr:postcode": "95670",
+        "addr:street": "Zinfandel Drive",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/rancho-cordova-ca-pharmacies/3301-zinfandel-dr-rancho-cordova-ca-95670/storeid=4950"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.283474,
+          38.5816058
+        ]
+      },
+      "id": "node/2616520211"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2622429742",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "1701",
+        "addr:postcode": "95811",
+        "addr:street": "K Street",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "phone": "+1 916-444-9266",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/1707-j-street-sacramento-ca-95811/storeid=17822"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.484112,
+          38.5767636
+        ]
+      },
+      "id": "node/2622429742"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2983744171",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/rancho-cordova/2111-golden-centre-lane.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.2634653,
+          38.626449
+        ]
+      },
+      "id": "node/2983744171"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3281576861",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/sacramento/4221-norwood-avenue.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4574219,
+          38.6443572
+        ]
+      },
+      "id": "node/3281576861"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4001273234",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2221",
+        "addr:postcode": "95825",
+        "addr:state": "CA",
+        "addr:street": "Fair Oaks Boulevard",
+        "amenity": "hospital",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "name": "Valley Recovery Center of California",
+        "operator": "Summit Behavioral Healthcare",
+        "website": "https://valleyrecovery.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4143325,
+          38.5751753
+        ]
+      },
+      "id": "node/4001273234"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4084206496",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "5333",
+        "addr:postcode": "95842",
+        "addr:state": "CA",
+        "addr:street": "Elkhorn Boulevard",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/5333-elkhorn-blvd-sacramento-ca-95842/storeid=9826"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3402239,
+          38.6870001
+        ]
+      },
+      "id": "node/4084206496"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4349438473",
+        "addr:city": "Elk Grove",
+        "addr:housenumber": "8585",
+        "addr:postcode": "95624",
+        "addr:state": "CA",
+        "addr:street": "Elk Grove Boulevard",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/elk-grove-ca-pharmacies/8585-elk-grove-blvd-elk-grove-ca-95624/storeid=2124",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3854117,
+          38.4103349
+        ]
+      },
+      "id": "node/4349438473"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4489792575",
+        "addr:housenumber": "4980",
+        "addr:street": "Freeport Boulevard",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.496488,
+          38.5294564
+        ]
+      },
+      "id": "node/4489792575"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4785477140",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "6600",
+        "addr:postcode": "95823",
+        "addr:state": "CA",
+        "addr:street": "Bruceville Road",
+        "amenity": "hospital",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "healthcare:speciality": "surgery",
+        "name": "Kaiser Ambulatory Surgery Center",
+        "operator": "Kaiser Permanente",
+        "operator:short": "KP",
+        "operator:website": "https://healthy.kaiserpermanente.org/",
+        "operator:wikidata": "Q1721601",
+        "operator:wikipedia": "en:Kaiser Permanente"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4237154,
+          38.4692333
+        ]
+      },
+      "id": "node/4785477140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5276356004",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/2636-marconi-ave-sacramento-ca-95821/storeid=5225"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4005043,
+          38.617408
+        ]
+      },
+      "id": "node/5276356004"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5280247612",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/1587-w-el-camino-ave-sacramento-ca-95833/storeid=2290"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4962169,
+          38.6136416
+        ]
+      },
+      "id": "node/5280247612"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5281373542",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/sacramento/2751-del-paso-road.html",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5233316,
+          38.6574823
+        ]
+      },
+      "id": "node/5281373542"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5285021242",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4578284,
+          38.6438045
+        ]
+      },
+      "id": "node/5285021242"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5305841908",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4476809,
+          38.61085
+        ]
+      },
+      "id": "node/5305841908"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5311527032",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/sacramento/7860-gerber-road.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4115615,
+          38.4807197
+        ]
+      },
+      "id": "node/5311527032"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5324754869",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.414337,
+          38.6098792
+        ]
+      },
+      "id": "node/5324754869"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5843263231",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/sacramento/4830-j-street.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.443231,
+          38.5666536
+        ]
+      },
+      "id": "node/5843263231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6463241354",
+        "amenity": "pharmacy",
+        "dispensing": "yes",
+        "healthcare": "pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4962609,
+          38.6118373
+        ]
+      },
+      "id": "node/6463241354"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6598025751",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens",
+        "opening_hours": "Mo-Su 08:00-22:00",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.1293356,
+          38.6581053
+        ]
+      },
+      "id": "node/6598025751"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6601662423",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5417453,
+          38.656345
+        ]
+      },
+      "id": "node/6601662423"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6709187265",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3141295,
+          38.669576
+        ]
+      },
+      "id": "node/6709187265"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6831085407",
+        "amenity": "pharmacy",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Well-Care Pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4766245,
+          38.6319604
+        ]
+      },
+      "id": "node/6831085407"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7291263698",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/5039-folsom-blvd-sacramento-ca-95819/storeid=3943"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4446048,
+          38.5616541
+        ]
+      },
+      "id": "node/7291263698"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8228196852",
+        "addr:city": "North Highlands",
+        "addr:country": "US",
+        "addr:full": "4675 Watt Avenue",
+        "addr:housenumber": "4675",
+        "addr:postcode": "95660",
+        "addr:state": "CA",
+        "addr:street": "Watt Avenue",
+        "amenity": "pharmacy",
+        "brand": "Walmart",
+        "brand:wikidata": "Q483551",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walmart Pharmacy",
+        "opening_hours": "Mo-Su 06:00-24:00",
+        "operator": "Walmart",
+        "phone": "+1-916-621-1454",
+        "ref:walmart": "4393",
+        "website": "https://www.walmart.com/store/4393-north-highlands-ca/pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3861825,
+          38.6493619
+        ]
+      },
+      "id": "node/8228196852"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8279665782",
+        "amenity": "pharmacy",
+        "brand": "Rite Aid",
+        "brand:wikidata": "Q3433273",
+        "check_date": "2024-06-19",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Rite Aid",
+        "website": "https://www.riteaid.com/locations/ca/north-highlands/6639-watt-avenue.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3845244,
+          38.6883026
+        ]
+      },
+      "id": "node/8279665782"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8279665798",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3836531,
+          38.6910464
+        ]
+      },
+      "id": "node/8279665798"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8366343859",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/1350-florin-rd-sacramento-ca-95822/storeid=9823"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5051934,
+          38.4949852
+        ]
+      },
+      "id": "node/8366343859"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8366343865",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "250",
+        "addr:postcode": "95831",
+        "addr:street": "Florin Road",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5428546,
+          38.5092114
+        ]
+      },
+      "id": "node/8366343865"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8912594506",
+        "amenity": "pharmacy",
+        "brand": "Walmart",
+        "brand:wikidata": "Q483551",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walmart Pharmacy",
+        "website": "https://www.walmart.com/store/5192-sacramento-ca/pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3314207,
+          38.7048255
+        ]
+      },
+      "id": "node/8912594506"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9177408548",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "1919",
+        "addr:postcode": "95825",
+        "addr:street": "Fulton Avenue",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "phone": "+1 916-483-6093",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/1919-fulton-ave-sacramento-ca-95825/storeid=16106"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4025407,
+          38.6007086
+        ]
+      },
+      "id": "node/9177408548"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9180821515",
+        "addr:city": "Sacramento",
+        "addr:country": "US",
+        "addr:housenumber": "8270",
+        "addr:postcode": "95832",
+        "addr:state": "CA",
+        "addr:street": "Delta Shores Circle South",
+        "amenity": "pharmacy",
+        "brand": "Walmart",
+        "brand:wikidata": "Q483551",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walmart Pharmacy",
+        "operator": "Walmart",
+        "operator:wikidata": "Q483551",
+        "operator:wikipedia": "en:Walmart",
+        "phone": "+1-916-665-1011",
+        "ref:walmart": "2464",
+        "website": "https://www.walmart.com/store/2464-sacramento-ca/pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4924278,
+          38.4590468
+        ]
+      },
+      "id": "node/9180821515"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9446609829",
+        "addr:housenumber": "4495",
+        "addr:postcode": "95823",
+        "addr:street": "Mack Road",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "designation": "Pharmacy",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens",
+        "source": "Bing",
+        "website": "https://www.walgreens.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4514668,
+          38.4751496
+        ]
+      },
+      "id": "node/9446609829"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9670842407",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/elk-grove-ca-pharmacies/8400-bradshaw-rd-elk-grove-ca-95624/storeid=182"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.335744,
+          38.4519756
+        ]
+      },
+      "id": "node/9670842407"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9670842408",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "2050",
+        "addr:postcode": "95835",
+        "addr:state": "CA",
+        "addr:street": "Club Center Drive",
+        "amenity": "pharmacy",
+        "brand": "CVS Pharmacy",
+        "brand:website": "https://www.cvs.com/",
+        "brand:wikidata": "Q2078880",
+        "designation": "Pharmacy",
+        "dispensing": "yes",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "CVS Pharmacy",
+        "short_name": "CVS",
+        "website": "https://www.cvs.com/store-locator/sacramento-ca-pharmacies/2050-club-center-dr-sacramento-ca-95835/storeid=4151"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5064603,
+          38.6702143
+        ]
+      },
+      "id": "node/9670842408"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9826807142",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "4200",
+        "addr:postcode": "95864",
+        "addr:state": "CA",
+        "addr:street": "Arden Way",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3656316,
+          38.5947817
+        ]
+      },
+      "id": "node/9826807142"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9932116146",
+        "amenity": "pharmacy",
+        "brand": "Walmart",
+        "brand:wikidata": "Q483551",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walmart Pharmacy",
+        "website": "https://www.walmart.com/store/3712-citrus-heights-ca/pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.2958565,
+          38.6896849
+        ]
+      },
+      "id": "node/9932116146"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9990963947",
+        "amenity": "pharmacy",
+        "brand": "Walmart",
+        "brand:wikidata": "Q483551",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walmart Pharmacy",
+        "website": "https://www.walmart.com/store/3081-sacramento-ca/pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3693686,
+          38.4824282
+        ]
+      },
+      "id": "node/9990963947"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10776702427",
+        "amenity": "pharmacy",
+        "healthcare": "pharmacy",
+        "name": "Kaiser Downtown Commons Pharmacy",
+        "operator": "Kaiser Permanente Northern California"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4994774,
+          38.5822282
+        ]
+      },
+      "id": "node/10776702427"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10866259068",
+        "addr:city": "Carmichael",
+        "addr:housenumber": "4741",
+        "addr:postcode": "95608",
+        "addr:state": "CA",
+        "addr:street": "Engle Road",
+        "amenity": "hospital",
+        "beds": "16",
+        "healthcare": "hospital",
+        "healthcare:speciality": "psychiatry",
+        "name": "Crestwood Psychiatric Health Facility - Carmichael",
+        "website": "https://www.crestwoodbehavioralhealth.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3545544,
+          38.6334945
+        ]
+      },
+      "id": "node/10866259068"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10866472839",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "7700",
+        "addr:postcode": "95826-2608",
+        "addr:state": "CA",
+        "addr:street": "Folsom Boulevard",
+        "amenity": "hospital",
+        "beds": "73",
+        "healthcare": "hospital",
+        "healthcare:speciality": "psychiatry",
+        "name": "Sutter Center For Psychiatry",
+        "phone": "+1 916 386 3000",
+        "website": "https://www.sutterhealth.org/find-location/facility/sutter-center-for-psychiatry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4146168,
+          38.5499259
+        ]
+      },
+      "id": "node/10866472839"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11103498933",
+        "amenity": "pharmacy",
+        "brand": "Walgreens",
+        "brand:wikidata": "Q1591889",
+        "drive_through": "yes",
+        "healthcare": "pharmacy",
+        "name": "Walgreens"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3627174,
+          38.7047646
+        ]
+      },
+      "id": "node/11103498933"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12109425291",
+        "amenity": "pharmacy",
+        "healthcare": "pharmacy",
+        "name": "Vitality Pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.1732093,
+          38.6561293
+        ]
+      },
+      "id": "node/12109425291"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12328225968",
+        "amenity": "pharmacy",
+        "brand": "Costco Pharmacy",
+        "brand:wikidata": "Q715583",
+        "healthcare": "pharmacy",
+        "name": "Costco Pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5230536,
+          38.6407828
+        ]
+      },
+      "id": "node/12328225968"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12838632937",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "7260",
+        "addr:postcode": "95823",
+        "addr:state": "CA",
+        "addr:street": "East Southgate Drive",
+        "addr:unit": "E",
+        "amenity": "pharmacy",
+        "healthcare": "pharmacy",
+        "name": "Vangs Pharmacy",
+        "opening_hours": "Mo-Fr 09:00-17:00",
+        "phone": "+1-916-393-5961"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4385211,
+          38.4941031
+        ]
+      },
+      "id": "node/12838632937"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12851409668",
+        "addr:city": "Antelope",
+        "addr:housenumber": "4207",
+        "addr:postcode": "95843",
+        "addr:state": "CA",
+        "addr:street": "Elverta Road",
+        "addr:unit": "109",
+        "alt_name": "Vitaminka",
+        "amenity": "pharmacy",
+        "healthcare": "pharmacy",
+        "name": "Antelope Pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3664425,
+          38.7152898
+        ]
+      },
+      "id": "node/12851409668"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13120507710",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3277745,
+          38.5745002
+        ]
+      },
+      "id": "node/13120507710"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13233405990",
+        "amenity": "pharmacy",
+        "healthcare": "pharmacy",
+        "name": "ABRX Pharmacy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3315436,
+          38.56212
+        ]
+      },
+      "id": "node/13233405990"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13265084444",
+        "addr:city": "Elk Grove",
+        "addr:housenumber": "9381",
+        "addr:postcode": "95624",
+        "addr:state": "CA",
+        "addr:street": "E Stockton Blvd",
+        "addr:unit": "STE 102",
+        "amenity": "hospital",
+        "contact:facebook": "https://www.facebook.com/NewDawnTreatmentCenters/",
+        "description": "Addiction Treatment & Mental Health Services in Elk Grove, CA",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "healthcare:speciality": "addiction_treatment;me;mental_health_services",
+        "image": "https://lh3.googleusercontent.com/p/AF1QipMFN2cUbAJyhzj6v6nGDLp7vFUEyFzI827bF3Ua=s557-k-no",
+        "name": "New Dawn Treatment Center",
+        "phone": "+1-916-694-1903",
+        "website": "https://www.newdawntreatmentcenters.com/locations/elk-grove/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3912089,
+          38.4165837
+        ]
+      },
+      "id": "node/13265084444"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13329323624",
+        "addr:housenumber": "6600",
+        "addr:street": "Bruceville Road",
+        "amenity": "pharmacy",
+        "check_date": "2025-11-24",
+        "description": "PLEASE NOTE: This pharmacy is for hospital discharge, specialty prescriptions & walk-in refills.",
+        "healthcare": "pharmacy",
+        "name": "Kaiser South Tower Pharmacy",
+        "opening_hours": "08:00-20:00; Nov 27 off; PH 08:00-18:00",
+        "phone": "+1-916-627-7100",
+        "website": "https://espanol.kaiserpermanente.org/es/northern-california/facilities/south-sacramento-medical-center-100320/departments/pharmacy-dlp-109003"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.4229778,
+          38.4693835
+        ]
+      },
+      "id": "node/13329323624"
+    }
+  ]
+}

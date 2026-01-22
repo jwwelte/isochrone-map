@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         addBusStops('../../gtfs/Yolobus GTFS/stops.txt', stopDict.yolobusStops, '../../assets/images/yolobus-bus-stop.png'),
         addBusStops('../../gtfs/Unitrans GTFS/stops.txt', stopDict.unitransStops, '../../assets/images/unitrans-bus-stop.png'),
         addRoutes(),
-        addCalEnviroScreen(),
+        // addCalEnviroScreen(),
         addYoloPOIs(),
         addSacPOIs(),
         addArtsEntertainment(),
@@ -124,13 +124,13 @@ function initializeMap(borders, yolobusStops, unitransStops, routes, yoloPOIs, s
         "Geoapify": geoapify
     };
 
-    console.log(routes);
-    console.log(routes.customGetLayer('rt37'));
     var overlayMaps = {
-        "Borders": borders,
+        // "Borders": borders,
+        "Yolo County Border": borders.customGetLayer('yoloCountyBoundary'),
+        "Yolobus Service Area": borders.customGetLayer('yolobusServiceArea'),
         "Yolobus Stops": yolobusStops,
         "Unitrans Stops": unitransStops,
-        "Routes": routes,
+        // "Routes": routes,
         "RT 37": routes.customGetLayer('rt37'),
         "RT 40": routes.customGetLayer('rt40'),
         "RT 41": routes.customGetLayer('rt41'),
@@ -330,6 +330,8 @@ function addBoundaries() {
     return new Promise(async (resolve) => {
         const yoloBoundaryLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolo County Boundary.geojson");
         const serviceAreaLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolobus Service Area.geojson");
+        yoloBoundaryLeaflet.id = 'yoloCountyBoundary';
+        serviceAreaLeaflet.id = 'yolobusServiceArea';
         resolve(L.layerGroup([yoloBoundaryLeaflet, serviceAreaLeaflet]));
     });
 }
@@ -486,6 +488,8 @@ function setupEventListeners() {
 }
 
 async function addCalEnviroScreen() {
+    const { shp } = await import("shpjs");
+    // const { shp } = await import("../../node_modules/shp2geojson/shpjs/lib/index.js");
     const geojson = await shp("../../shapefiles/CalEnviroScreen40-2021shp.zip");
     var calEnviroScreen = await createGeoJson(geojson);
     return calEnviroScreen;

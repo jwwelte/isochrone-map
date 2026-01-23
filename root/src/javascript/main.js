@@ -39,31 +39,46 @@ L.LayerGroup.include({
     }
 });
 
+async function fetchGTFS(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch GTFS zip: ${url}`);
+    return await response.arrayBuffer();
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async function() {
     // Wait for all async layers to load before initializing map
-    const stopDict = initializeStopList();
+    
+    const yolobusBuffer = await fetchGTFS("/gtfs/yolobus_gtfs.zip");
+    const unitransBuffer = await fetchGTFS("/gtfs/unitrans_gtfs.zip");
+    
+    // const stopDict = initializeStopList();
     const [
-        borders, yolobus, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs
+        // borders, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs
+        // borders, yolobusStops, unitransStops, routes, yoloPOIs, sacPOIs
+        borders, yolobus, unitrans, yoloPOIs, sacPOIs
     ] = await Promise.all([
         addBoundaries(),
-        addTransitData(),
-        addBusStops('../../gtfs/Yolobus GTFS/stops.txt', stopDict.yolobusStops, '../../assets/images/yolobus-bus-stop.png'),
-        addBusStops('../../gtfs/Unitrans GTFS/stops.txt', stopDict.unitransStops, '../../assets/images/unitrans-bus-stop.png'),
-        addRoutes(),
-        addCalEnviroScreen(),
+        addTransitData(yolobusBuffer),
+        addTransitData(unitransBuffer),
+        // addBusStops('../../gtfs/Yolobus GTFS/stops.txt', stopDict.yolobusStops, '../../assets/images/yolobus-bus-stop.png'),
+        // addBusStops('../../gtfs/Unitrans GTFS/stops.txt', stopDict.unitransStops, '../../assets/images/unitrans-bus-stop.png'),
+        // addRoutes(),
+        // addCalEnviroScreen(),
         addYoloPOIs(),
-        addSacPOIs(),
+        addSacPOIs()
     ]);
 
-    initializeMap(borders, yolobus, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs);
+    // initializeMap(borders, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs);
+    // initializeMap(borders, yolobus, yolobusStops, unitransStops, routes, yoloPOIs, sacPOIs);
+    initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs);
     // document.getElementById("loader").remove();
     document.getElementById("loader").style.display = 'none';
     setupEventListeners();
 });
 
-function initializeMap(borders, yolobus, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs) {
-// function initializeMap(borders, yolobusStops, unitransStops, routes, yoloPOIs, sacPOIs, artsEntertainment, education, employment, healthcare, publicSocialServices, residential, retail, tourism, travel) {
+// function initializeMap(borders, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs) {
+function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
     // Initialize Leaflet map
     map = L.map('map').setView(DEFAULT_CENTER, DEFAULT_ZOOM);
 
@@ -127,13 +142,13 @@ function initializeMap(borders, yolobus, yolobusStops, unitransStops, routes, ca
                     { label: "Yolo County Border", layer: borders.customGetLayer('yoloCountyBoundary') }
                 ]
             }, {
-                label: "Transit Data", layer: yolobus
-            }, {
                 label: "Stops",
                     selectAllCheckbox: "Un/select all",
                     children: [
-                        { label: "Yolobus", layer: yolobusStops },
-                        { label: "Unitrans", layer: unitransStops }
+                        // { label: "Yolobus", layer: yolobusStops },
+                        // { label: "Unitrans", layer: unitransStops }
+                        { label: "Yolobus", layer: yolobus.customGetLayer('stops') },
+                        { label: "Unitrans", layer: unitrans.customGetLayer('stops') }
                     ]
             }, {
                 label: "Routes",
@@ -147,58 +162,110 @@ function initializeMap(borders, yolobus, yolobusStops, unitransStops, routes, ca
                                 label: "West Sacramento Local",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT 37", layer: routes.customGetLayer('rt37') },
-                                    { label: "RT 40", layer: routes.customGetLayer('rt40') },
-                                    { label: "RT 41", layer: routes.customGetLayer('rt41') },
-                                    { label: "RT 240", layer: routes.customGetLayer('rt240') }
+                                    // { label: "RT 37", layer: routes.customGetLayer('rt37') },
+                                    // { label: "RT 40", layer: routes.customGetLayer('rt40') },
+                                    // { label: "RT 41", layer: routes.customGetLayer('rt41') },
+                                    // { label: "RT 240", layer: routes.customGetLayer('rt240') }
+                                    { label: "RT 37", layer: routes.customGetLayer('37') },
+                                    { label: "RT 40", layer: routes.customGetLayer('40') },
+                                    { label: "RT 41", layer: routes.customGetLayer('41') },
+                                    { label: "RT 240", layer: routes.customGetLayer('240') }
                                 ]
                             }, {
                                 label: "Woodland Local",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT 211", layer: routes.customGetLayer('rt211') },
-                                    { label: "RT 212", layer: routes.customGetLayer('rt212') }
+                                    // { label: "RT 211", layer: routes.customGetLayer('rt211') },
+                                    // { label: "RT 212", layer: routes.customGetLayer('rt212') }
+                                    { label: "RT 211", layer: routes.customGetLayer('211') },
+                                    { label: "RT 212", layer: routes.customGetLayer('212') }
                                 ]
                             }, {
                                 label: "Intercity",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT 42A", layer: routes.customGetLayer('rt42A') },
-                                    { label: "RT 42B", layer: routes.customGetLayer('rt42B') },
-                                    { label: "RT 138EB", layer: routes.customGetLayer('rt138EB') },
-                                    { label: "RT 138WB", layer: routes.customGetLayer('rt138WB') },
-                                    { label: "RT 215EB", layer: routes.customGetLayer('rt215EB') },
-                                    { label: "RT 215WB", layer: routes.customGetLayer('rt215WB') }
+                                    // { label: "RT 42A", layer: routes.customGetLayer('rt42A') },
+                                    // { label: "RT 42B", layer: routes.customGetLayer('rt42B') },
+                                    // { label: "RT 138EB", layer: routes.customGetLayer('rt138EB') },
+                                    // { label: "RT 138WB", layer: routes.customGetLayer('rt138WB') },
+                                    // { label: "RT 215EB", layer: routes.customGetLayer('rt215EB') },
+                                    // { label: "RT 215WB", layer: routes.customGetLayer('rt215WB') }
+                                    { label: "RT 42A", layer: routes.customGetLayer('42A') },
+                                    { label: "RT 42B", layer: routes.customGetLayer('42B') },
+                                    { label: "RT 138EB", layer: routes.customGetLayer('138') },
+                                    { label: "RT 215EB", layer: routes.customGetLayer('215') }
                                 ]
                             }, {
                                 label: "Davis Express",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT 43AM", layer: routes.customGetLayer('rt43AM') },
-                                    { label: "RT 43PM", layer: routes.customGetLayer('rt43PM') },
-                                    { label: "RT 43RAM", layer: routes.customGetLayer('rt43RAM') },
-                                    { label: "RT 43RPM", layer: routes.customGetLayer('rt43RPM') },
-                                    { label: "RT 44AM", layer: routes.customGetLayer('rt44AM') },
-                                    { label: "RT 44PM", layer: routes.customGetLayer('rt44PM') },
-                                    { label: "RT 230AM", layer: routes.customGetLayer('rt230AM') },
-                                    { label: "RT 230PM", layer: routes.customGetLayer('rt230PM') }
+                                    // { label: "RT 43AM", layer: routes.customGetLayer('rt43AM') },
+                                    // { label: "RT 43PM", layer: routes.customGetLayer('rt43PM') },
+                                    // { label: "RT 43RAM", layer: routes.customGetLayer('rt43RAM') },
+                                    // { label: "RT 43RPM", layer: routes.customGetLayer('rt43RPM') },
+                                    // { label: "RT 44AM", layer: routes.customGetLayer('rt44AM') },
+                                    // { label: "RT 44PM", layer: routes.customGetLayer('rt44PM') },
+                                    // { label: "RT 230AM", layer: routes.customGetLayer('rt230AM') },
+                                    // { label: "RT 230PM", layer: routes.customGetLayer('rt230PM') }
+                                    { label: "RT 43AM", layer: routes.customGetLayer('43') },
+                                    { label: "RT 43RAM", layer: routes.customGetLayer('43R') },
+                                    { label: "RT 44AM", layer: routes.customGetLayer('44') },
+                                    { label: "RT 230AM", layer: routes.customGetLayer('230') }
                                 ]
                             }, {
                                 label: "Woodland Express",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT 45AM", layer: routes.customGetLayer('rt45AM') },
-                                    { label: "RT 45PM", layer: routes.customGetLayer('rt45PM') }
+                                    // { label: "RT 45AM", layer: routes.customGetLayer('rt45AM') },
+                                    // { label: "RT 45PM", layer: routes.customGetLayer('rt45PM') }
+                                    { label: "RT 45AM", layer: routes.customGetLayer('45') }
+                                ]
+                            }
+                        ]
+                    }, {
+                        label: "Unitrans",
+                        selectAllCheckbox: true,
+                        children: [
+                            {
+                                label: "Memorial Union",
+                                selectAllCheckbox: true,
+                                children: [
+                                    { label: "RT A", layer: routes.customGetLayer('A') },
+                                    { label: "RT B", layer: routes.customGetLayer('B') },
+                                    { label: "RT E", layer: routes.customGetLayer('E') },
+                                    { label: "RT F", layer: routes.customGetLayer('F') },
+                                    { label: "RT G", layer: routes.customGetLayer('G') },
+                                    { label: "RT K", layer: routes.customGetLayer('K') },
+                                    { label: "RT M", layer: routes.customGetLayer('M') },
+                                    { label: "RT O", layer: routes.customGetLayer('O') },
+                                    { label: "RT P", layer: routes.customGetLayer('P') },
+                                    { label: "RT Q", layer: routes.customGetLayer('Q') },
+                                    { label: "RT U", layer: routes.customGetLayer('U') },
+                                    { label: "RT FMS", layer: routes.customGetLayer('FMS') }
+                                ]
+                            }, {
+                                label: "Silo",
+                                selectAllCheckbox: true,
+                                children: [
+                                    { label: "RT C", layer: routes.customGetLayer('C') },
+                                    { label: "RT D", layer: routes.customGetLayer('D') },
+                                    { label: "RT J", layer: routes.customGetLayer('J') },
+                                    { label: "RT L", layer: routes.customGetLayer('L') },
+                                    { label: "RT V", layer: routes.customGetLayer('V') },
+                                    { label: "RT VL", layer: routes.customGetLayer('VL') },
+                                    { label: "RT VX", layer: routes.customGetLayer('VX') },
+                                    { label: "RT W", layer: routes.customGetLayer('W') },
+                                    { label: "RT Z", layer: routes.customGetLayer('Z') }
+                                ]
+                            }, {
+                                label: "Davis High & Junior High",
+                                selectAllCheckbox: true,
+                                children: [
+                                    { label: "RT T", layer: routes.customGetLayer('T') }
                                 ]
                             }
                         ]
                     }
-                    // {
-                    //     label: "Unitrans",
-                    //     selectAllCheckbox: true,
-                    //     children: [
-                    //         { label: "RT M", layer: routes.customGetLayer('rtm') },
-                    // }
                 ]
             }, {
                 label: "Points of Interest",
@@ -378,9 +445,12 @@ async function createGeoJson(file) {
                 else if (name == "37" || name == "40" || name == "41" || name == "240") color = "purple";
                 else if (name == "211" || name == "212") color = "orange";
                 else if (name == "42A" || name == "42B") color = "green";
-                else if (name == "138EB" || name == "138WB" || name == "215EB" || name == "215WB") color = "black";
-                else if (name == "43AM" || name == "43PM" || name == "43RAM" || name == "43RPM" || name == "44AM" || name == "44PM" || name == "230AM" || name == "230PM") color = "red";
-                else if (name == "45AM" || name == "45PM") color = "orange";
+                // else if (name == "138EB" || name == "138WB" || name == "215EB" || name == "215WB") color = "black";
+                else if (name == "138" || name == "215") color = "black";
+                // else if (name == "43AM" || name == "43PM" || name == "43RAM" || name == "43RPM" || name == "44AM" || name == "44PM" || name == "230AM" || name == "230PM") color = "red";
+                else if (name == "43" || name == "43R" || name == "44" || name == "230") color = "red";
+                // else if (name == "45AM" || name == "45PM") color = "orange";
+                else if (name == "45") color = "orange";
 
                 return {
                     color: color,
@@ -428,132 +498,216 @@ async function addBoundaries() {
     return borders; 
 }
 
-function initializeStopList() {
-    let yolobusStops = [];
-    let unitransStops = [];
-    return { yolobusStops, unitransStops };
-}
-
-// Add bus stop and route layers from GTFS data (GTFS to GeoJSON) ; doesn't work
+// function initializeStopList() {
+//     let yolobusStops = [];
+//     let unitransStops = [];
+//     return { yolobusStops, unitransStops };
+// }
 
 
-function addBusStops(filePath, busStops, busStopMarker) {
-    return new Promise(async (resolve) => {
-        try {
-            const response = await fetch(filePath);
-            if (!response.ok) {
-                console.error(`HTTP error! Status: ${response.status}`);
-                resolve(L.layerGroup());
-                return;
-            }
-            const text = await response.text();
-            const lines = text.split('\n');
+/**
+ * Convert a GTFS ZIP File object to GeoJSONs.
+ * @param {File|ArrayBuffer} gtfsFile - GTFS ZIP as File or ArrayBuffer
+ * @returns {Promise<{stopsGeoJSON: object, routesGeoJSONs: Map<string, object>}>}
+ */
+async function gtfsZipToGeoJSON(gtfsFile) {
+    // Read ArrayBuffer if input is a File
+    let data;
+    if (gtfsFile instanceof File) {
+        data = await gtfsFile.arrayBuffer();
+    } else if (gtfsFile instanceof ArrayBuffer) {
+        data = gtfsFile;
+    } else {
+        throw new Error("Input must be a File or ArrayBuffer");
+    }
+    
+    const zip = await JSZip.loadAsync(data);
 
-            // Skip header
-            for (var i = 1; i < lines.length; i++) {
-                if (!lines[i].trim()) continue;
-                let parts = splitByCommaNotInParentheses(lines[i]);
-                if (parts.length < 6) continue;
+    // Helper to parse CSV with PapaParse
+    async function parseCSVFromZip(filename) {
+        const file = zip.file(filename);
+        if (!file) return [];
+        const content = await file.async("string");
+        return Papa.parse(content, { header: true, skipEmptyLines: true }).data;
+    }
 
-                let stopName = parts[2];
-                let stopLat = parseFloat(parts[4]);
-                let stopLon = parseFloat(parts[5]);
+    // Parse GTFS files
+    const stops = await parseCSVFromZip("stops.txt");
+    const routes = await parseCSVFromZip("routes.txt");
+    const trips = await parseCSVFromZip("trips.txt");
+    const shapes = await parseCSVFromZip("shapes.txt");
 
-                if (isNaN(stopLat) || isNaN(stopLon)) continue;
+    // Stops GeoJSON
+    const stopsGeoJSON = {
+        type: "FeatureCollection",
+        features: stops.map(s => ({
+            type: "Feature",
+            geometry: { 
+                type: "Point", coordinates: [
+                    parseFloat(s.stop_lon), parseFloat(s.stop_lat)
+                ] 
+            },
+            properties: { stop_id: s.stop_id, stop_name: s.stop_name }
+        }))
+    };
 
-                const busStopIcon = new L.Icon({
-                    iconUrl: busStopMarker,
-                    iconSize: [15, 15],
-                    iconAnchor: [7.5, 7.5],
-                    popupAnchor: [0, 0]
-                });
-
-                busStops.push(L.marker([stopLat, stopLon], {
-                    icon: busStopIcon
-                }).bindPopup(stopName, { autoPan: false }));
-            }
-
-            var counter = 0;
-            for (let stop of busStops) {
-                stop.on('click', function(event) {
-                    onMapClick(event);
-                });
-                stop.on('mouseover', function() {
-                    stop.openPopup();
-                });
-                stop.on('mouseout', function() {
-                    stop.closePopup();
-                });
-                counter++;
-            }
-            console.log("Count: ", counter, " for ", filePath);
-
-            resolve(L.layerGroup(busStops));
-        } catch (error) {
-            console.error('Error loading bus stops:', error);
-            resolve(L.layerGroup());
-        }
+    // Routes GeoJSON (Map of route_id → GeoJSON)
+    const routesGeoJSONs = new Map();
+    routes.forEach(route => {
+        const shapeIds = trips.filter(t => t.route_id === route.route_id && t.shape_id).map(t => t.shape_id);
+    
+    const features = shapeIds.map(shapeId => {
+        const points = shapes
+            .filter(s => s.shape_id === shapeId)
+            .sort((a, b) => parseFloat(a.shape_pt_sequence) - parseFloat(b.shape_pt_sequence))
+            .map(s => [parseFloat(s.shape_pt_lon), parseFloat(s.shape_pt_lat)]);
+        
+        return {
+            type: "Feature",
+            geometry: { type: "LineString", coordinates: points },
+            properties: { shape_id: shapeId, route_id: route.route_id }
+        };
     });
+    
+    routesGeoJSONs.set(route.route_id, { type: "FeatureCollection", features });
+    });
+    
+    return { stopsGeoJSON, routesGeoJSONs };
 }
 
-async function addTransitData() {
-    var yolobus = await createGeoJson("../../geojson/Yolobus Routes/Yolobus GTFS GeoJSON.geojson");
-    return yolobus;
+async function addTransitData(gtfsFile) {
+    const { stopsGeoJSON: stops, routesGeoJSONs: routes } = await gtfsZipToGeoJSON(gtfsFile);
+    
+    var stopsLayer = await createGeoJson(stops);
+    stopsLayer.id = 'stops';
+
+    const routeLayers = [];
+    for (const [routeId, route] of routes.entries()) {
+        const layer = await createGeoJson(route);
+        layer.id = routeId;
+        routeLayers.push(layer);
+    }
+
+    // Combine stops + routes for one agency
+    const agencyData = L.layerGroup([stopsLayer, ...routeLayers]);
+    
+    return agencyData;
 }
 
-async function addRoutes() {
-    var rt37 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT37.geojson");
-    var rt40 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT40.geojson");
-    var rt41 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT41.geojson");
-    var rt240 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT240.geojson");
-    rt37.id = 'rt37';
-    rt40.id = 'rt40';
-    rt41.id = 'rt41';
-    rt240.id = 'rt240';
+    
 
-    var rt211 = await createGeoJson("../../geojson/Routes/Woodland Local/RT211.geojson");
-    var rt212 = await createGeoJson("../../geojson/Routes/Woodland Local/RT212.geojson");
-    rt211.id = 'rt211';
-    rt212.id = 'rt212';
+// function addBusStops(filePath, busStops, busStopMarker) {
+//     return new Promise(async (resolve) => {
+//         try {
+//             const response = await fetch(filePath);
+//             if (!response.ok) {
+//                 console.error(`HTTP error! Status: ${response.status}`);
+//                 resolve(L.layerGroup());
+//                 return;
+//             }
+//             const text = await response.text();
+//             const lines = text.split('\n');
 
-    var rt42A = await createGeoJson("../../geojson/Routes/Intercity/RT42A.geojson");
-    var rt42B = await createGeoJson("../../geojson/Routes/Intercity/RT42B.geojson");
-    var rt138EB = await createGeoJson("../../geojson/Routes/Intercity/RT138EB.geojson");
-    var rt138WB = await createGeoJson("../../geojson/Routes/Intercity/RT138WB.geojson");
-    var rt215EB = await createGeoJson("../../geojson/Routes/Intercity/RT215EB.geojson");
-    var rt215WB = await createGeoJson("../../geojson/Routes/Intercity/RT215WB.geojson");
-    rt42A.id = 'rt42A';
-    rt42B.id = 'rt42B';
-    rt138EB.id = 'rt138EB';
-    rt138WB.id = 'rt138WB';
-    rt215EB.id = 'rt215EB';
-    rt215WB.id = 'rt215WB';
+//             // Skip header
+//             for (var i = 1; i < lines.length; i++) {
+//                 if (!lines[i].trim()) continue;
+//                 let parts = splitByCommaNotInParentheses(lines[i]);
+//                 if (parts.length < 6) continue;
 
-    var rt43AM = await createGeoJson("../../geojson/Routes/Davis Express/RT43AM.geojson");
-    var rt43PM = await createGeoJson("../../geojson/Routes/Davis Express/RT43PM.geojson");
-    var rt43RAM = await createGeoJson("../../geojson/Routes/Davis Express/RT43RAM.geojson");
-    var rt43RPM = await createGeoJson("../../geojson/Routes/Davis Express/RT43RPM.geojson");
-    var rt44AM = await createGeoJson("../../geojson/Routes/Davis Express/RT44AM.geojson");
-    var rt44PM = await createGeoJson("../../geojson/Routes/Davis Express/RT44PM.geojson");
-    var rt230AM = await createGeoJson("../../geojson/Routes/Davis Express/RT230AM.geojson");
-    var rt230PM = await createGeoJson("../../geojson/Routes/Davis Express/RT230PM.geojson");
-    rt43AM.id = 'rt43AM';
-    rt43PM.id = 'rt43PM';
-    rt43RAM.id = 'rt43RAM';
-    rt43RPM.id = 'rt43RPM';
-    rt44AM.id = 'rt44AM';
-    rt44PM.id = 'rt44PM';
-    rt230AM.id = 'rt230AM';
-    rt230PM.id = 'rt230PM';
+//                 let stopName = parts[2];
+//                 let stopLat = parseFloat(parts[4]);
+//                 let stopLon = parseFloat(parts[5]);
 
-    var rt45AM = await createGeoJson("../../geojson/Routes/Woodland Express/RT45AM.geojson");
-    var rt45PM = await createGeoJson("../../geojson/Routes/Woodland Express/RT45PM.geojson");
-    rt45AM.id = 'rt45AM';
-    rt45PM.id = 'rt45PM';
+//                 if (isNaN(stopLat) || isNaN(stopLon)) continue;
 
-    var routes = L.layerGroup([rt37, rt40, rt41, rt240, rt211, rt212, rt42A, rt42B, rt138EB, rt138WB, rt215EB, rt215WB, rt43AM, rt43PM, rt43RAM, rt43RPM, rt44AM, rt44PM, rt230AM, rt230PM, rt45AM, rt45PM]);
-    return routes;
-}
+//                 const busStopIcon = new L.Icon({
+//                     iconUrl: busStopMarker,
+//                     iconSize: [15, 15],
+//                     iconAnchor: [7.5, 7.5],
+//                     popupAnchor: [0, 0]
+//                 });
+
+//                 busStops.push(L.marker([stopLat, stopLon], {
+//                     icon: busStopIcon
+//                 }).bindPopup(stopName, { autoPan: false }));
+//             }
+
+//             var counter = 0;
+//             for (let stop of busStops) {
+//                 stop.on('click', function(event) {
+//                     onMapClick(event);
+//                 });
+//                 stop.on('mouseover', function() {
+//                     stop.openPopup();
+//                 });
+//                 stop.on('mouseout', function() {
+//                     stop.closePopup();
+//                 });
+//                 counter++;
+//             }
+//             console.log("Count: ", counter, " for ", filePath);
+
+//             resolve(L.layerGroup(busStops));
+//         } catch (error) {
+//             console.error('Error loading bus stops:', error);
+//             resolve(L.layerGroup());
+//         }
+//     });
+// }
+
+// async function addRoutes() {
+//     var rt37 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT37.geojson");
+//     var rt40 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT40.geojson");
+//     var rt41 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT41.geojson");
+//     var rt240 = await createGeoJson("../../geojson/Routes/West Sacramento Local/RT240.geojson");
+//     rt37.id = 'rt37';
+//     rt40.id = 'rt40';
+//     rt41.id = 'rt41';
+//     rt240.id = 'rt240';
+
+//     var rt211 = await createGeoJson("../../geojson/Routes/Woodland Local/RT211.geojson");
+//     var rt212 = await createGeoJson("../../geojson/Routes/Woodland Local/RT212.geojson");
+//     rt211.id = 'rt211';
+//     rt212.id = 'rt212';
+
+//     var rt42A = await createGeoJson("../../geojson/Routes/Intercity/RT42A.geojson");
+//     var rt42B = await createGeoJson("../../geojson/Routes/Intercity/RT42B.geojson");
+//     var rt138EB = await createGeoJson("../../geojson/Routes/Intercity/RT138EB.geojson");
+//     var rt138WB = await createGeoJson("../../geojson/Routes/Intercity/RT138WB.geojson");
+//     var rt215EB = await createGeoJson("../../geojson/Routes/Intercity/RT215EB.geojson");
+//     var rt215WB = await createGeoJson("../../geojson/Routes/Intercity/RT215WB.geojson");
+//     rt42A.id = 'rt42A';
+//     rt42B.id = 'rt42B';
+//     rt138EB.id = 'rt138EB';
+//     rt138WB.id = 'rt138WB';
+//     rt215EB.id = 'rt215EB';
+//     rt215WB.id = 'rt215WB';
+
+//     var rt43AM = await createGeoJson("../../geojson/Routes/Davis Express/RT43AM.geojson");
+//     var rt43PM = await createGeoJson("../../geojson/Routes/Davis Express/RT43PM.geojson");
+//     var rt43RAM = await createGeoJson("../../geojson/Routes/Davis Express/RT43RAM.geojson");
+//     var rt43RPM = await createGeoJson("../../geojson/Routes/Davis Express/RT43RPM.geojson");
+//     var rt44AM = await createGeoJson("../../geojson/Routes/Davis Express/RT44AM.geojson");
+//     var rt44PM = await createGeoJson("../../geojson/Routes/Davis Express/RT44PM.geojson");
+//     var rt230AM = await createGeoJson("../../geojson/Routes/Davis Express/RT230AM.geojson");
+//     var rt230PM = await createGeoJson("../../geojson/Routes/Davis Express/RT230PM.geojson");
+//     rt43AM.id = 'rt43AM';
+//     rt43PM.id = 'rt43PM';
+//     rt43RAM.id = 'rt43RAM';
+//     rt43RPM.id = 'rt43RPM';
+//     rt44AM.id = 'rt44AM';
+//     rt44PM.id = 'rt44PM';
+//     rt230AM.id = 'rt230AM';
+//     rt230PM.id = 'rt230PM';
+
+//     var rt45AM = await createGeoJson("../../geojson/Routes/Woodland Express/RT45AM.geojson");
+//     var rt45PM = await createGeoJson("../../geojson/Routes/Woodland Express/RT45PM.geojson");
+//     rt45AM.id = 'rt45AM';
+//     rt45PM.id = 'rt45PM';
+
+//     var routes = L.layerGroup([rt37, rt40, rt41, rt240, rt211, rt212, rt42A, rt42B, rt138EB, rt138WB, rt215EB, rt215WB, rt43AM, rt43PM, rt43RAM, rt43RPM, rt44AM, rt44PM, rt230AM, rt230PM, rt45AM, rt45PM]);
+//     return routes;
+// }
 
 // Add Disadvantaged Communities layer (shapefile to GeoJSON)
 async function addCalEnviroScreen() {

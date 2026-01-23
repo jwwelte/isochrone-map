@@ -13,7 +13,7 @@ https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-40
 https://calenviroscreen-oehha.hub.arcgis.com/
 
 
-// GTFS to GeoJSON plugin
+// GTFS to GeoJSON plugin (doesn't work on browser)
 https://github.com/BlinkTagInc/gtfs-to-geojson
 
 // GTFS to GeoJSON web tool
@@ -22,3 +22,17 @@ geojson.gtfstohtml.com
 
 // Add fullscreen button to map
 https://github.com/brunob/leaflet.fullscreen/tree/master
+
+
+Convert GTFS to GeoJSON with QGIS!!! (update with new version)
+https://www.stevencanplan.com/2016/02/converting-a-transit-agencys-gtfs-to-shapefile-and-geojson-with-qgis/
+
+* Right click 'stops' layer -> Export -> Save Features As -> GeoJSON
+
+* Plugins -> Manage Plugins -> Processing
+  View -> Panels -> Processing Toolbox
+  Search -> Points to path
+
+
+  // GTFS QGIS Plugin!!!!
+  https://github.com/MIERUNE/GTFS-GO

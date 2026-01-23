@@ -39,19 +39,10 @@ L.LayerGroup.include({
     }
 });
 
-async function fetchGTFS(url) {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Failed to fetch GTFS zip: ${url}`);
-    return await response.arrayBuffer();
-}
-
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async function() {
     // Wait for all async layers to load before initializing map
-    
-    const yolobusBuffer = await fetchGTFS("/gtfs/yolobus_gtfs.zip");
-    const unitransBuffer = await fetchGTFS("/gtfs/unitrans_gtfs.zip");
-    
+
     // const stopDict = initializeStopList();
     const [
         // borders, yolobusStops, unitransStops, routes, calEnviroScreen, yoloPOIs, sacPOIs
@@ -59,8 +50,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         borders, yolobus, unitrans, yoloPOIs, sacPOIs
     ] = await Promise.all([
         addBoundaries(),
-        addTransitData(yolobusBuffer),
-        addTransitData(unitransBuffer),
+        addTransitData("/yolobus_gtfs.zip", "Yolobus"),
+        addTransitData("/unitrans_gtfs.zip", "Unitrans"),
         // addBusStops('../../gtfs/Yolobus GTFS/stops.txt', stopDict.yolobusStops, '../../assets/images/yolobus-bus-stop.png'),
         // addBusStops('../../gtfs/Unitrans GTFS/stops.txt', stopDict.unitransStops, '../../assets/images/unitrans-bus-stop.png'),
         // addRoutes(),
@@ -166,10 +157,10 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                                     // { label: "RT 40", layer: routes.customGetLayer('rt40') },
                                     // { label: "RT 41", layer: routes.customGetLayer('rt41') },
                                     // { label: "RT 240", layer: routes.customGetLayer('rt240') }
-                                    { label: "RT 37", layer: routes.customGetLayer('37') },
-                                    { label: "RT 40", layer: routes.customGetLayer('40') },
-                                    { label: "RT 41", layer: routes.customGetLayer('41') },
-                                    { label: "RT 240", layer: routes.customGetLayer('240') }
+                                    { label: "37", layer: yolobus.customGetLayer('37') },
+                                    { label: "40", layer: yolobus.customGetLayer('40') },
+                                    { label: "41", layer: yolobus.customGetLayer('41') },
+                                    { label: "240", layer: yolobus.customGetLayer('240') }
                                 ]
                             }, {
                                 label: "Woodland Local",
@@ -177,8 +168,8 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                                 children: [
                                     // { label: "RT 211", layer: routes.customGetLayer('rt211') },
                                     // { label: "RT 212", layer: routes.customGetLayer('rt212') }
-                                    { label: "RT 211", layer: routes.customGetLayer('211') },
-                                    { label: "RT 212", layer: routes.customGetLayer('212') }
+                                    { label: "211", layer: yolobus.customGetLayer('211') },
+                                    { label: "212", layer: yolobus.customGetLayer('212') }
                                 ]
                             }, {
                                 label: "Intercity",
@@ -190,10 +181,10 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                                     // { label: "RT 138WB", layer: routes.customGetLayer('rt138WB') },
                                     // { label: "RT 215EB", layer: routes.customGetLayer('rt215EB') },
                                     // { label: "RT 215WB", layer: routes.customGetLayer('rt215WB') }
-                                    { label: "RT 42A", layer: routes.customGetLayer('42A') },
-                                    { label: "RT 42B", layer: routes.customGetLayer('42B') },
-                                    { label: "RT 138EB", layer: routes.customGetLayer('138') },
-                                    { label: "RT 215EB", layer: routes.customGetLayer('215') }
+                                    { label: "42A", layer: yolobus.customGetLayer('42A') },
+                                    { label: "42B", layer: yolobus.customGetLayer('42B') },
+                                    { label: "138", layer: yolobus.customGetLayer('138') },
+                                    { label: "215", layer: yolobus.customGetLayer('215') }
                                 ]
                             }, {
                                 label: "Davis Express",
@@ -207,10 +198,10 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                                     // { label: "RT 44PM", layer: routes.customGetLayer('rt44PM') },
                                     // { label: "RT 230AM", layer: routes.customGetLayer('rt230AM') },
                                     // { label: "RT 230PM", layer: routes.customGetLayer('rt230PM') }
-                                    { label: "RT 43AM", layer: routes.customGetLayer('43') },
-                                    { label: "RT 43RAM", layer: routes.customGetLayer('43R') },
-                                    { label: "RT 44AM", layer: routes.customGetLayer('44') },
-                                    { label: "RT 230AM", layer: routes.customGetLayer('230') }
+                                    { label: "43", layer: yolobus.customGetLayer('43') },
+                                    { label: "43R", layer: yolobus.customGetLayer('43R') },
+                                    { label: "44", layer: yolobus.customGetLayer('44') },
+                                    { label: "230", layer: yolobus.customGetLayer('230') }
                                 ]
                             }, {
                                 label: "Woodland Express",
@@ -218,7 +209,7 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                                 children: [
                                     // { label: "RT 45AM", layer: routes.customGetLayer('rt45AM') },
                                     // { label: "RT 45PM", layer: routes.customGetLayer('rt45PM') }
-                                    { label: "RT 45AM", layer: routes.customGetLayer('45') }
+                                    { label: "45", layer: yolobus.customGetLayer('45') }
                                 ]
                             }
                         ]
@@ -230,38 +221,38 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                                 label: "Memorial Union",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT A", layer: routes.customGetLayer('A') },
-                                    { label: "RT B", layer: routes.customGetLayer('B') },
-                                    { label: "RT E", layer: routes.customGetLayer('E') },
-                                    { label: "RT F", layer: routes.customGetLayer('F') },
-                                    { label: "RT G", layer: routes.customGetLayer('G') },
-                                    { label: "RT K", layer: routes.customGetLayer('K') },
-                                    { label: "RT M", layer: routes.customGetLayer('M') },
-                                    { label: "RT O", layer: routes.customGetLayer('O') },
-                                    { label: "RT P", layer: routes.customGetLayer('P') },
-                                    { label: "RT Q", layer: routes.customGetLayer('Q') },
-                                    { label: "RT U", layer: routes.customGetLayer('U') },
-                                    { label: "RT FMS", layer: routes.customGetLayer('FMS') }
+                                    { label: "A", layer: unitrans.customGetLayer('A') },
+                                    { label: "B", layer: unitrans.customGetLayer('B') },
+                                    { label: "E", layer: unitrans.customGetLayer('E') },
+                                    { label: "F", layer: unitrans.customGetLayer('F') },
+                                    { label: "G", layer: unitrans.customGetLayer('G') },
+                                    { label: "K", layer: unitrans.customGetLayer('K') },
+                                    { label: "M", layer: unitrans.customGetLayer('M') },
+                                    { label: "O", layer: unitrans.customGetLayer('O') },
+                                    { label: "P", layer: unitrans.customGetLayer('P') },
+                                    { label: "Q", layer: unitrans.customGetLayer('Q') },
+                                    { label: "U", layer: unitrans.customGetLayer('U') },
+                                    { label: "FMS", layer: unitrans.customGetLayer('FMS') }
                                 ]
                             }, {
                                 label: "Silo",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT C", layer: routes.customGetLayer('C') },
-                                    { label: "RT D", layer: routes.customGetLayer('D') },
-                                    { label: "RT J", layer: routes.customGetLayer('J') },
-                                    { label: "RT L", layer: routes.customGetLayer('L') },
-                                    { label: "RT V", layer: routes.customGetLayer('V') },
-                                    { label: "RT VL", layer: routes.customGetLayer('VL') },
-                                    { label: "RT VX", layer: routes.customGetLayer('VX') },
-                                    { label: "RT W", layer: routes.customGetLayer('W') },
-                                    { label: "RT Z", layer: routes.customGetLayer('Z') }
+                                    { label: "C", layer: unitrans.customGetLayer('C') },
+                                    { label: "D", layer: unitrans.customGetLayer('D') },
+                                    { label: "J", layer: unitrans.customGetLayer('J') },
+                                    { label: "L", layer: unitrans.customGetLayer('L') },
+                                    { label: "V", layer: unitrans.customGetLayer('V') },
+                                    { label: "VL", layer: unitrans.customGetLayer('VL') },
+                                    { label: "VX", layer: unitrans.customGetLayer('VX') },
+                                    { label: "W", layer: unitrans.customGetLayer('W') },
+                                    { label: "Z", layer: unitrans.customGetLayer('Z') }
                                 ]
                             }, {
                                 label: "Davis High & Junior High",
                                 selectAllCheckbox: true,
                                 children: [
-                                    { label: "RT T", layer: routes.customGetLayer('T') }
+                                    { label: "T", layer: unitrans.customGetLayer('T') }
                                 ]
                             }
                         ]
@@ -275,11 +266,11 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                         label: "Yolo County",
                         selectAllCheckbox: true,
                         children: [
-                            { label: "Arts & Entertainment", layer: yoloPOIs.customGetLayer('yoloArtsEntertainment') },
+                            { label: "Arts & Entertainment", layer: yoloPOIs.customGetLayer('yoloArts_Entertainment') },
                             { label: "Education", layer: yoloPOIs.customGetLayer('yoloEducation') },
                             { label: "Employment", layer: yoloPOIs.customGetLayer('yoloEmployment') },
                             { label: "Healthcare", layer: yoloPOIs.customGetLayer('yoloHealthcare') },
-                            { label: "Public & Social Services", layer: yoloPOIs.customGetLayer('yoloPublicSocialServices') },
+                            { label: "Public & Social Services", layer: yoloPOIs.customGetLayer('yoloPublic_Social_Services') },
                             { label: "Residential", layer: yoloPOIs.customGetLayer('yoloResidential') },
                             { label: "Retail", layer: yoloPOIs.customGetLayer('yoloRetail') },
                             { label: "Tourism", layer: yoloPOIs.customGetLayer('yoloTourism') },
@@ -289,11 +280,11 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                         label: "Sacramento County",
                         selectAllCheckbox: true,
                         children: [
-                            { label: "Arts & Entertainment", layer: sacPOIs.customGetLayer('sacArtsEntertainment') },
+                            { label: "Arts & Entertainment", layer: sacPOIs.customGetLayer('sacArts_Entertainment') },
                             { label: "Education", layer: sacPOIs.customGetLayer('sacEducation') },
                             { label: "Employment", layer: sacPOIs.customGetLayer('sacEmployment') },
                             { label: "Healthcare", layer: sacPOIs.customGetLayer('sacHealthcare') },
-                            { label: "Public & Social Services", layer: sacPOIs.customGetLayer('sacPublicSocialServices') },
+                            { label: "Public & Social Services", layer: sacPOIs.customGetLayer('sacPublic_Social_Services') },
                             { label: "Residential", layer: sacPOIs.customGetLayer('sacResidential') },
                             { label: "Retail", layer: sacPOIs.customGetLayer('sacRetail') },
                             { label: "Tourism", layer: sacPOIs.customGetLayer('sacTourism') },
@@ -301,8 +292,8 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
                         ]
                     }
                 ]
-            }, {
-                label: "CalEnviroScreen", layer: calEnviroScreen
+            // }, {
+            //     label: "CalEnviroScreen", layer: calEnviroScreen
             }
         ]
     };
@@ -336,9 +327,25 @@ function initializeMap(borders, yolobus, unitrans, yoloPOIs, sacPOIs) {
 // });
 
 // Create GeoJSON layers
-async function createGeoJson(file) {
-    // console.log("adding geojson: ", file);
+async function createGeoJson(file, fileName = "") {
     try {
+        let data;
+
+        // If file is a string, fetch it
+        if (typeof file === "string") {
+            const response = await fetch(file);
+            if (!response.ok) {
+                console.error(`Error loading GeoJSON file: ${file}, Status: ${response.status}`);
+                return L.layerGroup(); // Return empty group instead of undefined
+            }
+            data = await response.json();
+            // Store the URL for styling
+            fileName = file;
+        } else {
+            // Otherwise assume it's already a GeoJSON object
+            data = file;
+        }
+
         const lastSlash = location.pathname.lastIndexOf('/');
         const directoryName = location.pathname.substring(1,lastSlash);
         if (!directoryName) return;
@@ -348,13 +355,6 @@ async function createGeoJson(file) {
             console.log(geojson);
             return L.geoJson(geojson);
         }
-        
-        const response = await fetch(file);
-        if (!response.ok) {
-            console.error(`Error loading GeoJSON file: ${file}, Status: ${response.status}`);
-            return L.layerGroup(); // Return empty group instead of undefined
-        }
-        let data = await response.json();
         
         // If data is in EPSG:3857, project it to EPSG:4326 for Leaflet
         if (data.crs && data.crs.properties && (data.crs.properties.name === "EPSG:3857" || data.crs.properties.name === "urn:ogc:def:crs:EPSG::3857")) {
@@ -404,18 +404,18 @@ async function createGeoJson(file) {
         // var counter = 0;
         return L.geoJson(data, {
             pointToLayer: function (feature, latlng) {
-                const isPOI = file.includes('Points of Interest');
+                const isPOI = fileName.includes('Points of Interest');
                 if (isPOI) {
                     let color = "blue";
-                    if (file.includes("Arts_Entertainment")) color = "#9B5DE5";
-                    else if (file.includes("Education")) color = "#1982C4";
-                    else if (file.includes("Employment")) color = "#1A535C";
-                    else if (file.includes("Healthcare")) color = "#FF6B6B";
-                    else if (file.includes("Public_Social_Services")) color = "#4ECDC4";
-                    else if (file.includes("Residential")) color = "#FF9F1C";
-                    else if (file.includes("Retail")) color = "#FFD93D";
-                    else if (file.includes("Tourism")) color = "#FF595E";
-                    else if (file.includes("Travel")) color = "#8AC926";
+                    if (fileName.includes("Arts_Entertainment")) color = "#9B5DE5";
+                    else if (fileName.includes("Education")) color = "#1982C4";
+                    else if (fileName.includes("Employment")) color = "#1A535C";
+                    else if (fileName.includes("Healthcare")) color = "#FF6B6B";
+                    else if (fileName.includes("Public_Social_Services")) color = "#4ECDC4";
+                    else if (fileName.includes("Residential")) color = "#FF9F1C";
+                    else if (fileName.includes("Retail")) color = "#FFD93D";
+                    else if (fileName.includes("Tourism")) color = "#FF595E";
+                    else if (fileName.includes("Travel")) color = "#8AC926";
 
                     return L.circleMarker(latlng, {
                         radius: 6,
@@ -430,18 +430,18 @@ async function createGeoJson(file) {
             },
             style: function (feature) {
                 const name = feature.properties.name || feature.properties.Route || null;
-                var color = "pink";
+                let color = "pink";
 
-                if (file.includes("Yolobus Service Area")) color = "lightblue";
-                if (file.includes("Arts_Entertainment")) color = "#9B5DE5";
-                else if (file.includes("Education")) color = "#1982C4";
-                else if (file.includes("Employment")) color = "#1A535C";
-                else if (file.includes("Healthcare")) color = "#FF6B6B";
-                else if (file.includes("Public_Social_Services")) color = "#4ECDC4";
-                else if (file.includes("Residential")) color = "#FF9F1C";
-                else if (file.includes("Retail")) color = "#FFD93D";
-                else if (file.includes("Tourism")) color = "#FF595E";
-                else if (file.includes("Travel")) color = "#8AC926";
+                if (fileName.includes("Yolobus Service Area")) color = "lightblue";
+                if (fileName.includes("Arts_Entertainment")) color = "#9B5DE5";
+                else if (fileName.includes("Education")) color = "#1982C4";
+                else if (fileName.includes("Employment")) color = "#1A535C";
+                else if (fileName.includes("Healthcare")) color = "#FF6B6B";
+                else if (fileName.includes("Public_Social_Services")) color = "#4ECDC4";
+                else if (fileName.includes("Residential")) color = "#FF9F1C";
+                else if (fileName.includes("Retail")) color = "#FFD93D";
+                else if (fileName.includes("Tourism")) color = "#FF595E";
+                else if (fileName.includes("Travel")) color = "#8AC926";
                 else if (name == "37" || name == "40" || name == "41" || name == "240") color = "purple";
                 else if (name == "211" || name == "212") color = "orange";
                 else if (name == "42A" || name == "42B") color = "green";
@@ -464,7 +464,7 @@ async function createGeoJson(file) {
             onEachFeature: function (feature, layer) {
                 const name = feature.properties.name || feature.properties.Route || feature.properties.NAME || null;
                 const type = feature.properties.fclass || feature.properties.type || "";
-                if (name && !file.includes('Yolo County Boundary')) {
+                if (name && !fileName.includes('Yolo County Boundary')) {
                     layer.bindPopup(`<strong>${name}</strong><br>${type}`, {
                         autoPan: false
                     });
@@ -489,8 +489,8 @@ async function createGeoJson(file) {
 }
 
 async function addBoundaries() {
-    const yoloBoundaryLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolo County Boundary.geojson");
-    const serviceAreaLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolobus Service Area.geojson");
+    const yoloBoundaryLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolo County Boundary.geojson", "Yolo County Boundary");
+    const serviceAreaLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolobus Service Area.geojson", "Yolobus Service Area");
     yoloBoundaryLeaflet.id = 'yoloCountyBoundary';
     serviceAreaLeaflet.id = 'yolobusServiceArea';
 
@@ -513,12 +513,15 @@ async function addBoundaries() {
 async function gtfsZipToGeoJSON(gtfsFile) {
     // Read ArrayBuffer if input is a File
     let data;
-    if (gtfsFile instanceof File) {
-        data = await gtfsFile.arrayBuffer();
+    if (typeof gtfsFile === "string") {
+        // fetch URL
+        const response = await fetch(gtfsFile);
+        if (!response.ok) throw new Error(`Failed to fetch GTFS zip: ${gtfsFile}`);
+        data = await response.arrayBuffer();
     } else if (gtfsFile instanceof ArrayBuffer) {
         data = gtfsFile;
     } else {
-        throw new Error("Input must be a File or ArrayBuffer");
+        throw new Error("Input must be a string URL or ArrayBuffer");
     }
     
     const zip = await JSZip.loadAsync(data);
@@ -575,15 +578,15 @@ async function gtfsZipToGeoJSON(gtfsFile) {
     return { stopsGeoJSON, routesGeoJSONs };
 }
 
-async function addTransitData(gtfsFile) {
+async function addTransitData(gtfsFile, agencyName) {
     const { stopsGeoJSON: stops, routesGeoJSONs: routes } = await gtfsZipToGeoJSON(gtfsFile);
     
-    var stopsLayer = await createGeoJson(stops);
+    var stopsLayer = await createGeoJson(stops, `${agencyName} Stops`);
     stopsLayer.id = 'stops';
 
     const routeLayers = [];
     for (const [routeId, route] of routes.entries()) {
-        const layer = await createGeoJson(route);
+        const layer = await createGeoJson(route, `${agencyName} Route ${routeId}`);
         layer.id = routeId;
         routeLayers.push(layer);
     }
@@ -711,7 +714,7 @@ async function addTransitData(gtfsFile) {
 
 // Add Disadvantaged Communities layer (shapefile to GeoJSON)
 async function addCalEnviroScreen() {
-    var calEnviroScreen = await createGeoJson("../../shapefiles/calenviroscreen40shpf2021shp.zip");
+    var calEnviroScreen = await createGeoJson("../../shapefiles/calenviroscreen40shpf2021shp.zip", "CalEnviroScreen");
     // const geojson = shp("../../shapefiles/CalEnviroScreen40-2021shp.zip");
     // console.log(geojson);
     // var calEnviroScreen =  L.geoJson(geojson);
@@ -721,53 +724,102 @@ async function addCalEnviroScreen() {
 
 // By county
 async function addYoloPOIs() {
-    var yoloArtsEntertainment = await createGeoJson("../../geojson/Yolo County Points of Interest/Arts_Entertainment.geojson");
-    var yoloEducation = await createGeoJson("../../geojson/Yolo County Points of Interest/Education.geojson");
-    var yoloEmployment = await createGeoJson("../../geojson/Yolo County Points of Interest/Employment.geojson");
-    var yoloHealthcare = await createGeoJson("../../geojson/Yolo County Points of Interest/Healthcare.geojson");
-    var yoloPublicSocialServices = await createGeoJson("../../geojson/Yolo County Points of Interest/Public_Social_Services.geojson");
-    var yoloResidential = await createGeoJson("../../geojson/Yolo County Points of Interest/Residential.geojson");
-    var yoloRetail = await createGeoJson("../../geojson/Yolo County Points of Interest/Retail.geojson");
-    var yoloTourism = await createGeoJson("../../geojson/Yolo County Points of Interest/Tourism.geojson");
-    var yoloTravel = await createGeoJson("../../geojson/Yolo County Points of Interest/Travel.geojson");
+    // var yoloArtsEntertainment = await createGeoJson("../../geojson/Yolo County Points of Interest/Arts_Entertainment.geojson");
+    // var yoloEducation = await createGeoJson("../../geojson/Yolo County Points of Interest/Education.geojson");
+    // var yoloEmployment = await createGeoJson("../../geojson/Yolo County Points of Interest/Employment.geojson");
+    // var yoloHealthcare = await createGeoJson("../../geojson/Yolo County Points of Interest/Healthcare.geojson");
+    // var yoloPublicSocialServices = await createGeoJson("../../geojson/Yolo County Points of Interest/Public_Social_Services.geojson");
+    // var yoloResidential = await createGeoJson("../../geojson/Yolo County Points of Interest/Residential.geojson");
+    // var yoloRetail = await createGeoJson("../../geojson/Yolo County Points of Interest/Retail.geojson");
+    // var yoloTourism = await createGeoJson("../../geojson/Yolo County Points of Interest/Tourism.geojson");
+    // var yoloTravel = await createGeoJson("../../geojson/Yolo County Points of Interest/Travel.geojson");
 
-    yoloArtsEntertainment.id = 'yoloArtsEntertainment';
-    yoloEducation.id = 'yoloEducation';
-    yoloEmployment.id = 'yoloEmployment';
-    yoloHealthcare.id = 'yoloHealthcare';
-    yoloPublicSocialServices.id = 'yoloPublicSocialServices';
-    yoloResidential.id = 'yoloResidential';
-    yoloRetail.id = 'yoloRetail';
-    yoloTourism.id = 'yoloTourism';
-    yoloTravel.id = 'yoloTravel';
+    // yoloArtsEntertainment.id = 'yoloArtsEntertainment';
+    // yoloEducation.id = 'yoloEducation';
+    // yoloEmployment.id = 'yoloEmployment';
+    // yoloHealthcare.id = 'yoloHealthcare';
+    // yoloPublicSocialServices.id = 'yoloPublicSocialServices';
+    // yoloResidential.id = 'yoloResidential';
+    // yoloRetail.id = 'yoloRetail';
+    // yoloTourism.id = 'yoloTourism';
+    // yoloTravel.id = 'yoloTravel';
 
-    var yoloPOIs = L.layerGroup([yoloArtsEntertainment, yoloEducation, yoloEmployment, yoloHealthcare, yoloPublicSocialServices, yoloResidential, yoloRetail, yoloTourism, yoloTravel]);
-    return yoloPOIs;
+    // var yoloPOIs = L.layerGroup([yoloArtsEntertainment, yoloEducation, yoloEmployment, yoloHealthcare, yoloPublicSocialServices, yoloResidential, yoloRetail, yoloTourism, yoloTravel]);
+    // return yoloPOIs;
+
+    const categories = [
+        "Arts_Entertainment",
+        "Education",
+        "Employment",
+        "Healthcare",
+        "Public_Social_Services",
+        "Residential",
+        "Retail",
+        "Tourism",
+        "Travel"
+    ];
+
+    const layers = [];
+
+    for (const category of categories) {
+        const layer = await createGeoJson(
+            `../../geojson/Yolo County Points of Interest/${category}.geojson`,
+            `Yolo ${category}`
+        );
+        layer.id = `yolo${category}`;
+        layers.push(layer);
+    }
+    return L.layerGroup(layers);
 }
 
 async function addSacPOIs() {
-    var sacArtsEntertainment = await createGeoJson("../../geojson/Sacramento County Points of Interest/Arts_Entertainment.geojson");
-    var sacEducation = await createGeoJson("../../geojson/Sacramento County Points of Interest/Education.geojson");
-    var sacEmployment = await createGeoJson("../../geojson/Sacramento County Points of Interest/Employment.geojson");
-    var sacHealthcare = await createGeoJson("../../geojson/Sacramento County Points of Interest/Healthcare.geojson");
-    var sacPublicSocialServices = await createGeoJson("../../geojson/Sacramento County Points of Interest/Public_Social_Services.geojson");
-    var sacResidential = await createGeoJson("../../geojson/Sacramento County Points of Interest/Residential.geojson");
-    var sacRetail = await createGeoJson("../../geojson/Sacramento County Points of Interest/Retail.geojson");
-    var sacTourism = await createGeoJson("../../geojson/Sacramento County Points of Interest/Tourism.geojson");
-    var sacTravel = await createGeoJson("../../geojson/Sacramento County Points of Interest/Travel.geojson");
+    // var sacArtsEntertainment = await createGeoJson("../../geojson/Sacramento County Points of Interest/Arts_Entertainment.geojson");
+    // var sacEducation = await createGeoJson("../../geojson/Sacramento County Points of Interest/Education.geojson");
+    // var sacEmployment = await createGeoJson("../../geojson/Sacramento County Points of Interest/Employment.geojson");
+    // var sacHealthcare = await createGeoJson("../../geojson/Sacramento County Points of Interest/Healthcare.geojson");
+    // var sacPublicSocialServices = await createGeoJson("../../geojson/Sacramento County Points of Interest/Public_Social_Services.geojson");
+    // var sacResidential = await createGeoJson("../../geojson/Sacramento County Points of Interest/Residential.geojson");
+    // var sacRetail = await createGeoJson("../../geojson/Sacramento County Points of Interest/Retail.geojson");
+    // var sacTourism = await createGeoJson("../../geojson/Sacramento County Points of Interest/Tourism.geojson");
+    // var sacTravel = await createGeoJson("../../geojson/Sacramento County Points of Interest/Travel.geojson");
 
-    sacArtsEntertainment.id = 'sacArtsEntertainment';
-    sacEducation.id = 'sacEducation';
-    sacEmployment.id = 'sacEmployment';
-    sacHealthcare.id = 'sacHealthcare';
-    sacPublicSocialServices.id = 'sacPublicSocialServices';
-    sacResidential.id = 'sacResidential';
-    sacRetail.id = 'sacRetail';
-    sacTourism.id = 'sacTourism';
-    sacTravel.id = 'sacTravel';
+    // sacArtsEntertainment.id = 'sacArtsEntertainment';
+    // sacEducation.id = 'sacEducation';
+    // sacEmployment.id = 'sacEmployment';
+    // sacHealthcare.id = 'sacHealthcare';
+    // sacPublicSocialServices.id = 'sacPublicSocialServices';
+    // sacResidential.id = 'sacResidential';
+    // sacRetail.id = 'sacRetail';
+    // sacTourism.id = 'sacTourism';
+    // sacTravel.id = 'sacTravel';
 
-    var sacPOIs = L.layerGroup([sacArtsEntertainment, sacEducation, sacEmployment, sacHealthcare, sacPublicSocialServices, sacResidential, sacRetail, sacTourism, sacTravel]);
-    return sacPOIs;
+    // var sacPOIs = L.layerGroup([sacArtsEntertainment, sacEducation, sacEmployment, sacHealthcare, sacPublicSocialServices, sacResidential, sacRetail, sacTourism, sacTravel]);
+    // return sacPOIs;
+
+    const categories = [
+        "Arts_Entertainment",
+        "Education",
+        "Employment",
+        "Healthcare",
+        "Public_Social_Services",
+        "Residential",
+        "Retail",
+        "Tourism",
+        "Travel"
+    ];
+
+    const layers = [];
+
+    for (const category of categories) {
+        const layer = await createGeoJson(
+            `../../geojson/Sacramento County Points of Interest/${category}.geojson`,
+            `Sac ${category}`
+        );
+        layer.id = `sac${category}`;
+        layers.push(layer);
+    }
+
+    return L.layerGroup(layers);
 }
 
 function setupEventListeners() {

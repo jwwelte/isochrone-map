@@ -73,7 +73,7 @@ body {
 }
 
 .leaflet-control-layers-list {
-    width: 210px !important;
+    width: 230px !important;
     max-height: 640px !important;
     overflow-y: scroll !important;
     font-size: 1em !important;

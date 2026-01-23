@@ -24,15 +24,14 @@ geojson.gtfstohtml.com
 https://github.com/brunob/leaflet.fullscreen/tree/master
 
 
-Convert GTFS to GeoJSON with QGIS!!! (update with new version)
+// Convert GTFS to GeoJSON with QGIS!!! (update with new version; no separate routes)
 https://www.stevencanplan.com/2016/02/converting-a-transit-agencys-gtfs-to-shapefile-and-geojson-with-qgis/
 
-* Right click 'stops' layer -> Export -> Save Features As -> GeoJSON
+    * Right click 'stops' layer -> Export -> Save Features As -> GeoJSON
 
-* Plugins -> Manage Plugins -> Processing
-  View -> Panels -> Processing Toolbox
-  Search -> Points to path
+    * Plugins -> Manage Plugins -> Processing
+        View -> Panels -> Processing Toolbox
+        Search -> Points to path
 
-
-  // GTFS QGIS Plugin!!!!
-  https://github.com/MIERUNE/GTFS-GO
+// GTFS QGIS Plugin!!!! (incompatible)
+https://github.com/MIERUNE/GTFS-GO

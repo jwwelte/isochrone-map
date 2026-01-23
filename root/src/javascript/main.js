@@ -1,4 +1,4 @@
-const GEOAPIFY_API_KEY = '08450434409749f7910860bb29eb30bc'; // Replace with your actual API key
+const GEOAPIFY_API_KEY = '08450434409749f7910860bb29eb30bc';
 const DEFAULT_CENTER = [38.66989089069272, -122.00919731791129]; // (lat, lng for Leaflet)
 const DEFAULT_ZOOM = 10;
 
@@ -402,9 +402,9 @@ async function createGeoJson(file, fileName, busStopMarker = "") {
             "Intercity Cache Creek": "black",
             "Davis Express": "red", 
             "Woodland Express": "orange", 
-            "Memorial Union": "yellow",
-            "Silo": "brown",
-            "Davis High & Junior High": "pink"
+            "Memorial Union": "#58BFB9",
+            "Silo": "#4375E0",
+            "Davis High & Junior High": "#C276C4"
         };
 
         return L.geoJson(data, {
@@ -576,7 +576,7 @@ async function addTransitData(gtfsFile, agencyName, busStopMarker) {
         routeLayers.push(layer);
     }
 
-    // Combine stops + routes for one agency
+    // Combine stops + routes for each agency
     const agencyData = L.layerGroup([stopsLayer, ...routeLayers]);
     
     return agencyData;

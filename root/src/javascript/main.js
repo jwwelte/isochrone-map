@@ -23,7 +23,7 @@ let markerCounter = 0;
 let clickedCoordinates = null;
 let markers = [];
 let isolineLayers = [];
-let visibleLayers = [];
+const activeLayers = [];
 const splitByCommaNotInParentheses = (input) => {
     const regex = /,(?![^()]*\))/g;
     return input.split(regex);
@@ -254,6 +254,7 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
             calLegend.addTo(map);
             layerControl.getContainer().classList.add('legend-open');
         }
+        listActiveLayers(e.layer);
     });
 
     map.on('overlayremove', function (e) {
@@ -261,6 +262,10 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
             map.removeControl(info);
             map.removeControl(calLegend);
             layerControl.getContainer.classList.remove('legend-open');
+        }
+        removeInactiveLayers(e.layer);
+        if (activeLayers.length == 0) {
+            hideTable();
         }
     });
 
@@ -438,8 +443,6 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
     // Collapse all layers by default
     layerControl.addTo(map).collapseTree().expandSelected().collapseTree(true);
 
-    map.on('overlayadd overlayremove', listActiveLayers);
-
     // Set max-height dynamically
     function adjustLayersControlHeight() {
         const controlPanel = document.querySelector('.leaflet-control-layers-list');
@@ -459,23 +462,9 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
     map.on('layeradd layerremove', adjustLayersControlHeight);
     adjustLayersControlHeight();
     
-    // // Get list of active layers
-    // var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
-    // console.log("active layers from layer control 1: ", active);
-    
     // Add click event listener to the map
     map.on('click', onMapClick);
-
-    // // Get list of active layers
-    // var active = layerControl.getActiveOverlayLayers();    // TypeError: layerControl.getActiveOverlayLayers is not a function
-    // console.log("active layers from layer control 2: ", active);
 }
-
-// map.on('overlayadd', function () {
-//     setTimeout(function () {
-//         console.log(control.getActiveOverlayLayers());
-//     }, 1);
-// });
 
 // Create GeoJSON layers
 async function createGeoJson(file, fileName, busStopMarker = "", agencyName = null) {
@@ -1081,21 +1070,44 @@ function detectLayerOverlap(layerGroup, isoline) {
     })
 }
 
-function listActiveLayers() {
-    const activeLayers = [];
-    const inactiveLayers = [];
-    map.eachLayer(function(layer) {
-        if (layer instanceof L.LayerGroup && map.hasLayer(layer)) {
-            activeLayers.push(layer);
-        } else {
-            inactiveLayers.push(layer);
+function hideTable() {
+    const activeFeatures = document.getElementById('active-features');
+    const table = document.getElementById('table');
+    activeFeatures.classList.add('hide');
+    table.classList.add('hide');
+}
+
+function removeInactiveLayers(layer) {
+    const index = activeLayers.indexOf(layer);
+    console.log(index);
+    if (index > -1) { // Only splice array when item is found
+      activeLayers.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    console.log("active layers: ", activeLayers);
+}
+
+function listActiveLayers(layer) {
+    // Add layer to active layers array if layer is a POI category
+    let active = false;
+    for (i = 0; i < categories.length; i++) {
+        console.log(layer.id);
+        console.log(categories[i]);
+        if (layer.id.includes(categories[i])) {
+            active = true;
         }
-    });
+    }
+    if (!active) return;
+    activeLayers.push(layer);
+    console.log("pushed active layers: ", activeLayers);
+    
+    const activeFeatures = document.getElementById('active-features');
     // Remove all existing rows from table
     const table = document.getElementById('table');
-    for (let i = 1; i < table.childElementCount; i++) {
-        table.removeChild(table.children[i]);
+    while (table.children.length > 1) {
+        table.removeChild(table.lastElementChild);
     }
+    activeFeatures.classList.remove('hide');
+    table.classList.remove('hide');
 
     // Add rows for each active layer
     for (activeLayer of activeLayers) {

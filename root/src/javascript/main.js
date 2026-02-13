@@ -23,7 +23,7 @@ let markerCounter = 0;
 let clickedCoordinates = null;
 let markers = [];
 let isolineLayers = [];
-const activeLayers = [];
+let activePOIs = [];
 const splitByCommaNotInParentheses = (input) => {
     const regex = /,(?![^()]*\))/g;
     return input.split(regex);
@@ -58,7 +58,7 @@ const routeTypes = {
     "Intercity": ["42A", "42B", "138"],
     "Intercity Cache Creek": ["215"],
     "Davis Express": ["43", "43R", "44", "230"],
-    "Woodland Express": "45",
+    "Woodland Express": ["45"],
     "Memorial Union": ["A", "B", "E", "F", "G", "K", "M", "O", "P", "Q", "U", "FMS"],
     "Silo": ["C", "D", "J", "L", "V", "VL", "VX", "W", "Z"],
     "Davis High & Junior High": ["T"]
@@ -261,10 +261,10 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
         if (e.layer === calEnviroScreen) {
             map.removeControl(info);
             map.removeControl(calLegend);
-            layerControl.getContainer.classList.remove('legend-open');
+            layerControl.getContainer().classList.remove('legend-open');
         }
         removeInactiveLayers(e.layer);
-        if (activeLayers.length == 0) {
+        if (activePOIs.length == 0) {
             hideTable();
         }
     });
@@ -762,6 +762,11 @@ async function addTransitData(gtfsFile, agencyName, busStopMarker) {
     for (const [routeId, route] of routes.entries()) {
         const layer = await createGeoJson(route, routeId, "", agencyName);
         layer.id = routeId;
+        layer._routeType = Object.keys(routeTypes).filter(key => {
+            const arr = routeTypes[key];
+            return Array.isArray(arr) && arr.includes(routeId);
+        });
+        console.log("LAYER.ID: ", layer.id, " LAYER._ROUTETYPE: ", layer._routeType);
         layer._agency = agencyName;
         layer._layerType = 'route';
         routeLayers.push(layer);
@@ -782,6 +787,7 @@ async function addCalEnviroScreen() {
     var calEnviroScreen = await createGeoJson(
         "../../geojson/CalEnviroScreen/CES4 Final Shapefile.json", "CalEnviroScreen"
     );
+    calEnviroScreen.id = 'CalEnviroScreen';
     return calEnviroScreen;
 }
 
@@ -1076,27 +1082,34 @@ function hideTable() {
 }
 
 function removeInactiveLayers(layer) {
-    const index = activeLayers.indexOf(layer);
+    const index = activePOIs.indexOf(layer);
     console.log(index);
     if (index > -1) { // Only splice array when item is found
-      activeLayers.splice(index, 1); // 2nd parameter means remove one item only
+        activePOIs.splice(index, 1); // 2nd parameter means remove one item only
     }
-    console.log("active layers: ", activeLayers);
+    console.log("active POIs: ", activePOIs);
 }
 
 function listActiveLayers(layer) {
-    // Add layer to active layers array if layer is a POI category
-    let active = false;
-    for (i = 0; i < categories.length; i++) {
-        console.log(layer.id);
-        console.log(categories[i]);
-        if (layer.id.includes(categories[i])) {
-            active = true;
-        }
+    // Add layer to active layers array
+    let layerType;
+    if (layer.id === 'CalEnviroScreen') {
+        layerType = 'CES';
+    } else if (layer.id === 'yoloCountyBoundary') {
+        layerType = 'YCB';
+    } else if (layer.id === 'yolobusServiceArea') {
+        layerType = 'YSA';
+    } else if (layer.id === 'stops') {
+        layerType = 'Stops';
+    } else if (layer._layerType === 'route') {
+        layerType = 'Routes';
+    } else {
+        layerType = 'POI';
     }
-    if (!active) return;
-    activeLayers.push(layer);
-    console.log("pushed active layers: ", activeLayers);
+
+    if (layerType !== 'POI') return;
+    activePOIs.push(layer);
+    console.log("pushed active POIs: ", activePOIs);
     
     const activeFeatures = document.getElementById('active-features');
     // Remove all existing rows from table
@@ -1108,22 +1121,90 @@ function listActiveLayers(layer) {
     table.classList.remove('hide');
 
     // Add rows for each active layer
-    for (activeLayer of activeLayers) {
-        for (feature of Object.values(activeLayer._layers)) {
-            const row = document.createElement('tr');
-            console.log(feature.feature.properties.color);
-            row.style.backgroundColor = `${feature.feature.properties.color}30`;
-            const featureName = document.createElement('td');
-            const name = feature.feature.properties.name ? feature.feature.properties.name : '-';
-            featureName.innerHTML = name;
-            const city = document.createElement('td');
-            city.innerHTML = feature.feature.properties?.['addr:city'] ? feature.feature.properties['addr:city'] : '-';
-            const category = document.createElement('td');
-            category.innerHTML = feature.feature.properties.category;
-            row.appendChild(featureName);
-            row.appendChild(city);
-            row.appendChild(category);
-            table.appendChild(row);
+    for (activePOI of activePOIs) {
+        console.log("ACTIVELAYER: ", activePOI);
+
+        // if (layerType === 'Routes') {
+        //     header1.innerHTML = 'Route';
+        //     header2.innerHTML = 'Route Type';
+        //     header3.innerHTML = 'Agency';
+            
+        //     const row = document.createElement('tr');
+        //     const routeID = document.createElement('td');
+        //     routeID.innerHTML = activeLayer.id ? activeLayer.id : '-';
+        //     const routeType = document.createElement('td');
+        //     routeType.innerHTML = activeLayer._routeType ? activeLayer._routeType : '-';
+        //     const agency = document.createElement('td');
+        //     agency.innerHTML = activeLayer._agency ? activeLayer._agency : '-';
+        //     row.appendChild(routeID);
+        //     row.appendChild(routeType);
+        //     row.appendChild(agency);
+        //     table.appendChild(row);
+
+        //     console.log("ACTIVELAYER.ID: ", activeLayer.id);
+        //     console.log("ACTIVELAYER._ROUTETYPE: ", activeLayer._routeType);
+        //     console.log("ACTIVELAYER._AGENCY: ", activeLayer._agency);
+        // }
+        for (feature of Object.values(activePOI._layers)) {
+            // console.log("FEATURE:", feature);
+            // console.log("FEATURE.FEATURE.PROPERTIES.NAME: ", feature.feature.properties.name);
+            // console.log("FEATURE.FEATURE.PROPERTIES.CATEGORY: ", feature.feature.properties.category);
+
+            // if (layerType === 'Stops') {
+            //     header1.innerHTML = 'Stop';
+            //     header2.innerHTML = 'Stop ID';
+            //     header3.innerHTML = 'Agency';
+                
+            //     const row = document.createElement('tr');
+            //     const name = document.createElement('td');
+            //     name.innerHTML = feature.feature.properties.stop_name ? feature.feature.properties.stop_name : '-';
+            //     const stopID = document.createElement('td');
+            //     stopID.innerHTML = feature.feature.properties.stop_id ? feature.feature.properties.stop_id : '-';
+            //     const agency = document.createElement('td');
+            //     agency.innerHTML = activeLayer._agency ? activeLayer._agency : '-';
+            //     row.appendChild(name);
+            //     row.appendChild(stopID);
+            //     row.appendChild(agency);
+            //     table.appendChild(row);
+            // } else 
+            
+            if (layerType === 'POI') {
+                const row = document.createElement('tr');
+                console.log(feature.feature.properties.color);
+                row.style.backgroundColor = `${feature.feature.properties.color}30`;
+                const name = document.createElement('td');
+                name.innerHTML = feature.feature.properties.name ? feature.feature.properties.name : '-';
+                const city = document.createElement('td');
+                city.innerHTML = (feature.feature.properties?.['addr:street'] && feature.feature.properties?.['addr:city']) ? 
+                    `${feature.feature.properties?.['addr:street']}, ${feature.feature.properties?.['addr:city']}` : 
+                    feature.feature.properties?.['addr:city'] ? feature.feature.properties?.['addr:city'] : '-';
+                const category = document.createElement('td');
+                category.innerHTML = feature.feature.properties.category;
+                row.appendChild(name);
+                row.appendChild(city);
+                row.appendChild(category);
+                table.appendChild(row);
+            } 
+            // else if (layerType === 'CES') {
+            //     header1.innerHTML = 'Approximate Location';
+            //     header2.innerHTML = 'Tract';
+            //     header3.innerHTML = 'CI Score Percentile';
+                
+            //     const row = document.createElement('tr');
+            //     console.log(feature.feature.properties.color);
+            //     row.style.backgroundColor = `${feature.feature.properties.color}30`;
+            //     const loc = document.createElement('td');
+            //     loc.innerHTML = feature.feature.properties.ApproxLoc ? feature.feature.properties.ApproxLoc : 
+            //         feature.feature.properties.County ? feature.feature.properties.County : '-';
+            //     const tract = document.createElement('td');
+            //     tract.innerHTML = feature.feature.properties.Tract ? feature.feature.properties.Tract : '-';
+            //     const CIScoreP = document.createElement('td');
+            //     CIScoreP.innerHTML = feature.feature.properties.CIscoreP;
+            //     row.appendChild(loc);
+            //     row.appendChild(tract);
+            //     row.appendChild(CIScoreP);
+            //     table.appendChild(row);
+            // }
         }
     }
 }

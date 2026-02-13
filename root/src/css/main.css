@@ -97,6 +97,12 @@ td, th {
     font-weight: normal !important;
 }
 
+.table-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
 /* tr:nth-child(even) {
     background-color: #dddddd;
 } */

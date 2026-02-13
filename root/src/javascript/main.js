@@ -216,7 +216,7 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
             labels = [">90 - 100 (Highest Scores)", ">80 - 90", ">70 - 80", ">60 - 70", ">50 - 60", ">40 - 50", ">30 - 40", ">20 - 30", ">10 - 20", "0 - 10 (Lowest Scores)"];
             colors = ['#F06F5C', '#F29262', '#F4B169', '#F8CD71', '#FDF07B', '#E9F079', '#BFD26E', '#99B863', '#7B9F5A', '#5E8751'];
         div.style.width = '200px';
-        div.innerHTML = `<h4>CalEnviroScreen 4.0 Percentile</h4>`;
+        div.innerHTML = `<h4>CalEnviroScreen Percentile</h4>`;
         // loop through intervals and generate a label with a colored square for each interval
         for (var i = 0; i < labels.length; i++) {
             div.innerHTML += `<i style="background: ${colors[i]};"></i><span>${labels[i]}</span><br>`;
@@ -239,7 +239,7 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
     // method that we will use to update the control based on feature properties passed
     info.update = function(props) {
         this._div.innerHTML = `
-            <h4>CalEnviroScreen 4.0</h4>
+            <h4>CalEnviroScreen</h4>
             ${props
                 ? `<b>Tract:</b> ${props.Tract}<br/>
                    <b>Population:</b> ${props.TotPop19?.toLocaleString()}<br/>
@@ -485,9 +485,7 @@ async function createGeoJson(file, fileName, busStopMarker = "", agencyName = nu
         }
 
 
-        if (fileName === "CalEnviroScreen") {
-            console.warn("Skipping all reprojection for CalEnviroScreen");        
-        } else {
+        if (fileName !== "CalEnviroScreen" && fileName !== "Yolobus Service Area") {
             // Detect Web Mercator (meters, not degrees)
             const looksLike3857 = (coord) =>
                 Array.isArray(coord) &&

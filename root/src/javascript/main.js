@@ -110,8 +110,35 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sacPOIs) {
+    // Create realtime layer
+    function createRealtimeLayer(url, container) {
+        return L.realtime(url, {
+            interval: 60 * 1000,
+            getFeatureId: function(f) {
+                return f.properties.url;
+            },
+            cache: true,
+            container: container,
+            onEachFeature(f, l) {
+                l.bindPopup(function() {
+                    return '<h3>' + f.properties.place + '</h3>' +
+                        '<p>' + new Date(f.properties.time) +
+                        '<br/>Magnitude: <strong>' + f.properties.mag + '</strong></p>' +
+                        '<p><a href="' + f.properties.url + '">More information</a></p>';
+                });
+            }
+        });
+    }
+
+    
     // Initialize Leaflet map
-    map = L.map('map').setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+    map = L.map('map'),
+        // test
+        clusterGroup = L.markerClusterGroup().addTo(map),
+        subgroup1 = L.featureGroup.subGroup(clusterGroup),
+        subgroup2 = L.featureGroup.subGroup(clusterGroup),
+        realtime1 = createRealtimeLayer('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson', subgroup1).addTo(map),
+        realtime2 = createRealtimeLayer('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson', subgroup2).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
 
     // Add Geoapify tile layer with smart retina detection
     const isRetina = L.Browser.retina;
@@ -126,6 +153,11 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
         updateWhenIdle: false,
         updateWhenZooming: false,
         keepBuffer: 2
+    }).addTo(map);
+
+    // test
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">USGS Earthquake Hazards Program</a>, &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     map.createPane('calEnviroPane');
@@ -392,6 +424,13 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
                     }
                 ]
             }, {
+                label: "EARTHQUAKES",
+                selectAllCheckbox: "Un/select all",
+                children: [
+                    { label: "Earthquakes 2.5+", layer: realtime1 },
+                    { label: "All Earthquakes", layer: realtime2 },
+                ],
+            }, {
                 label: "POINTS OF INTEREST",
                 selectAllCheckbox: "Un/select all",
                 children: [
@@ -442,6 +481,10 @@ function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sa
                                             });
     // Collapse all layers by default
     layerControl.addTo(map).collapseTree().expandSelected().collapseTree(true);
+
+    realtime1.once('update', function() {
+        map.fitBounds(realtime1.getBounds(), {maxZoom: 3});
+    });
 
     // Set max-height dynamically
     function adjustLayersControlHeight() {
@@ -666,8 +709,8 @@ async function createGeoJson(file, fileName, busStopMarker = "", agencyName = nu
 }
 
 async function addBoundaries() {
-    const yoloBoundaryLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolo County Boundary.geojson", "Yolo County Boundary");
-    const serviceAreaLeaflet = await createGeoJson("../../geojson/Boundary Layers/Yolobus Service Area.geojson", "Yolobus Service Area");
+    const yoloBoundaryLeaflet = await createGeoJson("../../geojson/Boundaries/Yolo County Boundary.geojson", "Yolo County Boundary");
+    const serviceAreaLeaflet = await createGeoJson("../../geojson/Boundaries/Yolobus Service Area.geojson", "Yolobus Service Area");
     yoloBoundaryLeaflet.id = 'yoloCountyBoundary';
     serviceAreaLeaflet.id = 'yolobusServiceArea';
 

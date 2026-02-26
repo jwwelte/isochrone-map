@@ -812,7 +812,7 @@ async function addTransitData(gtfsFile, agencyName, busStopMarker) {
             const arr = routeTypes[key];
             return Array.isArray(arr) && arr.includes(routeId);
         });
-        console.log("LAYER.ID: ", layer.id, " LAYER._ROUTETYPE: ", layer._routeType);
+        // console.log("LAYER.ID: ", layer.id, " LAYER._ROUTETYPE: ", layer._routeType);
         layer._agency = agencyName;
         layer._layerType = 'route';
         routeLayers.push(layer);
@@ -1128,34 +1128,41 @@ function hideTable() {
 }
 
 function removeInactiveLayers(layer) {
+    // console.log("LAYER: ", layer);
+    // console.log("LAYER LENGTH: ", Object.keys(layer._layers).length);
     const index = activePOIs.indexOf(layer);
-    console.log(index);
     if (index > -1) { // Only splice array when item is found
         activePOIs.splice(index, 1); // 2nd parameter means remove one item only
     }
-    console.log("active POIs: ", activePOIs);
+    // console.log("active POIs: ", activePOIs);
+    
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tr');
+    var category = Object.values(layer._layers)[0].feature.properties.category;
+    // Remove inactive features from table
+    for (row of Object.values(rows)) {
+        // console.log("ROWS: ", rows, rows.length);
+        // console.log("CELL: ", row.cells[2].innerHTML)
+        if (row.cells[2].innerHTML == category) {
+            table.removeChild(row);
+            // console.log("removed row");
+        }
+    }
 }
 
 function listActiveLayers(layer) {
     // Add layer to active layers array
     let layerType;
-    if (layer.id === 'CalEnviroScreen') {
-        layerType = 'CES';
-    } else if (layer.id === 'yoloCountyBoundary') {
-        layerType = 'YCB';
-    } else if (layer.id === 'yolobusServiceArea') {
-        layerType = 'YSA';
-    } else if (layer.id === 'stops') {
-        layerType = 'Stops';
-    } else if (layer._layerType === 'route') {
-        layerType = 'Routes';
-    } else {
-        layerType = 'POI';
-    }
+    if (layer.id === 'CalEnviroScreen') layerType = 'CES';
+    else if (layer.id === 'yoloCountyBoundary') layerType = 'YCB';
+    else if (layer.id === 'yolobusServiceArea') layerType = 'YSA';
+    else if (layer.id === 'stops') layerType = 'Stops';
+    else if (layer._layerType === 'route') layerType = 'Routes';
+    else layerType = 'POI';
 
     if (layerType !== 'POI') return;
     activePOIs.push(layer);
-    console.log("pushed active POIs: ", activePOIs);
+    // console.log("pushed active POIs: ", activePOIs);
     
     const activeFeatures = document.getElementById('active-features');
     // Remove all existing rows from table
@@ -1168,7 +1175,7 @@ function listActiveLayers(layer) {
 
     // Add rows for each active layer
     for (activePOI of activePOIs) {
-        console.log("ACTIVELAYER: ", activePOI);
+        // console.log("ACTIVELAYER: ", activePOI);
 
         // if (layerType === 'Routes') {
         //     header1.innerHTML = 'Route';
@@ -1214,23 +1221,21 @@ function listActiveLayers(layer) {
             //     table.appendChild(row);
             // } else 
             
-            if (layerType === 'POI') {
-                const row = document.createElement('tr');
-                console.log(feature.feature.properties.color);
-                row.style.backgroundColor = `${feature.feature.properties.color}30`;
-                const name = document.createElement('td');
-                name.innerHTML = feature.feature.properties.name ? feature.feature.properties.name : '-';
-                const city = document.createElement('td');
-                city.innerHTML = (feature.feature.properties?.['addr:street'] && feature.feature.properties?.['addr:city']) ? 
-                    `${feature.feature.properties?.['addr:street']}, ${feature.feature.properties?.['addr:city']}` : 
-                    feature.feature.properties?.['addr:city'] ? feature.feature.properties?.['addr:city'] : '-';
-                const category = document.createElement('td');
-                category.innerHTML = feature.feature.properties.category;
-                row.appendChild(name);
-                row.appendChild(city);
-                row.appendChild(category);
-                table.appendChild(row);
-            } 
+            const row = document.createElement('tr');
+            row.style.backgroundColor = `${feature.feature.properties.color}30`;
+            const name = document.createElement('td');
+            // console.log("FEATURE.FEATURE.PROPERTIES.CATEGORY: ", feature.feature.properties.category);
+            name.innerHTML = feature.feature.properties.name ? feature.feature.properties.name : '-';
+            const city = document.createElement('td');
+            city.innerHTML = (feature.feature.properties?.['addr:street'] && feature.feature.properties?.['addr:city']) ? 
+                `${feature.feature.properties?.['addr:street']}, ${feature.feature.properties?.['addr:city']}` : 
+                feature.feature.properties?.['addr:city'] ? feature.feature.properties?.['addr:city'] : '-';
+            const category = document.createElement('td');
+            category.innerHTML = feature.feature.properties.category;
+            row.appendChild(name);
+            row.appendChild(city);
+            row.appendChild(category);
+            table.appendChild(row);
             // else if (layerType === 'CES') {
             //     header1.innerHTML = 'Approximate Location';
             //     header2.innerHTML = 'Tract';

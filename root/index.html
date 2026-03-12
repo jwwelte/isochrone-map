@@ -3,18 +3,23 @@
 
 <head lang="en">
     <meta charset="UTF-8">
-        <title>Isoline Explorer - Powered by Leaflet & Geoapify</title>
-        
+        <title>Interactive Planning Webmap - Powered by Leaflet & Geoapify</title>
+        <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+
+        <!-- CSS -->
+        <!-- Leaflet map -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+        <!-- Esri map theme -->
         <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
         <!-- Load Esri Leaflet Geocoder from CDN -->
         <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css">
-        <link rel="stylesheet" href="./src/css/MarkerCluster.css">
-        <link rel="stylesheet" href="./src/css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.Default.css" />
         <link rel="stylesheet" href="./src/css/L.Control.Layers.Tree.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen/dist/Control.FullScreen.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen/dist/Control.FullScreen.css">
         <link rel="stylesheet" type="text/css" href="./src/css/main.css" inline>
-        
+
+        <!-- JAVASCRIPT -->
         <!-- Leaflet map -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <!-- Load proj4js for coordinate transformation -->
@@ -26,31 +31,27 @@
         <script src="./src/javascript/leaflet.ajax.js"></script>
         <!-- Convert shapefile to GeoJSON -->
         <script src="https://unpkg.com/shpjs@latest/dist/shp.js"></script>
-        <!-- Marker clusters -->
-        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/"></script>
-        <!-- Subgroups for marker clusters -->
-        <script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2/dist/leaflet.featuregroup.subgroup.js"></script>
-        <script src="./src/javascript/leaflet.markercluster.js"></script>
+        <script src="https://unpkg.com/leaflet.markercluster@1.0.6/dist/leaflet.markercluster-src.js"></script>
+        <script src="https://unpkg.com/leaflet.featuregroup.subgroup"></script>
         <!-- Turn layers control into collapsible tree -->
         <script src="./src/javascript/L.Control.Layers.Tree.js"></script>
-        <!-- Add fullscreen button to map -->
         <script src="https://unpkg.com/leaflet.fullscreen/dist/Control.FullScreen.umd.js"></script>
         <!-- JSZip reads ZIP files -->
         <script src="./src/javascript/jszip.min.js"></script>
         <!-- PapaParse is a CSV parser -->
         <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+        <script src="./src/javascript/leaflet-realtime.js"></script>
         <script src="./src/javascript/main.js"></script>
 </head>
-
 <body>
   <div class="container">
     <div id="map">
       <div id="loader"></div>
     </div>
     <div class="sidebar">
-      <h2>Isoline Explorer</h2>
-      <p>Select the map filters to display key features</p>
-      <p>Click on the map to create isoline polygons</p>
+      <h2>Interactive Planning Webmap</h2>
+      <p>Select a map filter to display key features</p>
+      <p>Click on the map to create an isoline polygon with the Isoline Explorer</p>
 
       <h3 id="active-features" class="hide">Active Points of Interest</h3>
       <table id="table" class="hide">

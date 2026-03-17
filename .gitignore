@@ -28,5 +28,3 @@ ENV/
 *.swp
 *.swo
 .DS_Store
-unitrans_gtfs.zip
-yolobus_gtfs.zip

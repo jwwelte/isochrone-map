@@ -24,6 +24,10 @@ app.get('/vehicles', async (req, res) => {
   try {
     console.log('Fetching GTFS feed from:', process.env.GTFS_RT_URL);
     const response = await fetch(process.env.GTFS_RT_URL);
+    if (!response.ok) {
+        console.error("Failed to fetch GTFS zip:", response.status, response.statusText);
+        return;
+    }
     const buffer = await response.arrayBuffer();
     const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+        <title>Interactive Planning Webmap - Powered by Leaflet & Geoapify</title>
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+        <!-- CSS -->
+  
+        <!-- Leaflet core -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+        <!-- Esri / theme -->
+        <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css">
+
+        <!-- Plugins -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.Default.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen/dist/Control.FullScreen.css">
+
+        <!-- Local CSS -->
+        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css" inline>
+
+        <!-- JAVASCRIPT -->
+  
+        <!-- Leaflet core -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <!-- Coordinate / utility libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.active-layers@0.3.2/dist/leaflet.active-layers.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+        <script src="https://unpkg.com/shpjs@latest/dist/shp.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+        <!-- Leaflet plugins -->
+        <script src="https://unpkg.com/leaflet.markercluster@1.0.6/dist/leaflet.markercluster-src.js"></script>
+        <script src="https://unpkg.com/leaflet.featuregroup.subgroup"></script>
+        <script src="https://unpkg.com/leaflet.fullscreen/dist/Control.FullScreen.umd.js"></script>
+
+        <!-- Local JS plugins -->
+        <script src="javascript/leaflet.ajax.js"></script>
+        <script src="javascript/L.Control.Layers.Tree.js"></script>
+        <script src="javascript/jszip.min.js"></script>
+        <script src="javascript/leaflet-realtime.js"></script>
+
+        <!-- Map code -->
+        <script src="javascript/main.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="map">
+      <div id="loader"></div>
+    </div>
+    <!-- <div id="resizer"></div> -->
+    <div id="sidebar">
+      <button id="close-button" onclick="hideSidebar(this);"></button>
+      <button id="open-button" class="hide" onclick="showSidebar(event);"></button>
+      <div id="text-container">
+        <h2>Interactive Planning Webmap</h2>
+        <p>Select a map filter to display key features</p>
+        <p>Click on the map to create an isoline polygon with the Isoline Explorer</p>
+
+        <h3 id="active-features" class="hide">Active Points of Interest</h3>
+        <table id="table" class="hide">
+          <tr>
+            <th class="table-header">Name</th>
+            <th class="table-header">Address</th>
+            <th class="table-header">Category</th>
+          </tr>
+        </table>
+        <button class="button clear-button" id="clear-all-button">Clear Isolines</button>
+      </div>
+      <img src="assets/images/Yolobus-Horizontal Blue (LG).png">
+    </div>
+  </div>
+
+  <!-- Dialog for isoline configuration -->
+  <div id="isoline-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <h3>Configure Isoline</h3>
+      <form id="isoline-form">
+        <div class="form-group">
+          <label for="travel-mode">Travel Mode:</label>
+          <select id="travel-mode" name="travel-mode" required>
+            <option value="walk">Walk</option>
+            <option value="hike">Hike</option>
+            <option value="scooter">Scooter</option>
+            <option value="motorcycle">Motorcycle</option>
+            <option value="drive">Drive</option>
+            <option value="truck">Truck</option>
+            <option value="light_truck">Light Truck</option>
+            <option value="medium_truck">Medium Truck</option>
+            <option value="truck_dangerous_goods">Truck Dangerous Goods</option>
+            <option value="heavy_truck">Heavy Truck</option>
+            <option value="long_truck">Long Truck</option>
+            <option value="bicycle">Bicycle</option>
+            <option value="mountain_bike">Mountain Bike</option>
+            <option value="road_bike">Road Bike</option>
+            <option value="bus">Bus</option>
+            <option value="drive_shortest">Drive Shortest</option>
+            <option value="drive_traffic_approximated">Drive Traffic Approximated</option>
+            <option value="truck_traffic_approximated">Truck Traffic Approximated</option>
+            <option value="transit">Transit</option>
+            <option value="approximated_transit">Approximated Transit</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="isoline-type">Isoline Type:</label>
+          <select id="isoline-type" name="isoline-type" required>
+            <option value="time">Time</option>
+            <option value="distance">Distance</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="isoline-value">Value:</label>
+          <input type="number" id="isoline-value" name="isoline-value" min="1" max="120" value="10" required>
+          <span id="value-unit">minutes</span>
+        </div>
+        
+        <div class="form-buttons">
+          <button type="button" id="cancel-button">Cancel</button>
+          <button type="submit" id="create-button">Create Isoline</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Loading indicator -->
+  <div id="loading-indicator" class="loading-overlay hidden">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading isoline...</p>
+    </div>
+  </div>
+</body>
+</html> 

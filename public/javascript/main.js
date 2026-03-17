@@ -1,4 +1,3 @@
-const GEOAPIFY_API_KEY = "08450434409749f7910860bb29eb30bc";
 const DEFAULT_CENTER = [38.66989089069272, -122.00919731791129]; // (lat, lng for Leaflet)
 const DEFAULT_ZOOM = 10;
 
@@ -76,6 +75,13 @@ const routeTypes = {
     Silo: ["C", "D", "J", "L", "V", "VL", "VX", "W", "Z"],
     "Davis High & Junior High": ["T"],
 };
+const yoloRouteTypes = {
+    "West Sacramento Local": ["37", "40", "41", "240"],
+    "Woodland Local": ["211", "212"],
+    Intercity: ["42A", "42B", "138", "215"],
+    "Davis Express": ["43", "43R", "44", "230"],
+    "Woodland Express": ["45"]
+};
 const routeColors = {
     "West Sacramento Local": "purple",
     "Woodland Local": "orange",
@@ -99,15 +105,6 @@ L.LayerGroup.include({
     },
 });
 
-// // linking Python
-// document.addEventListener("DOMContentLoaded", () => {
-//   fetch("/api/routeinfo")   // NOTE: no localhost needed in Replit
-//     .then(res => res.json())
-//     .then(data => {
-//       console.log(data.results);
-//     });
-// });
-
 // Initialize the application
 document.addEventListener("DOMContentLoaded", async function () {
     // Wait for all async layers to load before initializing map
@@ -117,12 +114,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             addTransitData(
                 "/yolobus_gtfs.zip",
                 "Yolobus",
-                "../../assets/images/yolobus-bus-stop.png",
+                "/assets/images/yolobus-bus-stop.png",
             ),
             addTransitData(
                 "/unitrans_gtfs.zip",
                 "Unitrans",
-                "../../assets/images/unitrans-bus-stop.png",
+                "/assets/images/unitrans-bus-stop.png",
             ),
             addCalEnviroScreen(),
             addYoloPOIs(),
@@ -153,60 +150,122 @@ function initializeMap(
     yoloPOIs,
     sacPOIs,
 ) {
-    // test
-    // Create realtime layer
-    // function createRealtimeLayer(url, container) {
-    //     return L.realtime(url, {
-    //         interval: 60 * 1000,
-    //         getFeatureId: function (f) {
-    //             return f.properties.url;
-    //         },
-    //         cache: true,
-    //         container: container,
-    //         onEachFeature(f, l) {
-    //             l.bindPopup(function () {
-    //                 return (
-    //                     "<h3>" + f.properties.place + "</h3>" + "<p>" + 
-    //                     new Date(f.properties.time) + "<br/>Magnitude: <strong>" + f.properties.mag + 
-    //                     "</strong></p>" + '<p><a href="' + f.properties.url + '">More information</a></p>'
-    //                 );
-    //             });
-    //         },
-    //     });
-    // }
-
     // Initialize Leaflet map
-    map = L.map('map').setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+    map = L.map('map', {
+        center: DEFAULT_CENTER,
+        zoom: DEFAULT_ZOOM,
+        maxZoom: 20
+    });
 
-    // Add Geoapify tile layer with smart retina detection
-    const isRetina = L.Browser.retina;
-    const baseUrl = `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${GEOAPIFY_API_KEY}`;
-    const retinaUrl = `https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey=${GEOAPIFY_API_KEY}`;
+    let geoapify;
+    // Add Geoapify tile layer
+    fetch('/tile-url')
+      .then(res => res.json())
+      .then(data => {
+        const isRetina = L.Browser.retina;
+        geoapify = L.tileLayer(isRetina ? data.retina : data.base, {
+            attribution:
+                'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a href="https://openmaptiles.org/" target="_blank">© OpenMapTiles</a> contributors',
+            tileSize: 256,
+            zoomOffset: 0,
+            updateWhenIdle: false,
+            updateWhenZooming: false,
+            keepBuffer: 2,
+        }).addTo(map);
+      });
 
-    var geoapify = L.tileLayer(isRetina ? retinaUrl : baseUrl, {
-        attribution:
-            'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a href="https://openmaptiles.org/" target="_blank">© OpenMapTiles</a> contributors',
-        maxZoom: 20,
-        tileSize: 256,
-        zoomOffset: 0,
-        updateWhenIdle: false,
-        updateWhenZooming: false,
-        keepBuffer: 2,
-    }).addTo(map);
-
-    // test
     // Create marker cluster group and realtime layer
     // clusterGroup = L.markerClusterGroup().addTo(map),
-    // subgroup = L.featureGroup.subGroup(clusterGroup),
-    // realtime = createRealtimeLayer(
-    //     fetch('https://avl.yctd.org/RouteMap', {
-    //       mode: 'no-cors' // This disables CORS checks for the request
-    //     })
-    //     .then(response => {
-    //       // You cannot access the response content with no-cors mode, 
-    //       // you only know if the request completed successfully.
-    //     })
-    //     .catch(error => console.error('Fetch error:', error)), subgroup).addTo(map)
+    // subgroup = L.featureGroup.subGroup(clusterGroup).addTo(map);
+    // const realtime = L.realtime("/vehicles",    // relative URL to backend
+    //     {
+    //         interval: 30000, // update every 30 seconds
+    //         getFeatureId: f => f.properties.tripId,
+    //         container: subgroup,
+    //         pointToLayer: function(feature, latlng) {
+    //             // optionally rotate marker by heading
+    //             return L.marker(latlng, {
+    //                 rotationAngle: feature.properties.heading || 0
+    //             });
+    //         },
+    //         onEachFeature: (feature, layer) => {
+    //             layer.bindPopup(`
+    //                 <b>Trip ID:</b> ${feature.properties.tripId}<br/>
+    //                 <b>Route:</b> ${feature.properties.routeId}<br/>
+    //                 <b>Speed:</b> ${feature.properties.speed || "N/A"} m/s
+    //             `);
+    //         }
+    //     }
+    // ).addTo(map);
+
+    const routeTypeLayers = {};
+
+    // Create layers
+    Object.entries(yoloRouteTypes).forEach(([type, routes]) => {
+        routeTypeLayers[type] = {};
+        routes.forEach(routeId => {
+            routeTypeLayers[type][routeId] = L.layerGroup();
+            routeTypeLayers[type][routeId]._layerType = "realtime";
+        });
+    });
+
+    Object.values(routeTypeLayers).forEach(routeGroup => {
+        Object.values(routeGroup).forEach(layer => {
+            // Add to map so control can toggle them
+            layer.addTo(map);
+            console.log("realtime layer added to map");
+            // Immediately hide them
+            map.removeLayer(layer);
+            console.log("realtime layer hidden");
+        });
+    });
+
+    const realtime = L.realtime("/vehicles", {    // relative URL to backend
+        interval: 30000, // update every 30 seconds
+        getFeatureId: f => f.properties.tripId,
+        removeMissing: true,
+        pointToLayer: function(feature, latlng) {
+            const routeId = String(feature.properties.routeId);
+            // Find which route type the route belongs to
+            const type = Object.keys(routeTypeLayers).find(t => 
+                routeTypeLayers[t][routeId]
+            );
+            console.log("Adding:", type, routeId);
+
+            // console.log(routeId, type); // 215 Intercity
+            if (!type) {
+                console.warn("No layer found for routeId:", routeId, "Feature:", feature);
+                return null;
+            }
+
+            const liveBus = new L.Icon({
+                iconUrl: 'assets/images/bus.png',
+                iconSize: [20, 20],
+                iconAnchor: [7.5, 7.5],
+                popupAnchor: [0, 0],
+            });
+
+            const marker = L.marker(latlng, {
+                icon: liveBus,
+                rotationAngle: feature.properties.heading || 0
+            });
+
+            marker.feature = feature;
+            const popupContent = 
+                `<b>Trip ID:</b> ${feature.properties.tripId}<br>
+                <b>Route:</b> ${feature.properties.routeId}<br>
+                <b>Speed:</b> ${feature.properties.speed || "N/A"} m/s`
+            marker.bindPopup(popupContent, { autoPan: false });
+            marker.on("click", (event) => onMapClick(event));
+            marker.on("mouseover", () => marker.openPopup());
+            marker.on("mouseout", () => marker.closePopup());
+
+            // Add marker to the correct route layer
+            routeTypeLayers[type][routeId].addLayer(marker);
+
+            return marker;
+        },
+    });
 
     map.createPane("calEnviroPane");
     // Set the z-index of the pane to below the default pane
@@ -225,8 +284,7 @@ function initializeMap(
             metric: true,
             imperial: true,
             position: "bottomright",
-        })
-        .addTo(map);
+        }).addTo(map);
 
     // Add legend to map
     yolobusLegend = L.control({ position: "bottomleft" });
@@ -367,6 +425,9 @@ function initializeMap(
             layerControl.getContainer().classList.add("legend-open");
         }
         listActiveLayers(e.layer);
+        if (e.layer._layerType === "realtime") {
+            realtime.update();
+        }
     });
 
     map.on("overlayremove", function (e) {
@@ -631,13 +692,18 @@ function initializeMap(
                 ],
             },
             // test
-            // {
-            //     label: "EARTHQUAKES",
-            //     selectAllCheckbox: "Un/select all",
-            //     children: [
-            //         { label: "Earthquakes 2.5+", layer: realtime }
-            //     ],
-            // },
+            {
+                label: "LIVE VEHICLES",
+                selectAllCheckbox: "Un/select all",
+                children: Object.entries(routeTypeLayers).map(([type, routes]) => ({
+                    label: type,
+                    selectAllCheckbox: true,
+                    children: Object.entries(routes).map(([routeId, layer]) => ({
+                        label: routeId,
+                        layer: layer
+                    }))
+                }))
+            },
             {
                 label: "POINTS OF INTEREST",
                 selectAllCheckbox: "Un/select all",
@@ -753,12 +819,39 @@ function initializeMap(
         expandAll: "Expand all",
     });
     // Collapse all layers by default
-    layerControl.addTo(map).collapseTree().expandSelected().collapseTree(true);
+    layerControl.addTo(map);
+    layerControl.collapseTree(true);
 
-    // test
-    // realtime.on('update', function() {
-    //     map.fitBounds(realtime.getBounds(), {maxZoom: 3});
-    // });
+    realtime.on('beforeupdate', function() {
+        Object.values(routeTypeLayers).forEach(routeGroup => {
+            Object.values(routeGroup).forEach(layer => {
+                // Remove old markers of live vehicles
+                console.log("beforeupdate: ", routeTypeLayers);
+                console.log("1: ", map.hasLayer(layer));
+                layer.clearLayers();
+                console.log("2: ", map.hasLayer(layer));
+            });
+        });
+    });
+
+    let initialFit = true;
+    realtime.on('update', function() {
+        if (!initialFit) return;
+        const bounds = L.latLngBounds();
+        console.log("update: ", routeTypeLayers);
+        Object.values(routeTypeLayers).forEach(routeGroup => {
+            Object.values(routeGroup).forEach(layer => {
+                if (map.hasLayer(layer) && layer.getBounds && layer.getBounds().isValid()) {
+                    bounds.extend(layer.getBounds());
+                }
+            });
+        });
+
+        if (bounds.isValid()) {
+            map.fitBounds(bounds, { maxZoom: 14 });
+        }
+        initialFit = false;
+    });
 
     // Set max-height dynamically
     function adjustLayersControlHeight() {
@@ -1028,11 +1121,11 @@ async function createGeoJson(
 
 async function addBoundaries() {
     const yoloBoundaryLeaflet = await createGeoJson(
-        "../../geojson/Boundaries/Yolo County Boundary.geojson",
+        "/data/geojson/Boundaries/Yolo County Boundary.geojson",
         "Yolo County Boundary",
     );
     const serviceAreaLeaflet = await createGeoJson(
-        "../../geojson/Boundaries/Yolobus Service Area.geojson",
+        "/data/geojson/Boundaries/Yolobus Service Area.geojson",
         "Yolobus Service Area",
     );
     yoloBoundaryLeaflet.id = "yoloCountyBoundary";
@@ -1042,7 +1135,7 @@ async function addBoundaries() {
     return borders;
 }
 
-/**
+/*
  * Convert a GTFS ZIP File object to GeoJSONs.
  * @param {File|ArrayBuffer} gtfsFile - GTFS ZIP as File or ArrayBuffer
  * @returns {Promise<{stopsGeoJSON: object, routesGeoJSONs: Map<string, object>}>}
@@ -1169,7 +1262,7 @@ async function addTransitData(gtfsFile, agencyName, busStopMarker) {
 // Add Disadvantaged Communities layer (shapefile to GeoJSON)
 async function addCalEnviroScreen() {
     var calEnviroScreen = await createGeoJson(
-        "../../geojson/CalEnviroScreen/CES.json",
+        "/data/geojson/CalEnviroScreen/CES.json",
         "CalEnviroScreen",
     );
     calEnviroScreen.id = "CalEnviroScreen";
@@ -1181,7 +1274,7 @@ async function addYoloPOIs() {
     const layers = [];
     for (const category of categories) {
         const layer = await createGeoJson(
-            `../../geojson/Yolo County Points of Interest/${category}.geojson`,
+            `/data/geojson/Yolo County Points of Interest/${category}.geojson`,
             `Yolo ${category}`,
         );
         layer.id = `yolo${category}`;
@@ -1194,7 +1287,7 @@ async function addSacPOIs() {
     const layers = [];
     for (const category of categories) {
         const layer = await createGeoJson(
-            `../../geojson/Sacramento County Points of Interest/${category}.geojson`,
+            `/data/geojson/Sacramento County Points of Interest/${category}.geojson`,
             `Sac ${category}`,
         );
         layer.id = `sac${category}`;
@@ -1236,6 +1329,7 @@ function setupEventListeners() {
 
 function onMapClick(event) {
     clickedCoordinates = [event.latlng.lng, event.latlng.lat]; // Store as [lng, lat] for API
+    console.log("EVENT.TARGET: ", event.target);
     showDialog();
 }
 
@@ -1506,12 +1600,12 @@ function removeInactiveLayers(layer) {
 
     const table = document.getElementById("table");
     const rows = table.getElementsByTagName("tr");
-    var category = Object.values(layer._layers)[0].feature.properties.category;
+    var category = Object.values(layer._layers)[0]?.feature?.properties?.category;
     // Remove inactive features from table
     for (row of Object.values(rows)) {
         // console.log("ROWS: ", rows, rows.length);
         // console.log("CELL: ", row.cells[2].innerHTML)
-        if (row.cells[2].innerHTML == category) {
+        if (row?.cells[2]?.innerHTML == category) {
             table.removeChild(row);
             // console.log("removed row");
         }
@@ -1520,12 +1614,15 @@ function removeInactiveLayers(layer) {
 
 function listActiveLayers(layer) {
     // Add layer to active layers array
+    // console.log("layer: ", layer);
+    // console.log(layer._layerType === "realtime");
     let layerType;
     if (layer.id === "CalEnviroScreen") layerType = "CES";
     else if (layer.id === "yoloCountyBoundary") layerType = "YCB";
     else if (layer.id === "yolobusServiceArea") layerType = "YSA";
     else if (layer.id === "stops") layerType = "Stops";
     else if (layer._layerType === "route") layerType = "Routes";
+    else if (layer._layerType === "realtime") layerType = "RT";
     else layerType = "POI";
 
     if (layerType !== "POI") return;
@@ -1543,52 +1640,7 @@ function listActiveLayers(layer) {
 
     // Add rows for each active layer
     for (activePOI of activePOIs) {
-        // console.log("ACTIVELAYER: ", activePOI);
-
-        // if (layerType === 'Routes') {
-        //     header1.innerHTML = 'Route';
-        //     header2.innerHTML = 'Route Type';
-        //     header3.innerHTML = 'Agency';
-
-        //     const row = document.createElement('tr');
-        //     const routeID = document.createElement('td');
-        //     routeID.innerHTML = activeLayer.id ? activeLayer.id : '-';
-        //     const routeType = document.createElement('td');
-        //     routeType.innerHTML = activeLayer._routeType ? activeLayer._routeType : '-';
-        //     const agency = document.createElement('td');
-        //     agency.innerHTML = activeLayer._agency ? activeLayer._agency : '-';
-        //     row.appendChild(routeID);
-        //     row.appendChild(routeType);
-        //     row.appendChild(agency);
-        //     table.appendChild(row);
-
-        //     console.log("ACTIVELAYER.ID: ", activeLayer.id);
-        //     console.log("ACTIVELAYER._ROUTETYPE: ", activeLayer._routeType);
-        //     console.log("ACTIVELAYER._AGENCY: ", activeLayer._agency);
-        // }
         for (feature of Object.values(activePOI._layers)) {
-            // console.log("FEATURE:", feature);
-            // console.log("FEATURE.FEATURE.PROPERTIES.NAME: ", feature.feature.properties.name);
-            // console.log("FEATURE.FEATURE.PROPERTIES.CATEGORY: ", feature.feature.properties.category);
-
-            // if (layerType === 'Stops') {
-            //     header1.innerHTML = 'Stop';
-            //     header2.innerHTML = 'Stop ID';
-            //     header3.innerHTML = 'Agency';
-
-            //     const row = document.createElement('tr');
-            //     const name = document.createElement('td');
-            //     name.innerHTML = feature.feature.properties.stop_name ? feature.feature.properties.stop_name : '-';
-            //     const stopID = document.createElement('td');
-            //     stopID.innerHTML = feature.feature.properties.stop_id ? feature.feature.properties.stop_id : '-';
-            //     const agency = document.createElement('td');
-            //     agency.innerHTML = activeLayer._agency ? activeLayer._agency : '-';
-            //     row.appendChild(name);
-            //     row.appendChild(stopID);
-            //     row.appendChild(agency);
-            //     table.appendChild(row);
-            // } else
-
             const row = document.createElement("tr");
             row.style.backgroundColor = `${feature.feature.properties.color}30`;
             const name = document.createElement("td");
@@ -1610,26 +1662,6 @@ function listActiveLayers(layer) {
             row.appendChild(city);
             row.appendChild(category);
             table.appendChild(row);
-            // else if (layerType === 'CES') {
-            //     header1.innerHTML = 'Approximate Location';
-            //     header2.innerHTML = 'Tract';
-            //     header3.innerHTML = 'CI Score Percentile';
-
-            //     const row = document.createElement('tr');
-            //     console.log(feature.feature.properties.color);
-            //     row.style.backgroundColor = `${feature.feature.properties.color}30`;
-            //     const loc = document.createElement('td');
-            //     loc.innerHTML = feature.feature.properties.ApproxLoc ? feature.feature.properties.ApproxLoc :
-            //         feature.feature.properties.County ? feature.feature.properties.County : '-';
-            //     const tract = document.createElement('td');
-            //     tract.innerHTML = feature.feature.properties.Tract ? feature.feature.properties.Tract : '-';
-            //     const CIScoreP = document.createElement('td');
-            //     CIScoreP.innerHTML = feature.feature.properties.CIscoreP;
-            //     row.appendChild(loc);
-            //     row.appendChild(tract);
-            //     row.appendChild(CIScoreP);
-            //     table.appendChild(row);
-            // }
         }
     }
 }
@@ -1642,6 +1674,34 @@ function showLoadingIndicator() {
 function hideLoadingIndicator() {
     const loadingIndicator = document.getElementById("loading-indicator");
     loadingIndicator.classList.add("hidden");
+}
+
+function hideSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const openBtn = document.getElementById("open-button");
+    if (!sidebar) return;
+    sidebar.classList.add("closed");
+    openBtn.classList.remove("hide");
+
+    // Wait for CSS transition to finish before resizing map
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 310); // slightly more than CSS transition duration
+}
+
+function showSidebar(e) {
+    const sidebar = document.getElementById("sidebar");
+    if (!sidebar) return;
+    e.preventDefault();
+
+    const openBtn = e.target;
+    sidebar.classList.remove("closed");
+    openBtn.classList.add("hide");
+
+    // Wait for CSS transition to finish before resizing map
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 310); // slightly more than CSS transition duration
 }
 
 function clearAll() {

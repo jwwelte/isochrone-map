@@ -1,25 +1,26 @@
 {
   "name": "isochrone-map",
   "version": "1.0.0",
-  "description": "An interactive isochrone map of the Yolo and Sacramento Counties",
-  "homepage": "https://github.com/jwwelte/isochrone-map#readme",
+  "description": "An interactive planning webmap of the Yolo and Sacramento Counties",
+  "homepage": "https://github.com/YoloTDIntern/isochrone-map#readme",
   "bugs": {
-    "url": "https://github.com/jwwelte/isochrone-map/issues"
+    "url": "https://github.com/YoloTDIntern/isochrone-map/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jwwelte/isochrone-map.git"
+    "url": "git+https://github.com/YoloTDIntern/isochrone-map.git"
   },
   "license": "ISC",
   "author": "Jackie Welte",
   "type": "commonjs",
-  "main": "./src/javascript/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^5.2.1",
-    "gtfs2geojson": "^2.0.0",
-    "shpjs": "^6.2.0"
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "gtfs-realtime-bindings": "^1.1.1",
+    "node-fetch": "^3.3.2"
   }
 }

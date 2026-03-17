@@ -1,0 +1,80 @@
+// List of plug-ins to enhance layers control
+https://leafletjs.com/plugins.html#layer-switching-controls
+
+// Convert layers control to collapsible tree
+https://github.com/jjimenezshaw/Leaflet.Control.Layers.Tree
+
+// Layers control options example
+https://github.com/jjimenezshaw/Leaflet.Control.Layers.Tree/blob/master/examples/options.html
+
+
+// Disadvantaged Communities layer data download (shapefile)
+https://oehha.ca.gov/calenviroscreen/report/calenviroscreen-40
+https://calenviroscreen-oehha.hub.arcgis.com/
+
+// Shapefile zip to GeoJSON!!!!!!!
+https://mapshaper.org/
+
+// Custom choropleth map!!!!
+https://leafletjs.com/examples/choropleth/
+
+
+// GTFS to GeoJSON plugin (doesn't work on browser)
+https://github.com/BlinkTagInc/gtfs-to-geojson
+
+// GTFS to GeoJSON web tool
+geojson.gtfstohtml.com
+
+
+// Add fullscreen button to map
+https://github.com/brunob/leaflet.fullscreen/tree/master
+
+
+// Convert GTFS to GeoJSON with QGIS!!! (update with new version; no separate routes)
+https://www.stevencanplan.com/2016/02/converting-a-transit-agencys-gtfs-to-shapefile-and-geojson-with-qgis/
+
+    * Right click 'stops' layer -> Export -> Save Features As -> GeoJSON
+
+    * Plugins -> Manage Plugins -> Processing
+        View -> Panels -> Processing Toolbox
+        Search -> Points to path
+
+// GTFS QGIS Plugin!!!! (incompatible)
+https://github.com/MIERUNE/GTFS-GO
+
+
+// new web app link
+https://isoline-map.onrender.com
+
+
+
+project-root/
+│
+├─ package.json            # Node backend dependencies & start script
+├─ realtime.js             # Backend server (GTFS-RT → GeoJSON)
+├─ public/                 # Frontend static site
+│   ├─ index.html          # Main HTML
+│   ├─ main.js             # Your Leaflet + Realtime code
+│   ├─ main.css            # Your custom styles
+│   ├─ assets/             # Images, icons, etc.
+│   │   └─ bus-icon.png
+│   ├─ plugins/            # Leaflet plugins & JS/CSS libraries
+│   │   ├─ ajax/           # Optional: ajax-related JS libraries
+│   │   │   ├─ ajax.js
+│   │   │   ├─ jszip.min.js
+│   │   │   └─ leaflet.ajax.js
+│   │   ├─ leaflet-realtime/
+│   │   │   └─ leaflet-realtime.js
+│   │   ├─ featuregroup-subgroup/
+│   │   │   ├─ leaflet.featuregroup.subgroup-src.js
+│   │   │   └─ leaflet.featuregroup.subgroup.js
+│   │   ├─ markercluster/
+│   │   │   ├─ leaflet.markercluster.js
+│   │   │   ├─ MarkerCluster.css
+│   │   │   └─ MarkerCluster.Default.css
+│   │   └─ layers-tree/
+│   │       ├─ L.Control.Layers.Tree.js
+│   │       └─ L.Control.Layers.Tree.css
+│   └─ vendor/             # Core libraries (Leaflet itself, D3, etc.)
+│       ├─ leaflet.js
+│       └─ leaflet.css

@@ -111,29 +111,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     const [borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sacPOIs] =
         await Promise.all([
             addBoundaries(),
-            addTransitData(
-                "/yolobus_gtfs.zip",
-                "Yolobus",
-                "/assets/images/yolobus-bus-stop.png",
-            ),
-            addTransitData(
-                "/unitrans_gtfs.zip",
-                "Unitrans",
-                "/assets/images/unitrans-bus-stop.png",
-            ),
+            addTransitData("/yolobus_gtfs.zip", "Yolobus", "/assets/images/yolobus-bus-stop.png"),
+            addTransitData("/unitrans_gtfs.zip", "Unitrans", "/assets/images/unitrans-bus-stop.png"),
             addCalEnviroScreen(),
             addYoloPOIs(),
-            addSacPOIs(),
+            addSacPOIs()
         ]);
 
-    initializeMap(
-        borders,
-        yolobus,
-        unitrans,
-        calEnviroScreen,
-        yoloPOIs,
-        sacPOIs,
-    );
+    initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sacPOIs);
     document.getElementById("loader").style.display = "none";
     // console.log(map.hasLayer(calEnviroScreen));
     // console.log("CES bounds valid:", calEnviroScreen.getBounds().isValid());
@@ -142,14 +127,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     setupEventListeners();
 });
 
-function initializeMap(
-    borders,
-    yolobus,
-    unitrans,
-    calEnviroScreen,
-    yoloPOIs,
-    sacPOIs,
-) {
+function initializeMap(borders, yolobus, unitrans, calEnviroScreen, yoloPOIs, sacPOIs) {
     // Initialize Leaflet map
     map = L.map('map', {
         center: DEFAULT_CENTER,
@@ -173,30 +151,6 @@ function initializeMap(
             keepBuffer: 2,
         }).addTo(map);
       });
-
-    // Create marker cluster group and realtime layer
-    // clusterGroup = L.markerClusterGroup().addTo(map),
-    // subgroup = L.featureGroup.subGroup(clusterGroup).addTo(map);
-    // const realtime = L.realtime("/vehicles",    // relative URL to backend
-    //     {
-    //         interval: 30000, // update every 30 seconds
-    //         getFeatureId: f => f.properties.tripId,
-    //         container: subgroup,
-    //         pointToLayer: function(feature, latlng) {
-    //             // optionally rotate marker by heading
-    //             return L.marker(latlng, {
-    //                 rotationAngle: feature.properties.heading || 0
-    //             });
-    //         },
-    //         onEachFeature: (feature, layer) => {
-    //             layer.bindPopup(`
-    //                 <b>Trip ID:</b> ${feature.properties.tripId}<br/>
-    //                 <b>Route:</b> ${feature.properties.routeId}<br/>
-    //                 <b>Speed:</b> ${feature.properties.speed || "N/A"} m/s
-    //             `);
-    //         }
-    //     }
-    // ).addTo(map);
 
     const routeTypeLayers = {};
 
